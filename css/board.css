@@ -285,6 +285,11 @@ progress::-moz-progress-bar {
   gap: 8px;
 }
 
+.progress-scale-hidden {
+  display: none;
+  opacity: 0;
+}
+
 .cards .avatars {
   display: flex;
   align-items: center;

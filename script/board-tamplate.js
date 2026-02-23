@@ -423,14 +423,26 @@ function renderTasksHTML(task, id) {
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span>${task.description}</span>
-                  <div class="progress-scale"><progress value="${stats.checked}" max="${stats.total}"> 32% </progress> ${stats.checked}/${stats.total} Subtasks</div>
-                  
+                   ${getProgressSubtask(stats)}                  
                   <div class ="nav">
                   <div class="avatars" >${renderTaskContact(task.contacts, 4)}</div>
                   <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
                   </div>
                   </div>
                 </div>     
+  `;
+}
+
+function getProgressSubtask(stats) {
+  if (stats.total === 0) return `<div class="progress-scale-hidden">
+      <progress value="${stats.checked}" max="${stats.total}"></progress> 
+      ${stats.checked}/${stats.total} Subtasks
+    </div>`;
+  return `
+    <div class="progress-scale">
+      <progress value="${stats.checked}" max="${stats.total}"></progress> 
+      ${stats.checked}/${stats.total} Subtasks
+    </div>
   `;
 }
 
