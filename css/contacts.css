@@ -103,13 +103,25 @@ main {
   transition: background 125ms ease;
 }
 
-.contacts .contact-list .contact-list-items .contact-container:hover {
-  background: linear-gradient(135deg,
-      rgba(249, 249, 249, 1),
-      rgba(240, 240, 240, 1));
+.contacts .contact-list .contact-list-items .contact-container.active {
+  background-color: #2a3647;
+  color: rgba(255, 255, 255, 1);
 }
 
-.contacts .contact-list .contact-list-items .contact-container.active .contactDetails .contactName {
+.contacts .contact-list .contact-list-items .contact-container:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(249, 249, 249, 1),
+    rgba(240, 240, 240, 1)
+  );
+}
+
+.contacts
+  .contact-list
+  .contact-list-items
+  .contact-container.active
+  .contactDetails
+  .contactName {
   color: rgba(255, 255, 255, 1);
 }
 
@@ -134,13 +146,23 @@ main {
   align-items: flex-start;
 }
 
-.contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
+.contacts
+  .contact-list
+  .contact-list-items
+  .contact-container
+  .contactDetails
+  .contactName {
   color: rgba(0, 0, 0, 1);
   font-size: 20px;
   font-weight: 400;
 }
 
-.contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
+.contacts
+  .contact-list
+  .contact-list-items
+  .contact-container
+  .contactDetails
+  .contactEmail {
   font-size: 16px;
   font-weight: 400;
   color: rgba(0, 124, 238, 1);
@@ -259,26 +281,55 @@ main {
   height: 24px;
 }
 
-.floating-contact #contact-header #contact-text #contact-edit-tools .edit-delete-component-default {
+.floating-contact
+  #contact-header
+  #contact-text
+  #contact-edit-tools
+  .edit-delete-component-default {
   transition: all 200ms linear;
 }
 
-.floating-contact #contact-header #contact-text #contact-edit-tools #edit:hover img {
+.floating-contact
+  #contact-header
+  #contact-text
+  #contact-edit-tools
+  #edit:hover
+  img {
   content: url("../assets/img/edit-hover-contact.svg");
 }
 
-.floating-contact #contact-header #contact-text #contact-edit-tools #delete img {
+.floating-contact
+  #contact-header
+  #contact-text
+  #contact-edit-tools
+  #delete
+  img {
   content: url("../assets/img/delete-contact.svg");
   width: 24px;
   height: 24px;
 }
 
-.floating-contact #contact-header #contact-text #contact-edit-tools #delete:hover img {
+.floating-contact
+  #contact-header
+  #contact-text
+  #contact-edit-tools
+  #delete:hover
+  img {
   content: url("../assets/img/delete-hover-contact.svg");
 }
 
-.floating-contact #contact-header #contact-text #contact-edit-tools #edit:hover span,
-.floating-contact #contact-header #contact-text #contact-edit-tools #delete:hover span {
+.floating-contact
+  #contact-header
+  #contact-text
+  #contact-edit-tools
+  #edit:hover
+  span,
+.floating-contact
+  #contact-header
+  #contact-text
+  #contact-edit-tools
+  #delete:hover
+  span {
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
 }
@@ -416,7 +467,11 @@ main {
     padding: 16px 24px;
   }
 
-  .contacts .contact-list .contact-list-items .contact-container .contact-badge {
+  .contacts
+    .contact-list
+    .contact-list-items
+    .contact-container
+    .contact-badge {
     width: 54px;
     height: 54px;
     font-size: 20px;
@@ -450,11 +505,21 @@ main {
     gap: clamp(20px, 4vw, 35px);
   }
 
-  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
+  .contacts
+    .contact-list
+    .contact-list-items
+    .contact-container
+    .contactDetails
+    .contactName {
     font-size: clamp(16px, 4vw, 20px);
   }
 
-  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
+  .contacts
+    .contact-list
+    .contact-list-items
+    .contact-container
+    .contactDetails
+    .contactEmail {
     font-size: clamp(13px, 4vw, 16px);
   }
 
@@ -549,7 +614,7 @@ main {
 
   .floating-contact {
     animation: none;
-  } 
+  }
 }
 
 @media (max-width: 450px) {
@@ -604,23 +669,41 @@ main {
     gap: 8px;
   }
 
-  .contacts .contact-list .contact-list-items .contact-container .contact-badge {
+  .contacts
+    .contact-list
+    .contact-list-items
+    .contact-container
+    .contact-badge {
     width: 42px;
     height: 42px;
     font-size: 16px;
   }
 
-  .contacts .contact-list .contact-list-items .contact-container .contactDetails {
+  .contacts
+    .contact-list
+    .contact-list-items
+    .contact-container
+    .contactDetails {
     display: flex;
     flex-flow: column wrap;
   }
 
-  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
+  .contacts
+    .contact-list
+    .contact-list-items
+    .contact-container
+    .contactDetails
+    .contactName {
     font-size: 16px;
     /* font-size: clamp(16px, 4vw, 20px); */
   }
 
-  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
+  .contacts
+    .contact-list
+    .contact-list-items
+    .contact-container
+    .contactDetails
+    .contactEmail {
     font-size: 12px;
     /* font-size: clamp(13px, 4vw, 16px); */
   }
@@ -760,7 +843,9 @@ main {
 }
 
 .editMenuDialogContainer #editDialog.edit-delete-component-default:hover span,
-.editMenuDialogContainer #deleteDialog.edit-delete-component-default:hover span {
+.editMenuDialogContainer
+  #deleteDialog.edit-delete-component-default:hover
+  span {
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
 }
