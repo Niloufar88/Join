@@ -55,7 +55,7 @@
       width: 100%;
       .add-contact-title {
         font-weight: 700;
-        font-size: 48px;
+        font-size: 42px;
         color: rgba(255, 255, 255, 1);
         width: 100%;
         margin: 0;
@@ -64,7 +64,7 @@
       .add-contact-subtitle {
         color: rgba(255, 255, 255, 1);
         font-weight: 400;
-        font-size: 22px;
+        font-size: 20px;
         width: 100%;
         margin: 0;
         display: block;
@@ -136,7 +136,7 @@
       justify-content: flex-start;
       width: 70%;
       .inputContainer {
-        height: 60px;
+        height: 50px;
         background-color: rgba(255, 255, 255, 1);
         border: 1px solid rgba(209, 209, 209, 1);
         padding: 10px 20px;
@@ -356,21 +356,21 @@ input[type="number"]::-webkit-inner-spin-button {
   }
   .add-contact-overlay .add-contact-overview {
     width: 100%;
-    height: 45%;
-    padding: clamp(24px, 8vw, 48px);
+    height: 350px;
+    padding: 60px 44px;
     border-radius: 30px 30px 0 0;
   }
   .add-contact-overlay
     .add-contact-overview
     .add-contact-text
     .add-contact-title {
-    font-size: clamp(24px, 8vw, 52px);
+    font-size: 32px;
   }
   .add-contact-overlay
     .add-contact-overview
     .add-contact-text
     .add-contact-subtitle {
-    font-size: clamp(18px, 4vw, 30px);
+    font-size: 22px;
   }
   .add-contact-overlay .add-contact-overview .join-logo-contact {
     display: none;
@@ -385,8 +385,8 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: clamp(18px, 4vw, 22px);
     width: 24px;
     height: 24px;
-    top: 35px;
-    right: 35px;
+    top: 25px;
+    right: 25px;
     color: white;
   }
   .add-contact-overlay .add-contact-container .close-btn:hover {
@@ -405,7 +405,7 @@ input[type="number"]::-webkit-inner-spin-button {
     position: absolute;
     width: clamp(100px, 20vw, 110px);
     height: clamp(100px, 20vw, 110px);
-    top: calc(45% - 55px);
+    top: calc(45% - 45px);
     margin-bottom: 0;
   }
   .add-contact-overlay .add-contact-container .add-contact-form .contactForm {
@@ -434,7 +434,7 @@ input[type="number"]::-webkit-inner-spin-button {
     .inputContainer {
     height: 40px;
     padding: 8px 16px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
   }
   /* .add-contact-overlay
     .add-contact-overview
@@ -483,6 +483,13 @@ input[type="number"]::-webkit-inner-spin-button {
   }
   .secondary-btn-hovered-icon {
     font-size: 14px;
+  }
+  .contactValidationErrorMsg {
+    color: rgba(230, 0, 38, 1);
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 10px;
+    visibility: hidden;
   }
 }
 
@@ -601,7 +608,7 @@ input[type="number"]::-webkit-inner-spin-button {
     .add-contact-overview
     .add-contact-text
     .add-contact-subtitle {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
