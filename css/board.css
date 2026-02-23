@@ -15,7 +15,7 @@
   --color-seperator: rgba(209, 209, 209, 1);
 
   --color-progress: #4589ff;
-  --color-hover: #29ABE2;
+  --color-hover: #29abe2;
 
   --color-overlay-close: #666;
   --color-overlay-close-hover: #333;
@@ -58,7 +58,7 @@ h1 {
 }
 
 .span-overflow {
-overflow: hidden;
+  overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -130,7 +130,7 @@ overflow: hidden;
 }
 
 .button-task:hover {
-  background-color: var(--color-hover)
+  background-color: var(--color-hover);
 }
 
 .board-container {
@@ -238,7 +238,7 @@ h4 {
   color: var(--color-text-heading);
 }
 
-.cards>span {
+.cards > span {
   display: block;
   margin: 0 0 var(--space-18);
   font-size: 16px;
@@ -421,7 +421,6 @@ taskDetailsOverlay {
   cursor: pointer;
 }
 
-
 .detail-card {
   background-color: var(--color-white);
   width: 100%;
@@ -433,7 +432,8 @@ taskDetailsOverlay {
   position: relative;
   display: flex;
   flex-direction: column;
-  max-height: 100vh;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .detail-header {
@@ -503,7 +503,7 @@ taskDetailsOverlay {
   /* gap: var(--space-12); */
   margin-top: var(--space-8);
   overflow: auto;
-  max-height: 150px;
+  max-height: 100px;
 }
 
 .checkbox-box {
@@ -517,7 +517,7 @@ taskDetailsOverlay {
   cursor: pointer;
 }
 
-.checkbox-input:checked+.checkbox-box {
+.checkbox-input:checked + .checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }
@@ -571,7 +571,6 @@ taskDetailsOverlay {
   padding-top: 76px;
   display: flex;
   justify-content: space-between;
-
 }
 
 .subtask-item {
@@ -619,7 +618,6 @@ taskDetailsOverlay {
 .edit-header {
   display: flex;
   justify-content: space-between;
-
 }
 
 .edit-mode-container {

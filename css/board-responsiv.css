@@ -44,7 +44,6 @@
 }
 
 @media (max-width: 1065px) {
-
   .board {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(4, 1fr);
@@ -129,6 +128,9 @@
   .detail-card {
     max-width: 400px;
     min-width: 350px;
+    overflow-y: auto;
+    max-height: 80vh;
+    padding: 24px;
   }
 
   .button-task {
