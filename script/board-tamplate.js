@@ -422,7 +422,7 @@ function renderTasksHTML(task, id) {
   return `<div class="cards" data-id="${id}" draggable="true" ondragstart="onDragStart(event)" ondragend="onDragEnd(event)" onclick="openTaskDetailsOverlay(this)">                 
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
-                  <span>${task.description}</span>
+                  <span class="span-overflow">${task.description}</span>
                    ${getProgressSubtask(stats)}                  
                   <div class ="nav">
                   <div class="avatars" >${renderTaskContact(task.contacts, 4)}</div>
