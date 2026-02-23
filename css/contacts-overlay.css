@@ -68,6 +68,11 @@
         margin: 0;
         display: block;
       }
+      .blue-vector {
+        width: 30%;
+        height: 3px;
+        background: #29abe2;
+      }
     }
   }
 }
@@ -343,10 +348,10 @@ input[type="number"]::-webkit-inner-spin-button {
 @media (max-width: 991px) {
   .add-contact-overlay {
     flex-direction: column;
-    width: clamp(90%, 90vw, 80%);
+    width: clamp(60%, 60vw, 55%);
     height: calc(100vh - 180px);
     top: 51%;
-    right: calc(100vw - 95%);
+    right: calc(100vw - 80%);
   }
   .add-contact-overlay .add-contact-overview {
     width: 100%;
@@ -397,8 +402,8 @@ input[type="number"]::-webkit-inner-spin-button {
     .add-contact-form
     .add-contact-badge {
     position: absolute;
-    width: clamp(100px, 20vw, 120px);
-    height: clamp(100px, 20vw, 120px);
+    width: clamp(100px, 20vw, 110px);
+    height: clamp(100px, 20vw, 110px);
     top: calc(45% - 55px);
     margin-bottom: 0;
   }
@@ -465,12 +470,12 @@ input[type="number"]::-webkit-inner-spin-button {
   .primary-btn-default-icon {
     font-weight: 700;
     font-size: 14px;
-    gap: 12px;
+    /* gap: 12px; */
   }
   .primary-btn-hovered-icon {
     font-weight: 700;
     font-size: 14px;
-    gap: 12px;
+    /* gap: 12px; */
   }
   .secondary-btn-default-icon {
     font-size: 14px;
@@ -571,3 +576,123 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-bottom: 16px;
   }
 } */
+
+@media (max-width: 576px) {
+  .add-contact-overlay {
+    flex-direction: column;
+    width: clamp(90%, 90vw, 80%);
+    height: calc(100vh - 180px);
+    top: 51%;
+    right: calc(100vw - 95%);
+  }
+
+  .add-contact-overlay
+    .add-contact-overview
+    .add-contact-text
+    .add-contact-subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 450px) {
+  .add-contact-overlay .add-contact-container .add-contact-form .contactForm {
+    margin-top: 24px;
+  }
+  .add-contact-overlay
+    .add-contact-container
+    .add-contact-form
+    .contactForm
+    .inputContainer {
+    height: 30px;
+    margin-bottom: 0;
+  }
+  .add-contact-overlay
+    .add-contact-container
+    .add-contact-form
+    .contactForm
+    .inputContainer
+    img {
+    width: 24px;
+    height: 24px;
+  }
+  .add-contact-overlay
+    .add-contact-container
+    .add-contact-form
+    .contactForm
+    .inputContainer
+    input {
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .add-contact-overlay
+    .add-contact-container
+    .add-contact-form
+    .contactForm
+    .inputContainer
+    input::placeholder {
+    font-size: 14px;
+  }
+
+  .add-contact-overlay
+    .add-contact-container
+    .add-contact-form
+    .contactForm
+    .add-contact-buttons
+    button {
+    height: 36px;
+  }
+
+  .add-contact-overlay .add-contact-overview {
+    height: 40%;
+  }
+
+  .add-contact-overlay
+    .add-contact-container
+    .add-contact-form
+    .add-contact-badge {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    font-size: 32px;
+    top: calc(40% - 45px);
+    margin-bottom: 0;
+  }
+
+  .add-contact-overlay
+    .add-contact-container
+    .add-contact-form
+    .add-contact-badge
+    img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .primary-btn-default-icon {
+    padding: 8px;
+    font-size: 14px;
+    /* font-size: clamp(16px, 4vw, 18px); */
+  }
+  .secondary-btn-default-icon {
+    padding: 8px;
+    font-size: 14px;
+    /* font-size: clamp(16px, 4vw, 18px); */
+  }
+  .add-contact-overlay
+    .add-contact-container
+    .add-contact-form
+    .contactForm
+    .inputContainer {
+    padding: 8px 8px;
+  }
+
+  .contactValidationErrorMsg {
+    color: rgba(230, 0, 38, 1);
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 10px;
+    visibility: hidden;
+  }
+}
