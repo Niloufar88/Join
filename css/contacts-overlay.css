@@ -17,10 +17,11 @@
   justify-content: space-between;
   position: absolute;
   top: 50%;
-  right: calc(100vw - 90%);
+  /* right: calc(100vw - 90%); */
   transform: translate(100%, -50%);
-  width: 70%;
-  height: 65vh;
+  /* width: 70%; */
+  min-height: 550px;
+  max-height: 65vh;
   background-color: white;
   border-radius: 30px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -30,8 +31,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 35%;
-    height: 100%;
+    width: 40%;
+    /* min-height: 100%; */
     background-color: rgba(42, 54, 71, 1);
     padding: 66px 48px;
     border-radius: 30px 0 0 30px;
@@ -54,7 +55,7 @@
       width: 100%;
       .add-contact-title {
         font-weight: 700;
-        font-size: 54px;
+        font-size: 48px;
         color: rgba(255, 255, 255, 1);
         width: 100%;
         margin: 0;
@@ -63,7 +64,7 @@
       .add-contact-subtitle {
         color: rgba(255, 255, 255, 1);
         font-weight: 400;
-        font-size: 24px;
+        font-size: 22px;
         width: 100%;
         margin: 0;
         display: block;
@@ -101,7 +102,7 @@
     width: 38px;
     height: 38px;
     position: absolute;
-    top: 48px;
+    top: 32px;
     right: 48px;
     cursor: pointer;
     transition: all 125ms ease;
@@ -349,7 +350,7 @@ input[type="number"]::-webkit-inner-spin-button {
   .add-contact-overlay {
     flex-direction: column;
     width: clamp(60%, 60vw, 55%);
-    height: calc(100vh - 180px);
+    max-height: calc(100vh - 180px);
     top: 51%;
     right: calc(100vw - 80%);
   }
@@ -581,9 +582,19 @@ input[type="number"]::-webkit-inner-spin-button {
   .add-contact-overlay {
     flex-direction: column;
     width: clamp(90%, 90vw, 80%);
-    height: calc(100vh - 180px);
+    max-height: calc(100vh - 180px);
     top: 51%;
     right: calc(100vw - 95%);
+  }
+
+  .add-contact-overlay .add-contact-overview {
+    width: 100%;
+    height: 40%;
+  }
+
+  .add-contact-overlay .add-contact-container {
+    width: 100%;
+    max-height: 55%;
   }
 
   .add-contact-overlay
@@ -597,6 +608,11 @@ input[type="number"]::-webkit-inner-spin-button {
 @media (max-width: 450px) {
   .add-contact-overlay .add-contact-container .add-contact-form .contactForm {
     margin-top: 24px;
+  }
+
+  .add-contact-overlay .add-contact-container {
+    width: 100%;
+    max-height: 55%;
   }
   .add-contact-overlay
     .add-contact-container
@@ -645,7 +661,7 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 
   .add-contact-overlay .add-contact-overview {
-    height: 40%;
+    height: 220px;
   }
 
   .add-contact-overlay

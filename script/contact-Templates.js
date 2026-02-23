@@ -101,7 +101,7 @@ function renderAddContactTemplate() {
                       <div class="inputContainer">
                         <input
                           type="text"
-                          placeholder="Full Name"
+                          placeholder="Name"
                           id="name_input"
                           required
                           onblur="contactNameValidation()"
@@ -117,7 +117,7 @@ function renderAddContactTemplate() {
                       <div class="inputContainer">
                         <input
                           type="email"
-                          placeholder="aa@bb.de"
+                          placeholder="Email"
                           id="email_input"
                           required
                           onblur="contactEmailValidation()"
@@ -133,7 +133,7 @@ function renderAddContactTemplate() {
                       <div class="inputContainer">
                         <input
                           type="tel"
-                          placeholder="+49 123 4567890"
+                          placeholder="Phone"
                           id="phone_input"
                           required
                           onblur="contactPhoneValidation()"

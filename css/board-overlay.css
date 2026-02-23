@@ -68,13 +68,9 @@
   overflow: auto;
 }
 
-.footer-add-task {
-  margin-top: calc(83vh - 90px - 750px);
-}
-
 @media (max-width: 1420px) {
   .overlay-body-task {
-    padding: 0px
+    padding: 0px;
   }
 
   .overlay-container .add-task-content {
@@ -104,7 +100,6 @@
   .overlay-body-task {
     padding: 0px;
   }
-
 }
 
 @media (max-width: 850px) {
@@ -142,9 +137,8 @@
   .overlay-container .h1-content {
     display: flex;
     justify-content: space-between;
-    min-width: 0px
+    min-width: 0px;
   }
-
 }
 
 @media (max-width: 620px) {
