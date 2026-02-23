@@ -60,6 +60,11 @@
         margin: 0;
         display: block;
       }
+      .blue-vector {
+        width: 30%;
+        height: 3px;
+        background: #29abe2;
+      }
     }
   }
   .edit-contact-container {
@@ -300,10 +305,10 @@ input[type="number"]::-webkit-inner-spin-button {
 @media (max-width: 991px) {
   .edit-contact-overlay {
     flex-direction: column;
-    width: clamp(90%, 90vw, 80%);
+    width: clamp(60%, 60vw, 55%);
     height: calc(100vh - 180px);
     top: 51%;
-    right: calc(100vw - 95%);
+    right: calc(100vw - 80%);
   }
   .edit-contact-overlay .edit-contact-overview {
     width: 100%;
@@ -348,8 +353,8 @@ input[type="number"]::-webkit-inner-spin-button {
     .edit-contact-form
     .contact-badge {
     position: absolute;
-    width: clamp(100px, 20vw, 120px);
-    height: clamp(100px, 20vw, 120px);
+    width: clamp(100px, 20vw, 110px);
+    height: clamp(100px, 20vw, 110px);
     top: calc(45% - 55px);
     margin-bottom: 0;
   }
@@ -381,6 +386,16 @@ input[type="number"]::-webkit-inner-spin-button {
     height: 40px;
     padding: 8px 16px;
     margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-contact-overlay {
+    flex-direction: column;
+    width: clamp(90%, 90vw, 80%);
+    height: calc(100vh - 180px);
+    top: 51%;
+    right: calc(100vw - 95%);
   }
 }
 
@@ -440,78 +455,19 @@ input[type="number"]::-webkit-inner-spin-button {
   .edit-contact-overlay .edit-contact-overview {
     height: 40%;
   }
-  /* .edit-contact-overlay {
-    flex-direction: column;
-    width: clamp(90%, 90vw, 80%);
-    height: calc(100vh - 180px);
-    top: 51%;
-    right: calc(100vw - 98%);
-  }
-  .edit-contact-overlay .edit-contact-overview {
-    width: 100%;
-    height: 45%;
-    padding: clamp(24px, 8vw, 48px);
-    border-radius: 30px 30px 0 0;
-  }
-  .edit-contact-overlay
-    .edit-contact-overview
-    .edit-contact-text
-    .edit-contact-title {
-    font-size: clamp(24px, 8vw, 52px);
-  }
-  .edit-contact-overlay .edit-contact-overview .join-logo-contact {
-    display: none;
-  }
-  .edit-contact-overlay .edit-contact-container {
-    width: 100%;
-    height: 55%;
-    padding: 24px;
-    border-radius: 0 0 30px 30px;
-  }
-  .edit-contact-overlay .edit-contact-container .close-btn {
-    font-size: clamp(18px, 4vw, 22px);
-    width: 24px;
-    height: 24px;
-    top: 35px;
-    right: 35px;
-    color: white;
-  }
-  .edit-contact-overlay .edit-contact-container .close-btn:hover {
-    background-color: rgba(41, 171, 226, 1);
-  }
-  .edit-contact-overlay .edit-contact-container .edit-contact-form {
-    flex-direction: column;
-    padding-left: 0;
-    margin-top: 0;
-    gap: 8px;
-  } */
+
   .edit-contact-overlay
     .edit-contact-container
     .edit-contact-form
     .contact-badge {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
     font-size: 32px;
-    /* width: clamp(100px, 20vw, 120px); */
-    /* height: clamp(100px, 20vw, 120px); */
-    top: calc(40% - 45px);
+    top: calc(40% - 42.5px);
     margin-bottom: 0;
   }
-  /* .edit-contact-overlay
-    .edit-contact-container
-    .edit-contact-form
-    .contactForm {
-    width: 100%;
-    margin-top: 48px;
-  }
-  .edit-contact-overlay
-    .edit-contact-container
-    .edit-contact-form
-    .contactForm
-    .edit-contact-buttons {
-    justify-content: center;
-  } */
+
   .primary-btn-default-icon {
     padding: 8px;
     font-size: 14px;
@@ -527,7 +483,7 @@ input[type="number"]::-webkit-inner-spin-button {
     .edit-contact-form
     .contactForm
     .inputContainer {
-    padding: 8px 8px;
+    padding: 4px 8px;
   }
 
   .editValidationErrorMsg {

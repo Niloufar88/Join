@@ -84,10 +84,7 @@ function renderAddContactTemplate() {
                       Tasks are better with a team!
                     </h4>
                     <div class="blue-vector">
-                      <img
-                        src="../assets/img/add-contact-blue-vector.svg"
-                        alt=""
-                      />
+                      
                     </div>
                   </div>
                 </div>
@@ -195,10 +192,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                     <h2 class="edit-contact-title">Edit contact</h2>
 
                     <div class="blue-vector">
-                      <img
-                        src="../assets/img/add-contact-blue-vector.svg"
-                        alt=""
-                      />
+                      
                     </div>
                   </div>
                 </div>

@@ -292,7 +292,6 @@ function checkQueriesForContacts() {
  * @param {Event} event
  */
 function handleContactClick(event) {
-  // Only process if clicked on contact-container or its children
   const contactContainer = event.target.closest(".contact-container");
   if (!contactContainer) return;
 
@@ -300,6 +299,19 @@ function handleContactClick(event) {
   event.stopPropagation();
 
   const checkQueries = window.matchMedia("(max-width: 991px)");
+  
+  // Only handle active class toggle on larger screens
+  if (!checkQueries.matches) {
+    if (contactContainer.classList.contains("active")) {
+      contactContainer.classList.remove("active");
+      return;
+    }
+    document.querySelectorAll(".contact-container").forEach((container) => {
+      container.classList.remove("active");
+    });
+    contactContainer.classList.add("active");
+  }
+
   if (checkQueries.matches) {
     contactSection.style.display = "none";
     contactDashboard.style.display = "block";
