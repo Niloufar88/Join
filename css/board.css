@@ -200,8 +200,6 @@ overflow: hidden;
 }
 
 .cards {
-  min-width: 260px;
-  min-height: 260px;
   background: var(--color-white);
   border-radius: var(--radius-26);
   padding: 22px 22px var(--space-18);

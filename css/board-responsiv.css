@@ -17,7 +17,7 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 18px;
-    /* width: clamp(180px, 16vw, 320px); */
+    width: clamp(180px, 16vw, 320px);
   }
 
   .header-category {
@@ -91,8 +91,18 @@
   }
 
   .cards {
-    min-width: 240px;
-    min-height: 240px;
+    min-width: 250px;
+    min-height: 310px;
+    max-width: 250px;
+    max-height: 310px;
+  }
+
+  .span-overflow {
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 }
 
