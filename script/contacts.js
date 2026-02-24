@@ -299,7 +299,7 @@ function handleContactClick(event) {
   event.stopPropagation();
 
   const checkQueries = window.matchMedia("(max-width: 991px)");
-  
+
   // Only handle active class toggle on larger screens
   if (!checkQueries.matches) {
     if (contactContainer.classList.contains("active")) {
@@ -308,8 +308,10 @@ function handleContactClick(event) {
     }
     document.querySelectorAll(".contact-container").forEach((container) => {
       container.classList.remove("active");
+      container.style.pointerEvents = "auto";
     });
     contactContainer.classList.add("active");
+    contactContainer.style.pointerEvents = "none";
   }
 
   if (checkQueries.matches) {
