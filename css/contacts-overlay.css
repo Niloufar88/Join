@@ -288,7 +288,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-bottom: 20px;
   visibility: hidden;
 }
-/* ========== Media Queries für Responsiveness ========== */
+/* ========== Media Queries für Responsiveness ==========
 
 @media (min-width: 1200px) and (max-width: 1439px) {
   .add-contact-overlay .add-contact-overview {
@@ -344,7 +344,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100px;
     height: 100px;
   }
-}
+} */
 
 @media (max-width: 991px) {
   .add-contact-overlay {

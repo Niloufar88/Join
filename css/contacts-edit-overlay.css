@@ -286,33 +286,9 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 } */
 
-/* @media (min-width: 992px) and (max-width: 1199px) {
-  .edit-contact-overlay .edit-contact-overview {
-    padding: 66px 38px;
-  }
+ @media (min-width: 992px) and (max-width: 1199px) {
 
-  .edit-contact-overlay .edit-contact-overview .join-logo-contact {
-    width: 50px;
-    height: 60px;
-  }
-
-  .edit-contact-overlay .edit-contact-overview .edit-contact-text .edit-contact-title {
-    font-size: 38px;
-  }
-
-  .edit-contact-overlay .edit-contact-container {
-    padding: 48px 48px 40px 40px;
-  }
-
-  .edit-contact-overlay .edit-contact-container .edit-contact-form {
-    padding-left: 0;
-  }
-
-  .edit-contact-overlay .edit-contact-container .edit-contact-form .contact-badge {
-    width: 100px;
-    height: 100px;
-  }
-} */
+} 
 
 @media (max-width: 991px) {
   .edit-contact-overlay {
