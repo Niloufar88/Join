@@ -149,7 +149,9 @@
   .required {
     display: none;
   }
-
+    .edit {
+    font-size: 36px;    
+  }
   .footer-flex {
     flex-direction: row;
     justify-content: flex-end;
@@ -236,7 +238,7 @@
     height: 32px;
     position: absolute;
     top: 0;
-    left: -70px;
+    left: -52px;
   }
   .btn-footer-small {
     padding: 11px 10px;
