@@ -120,6 +120,25 @@
   }
 }
 
+@media (max-width: 550px) {
+  .h1-content {
+    margin-top: 20px;
+  }
+
+  .card {
+    min-width: 340px;
+    max-width: 400px;
+  }
+
+  .add-task-content {
+    padding: 0px;
+  }
+
+  .seperator {
+    width: 380px;
+  }
+}
+
 @media (max-width: 450px) {
   .board-header h1 {
     font-size: 48px;

@@ -637,7 +637,9 @@ textarea:focus {
 }
 
 @media (max-width: 1420px) {}
-
+  .overlay-container .add-task-content {
+    padding: 35px;
+  }
 
 @media (max-width: 1340px) {
   .main-content {

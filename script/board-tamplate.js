@@ -170,14 +170,14 @@ function loadAddTaskFormIntoOverlay() {
               </p>
               <div class="btn-priority-flex footerBtn-priority">
                 <div class="footer-flex">
-                  <button class="btn-priority  btn-clear" onclick="clearInputs()">Clear
+                  <button class="btn-priority  btn-clear btn-footer-small" onclick="clearInputs()">Clear
                     <svg width="11" height="11" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M6.243 6.243L11.486 11.486M1 11.486L6.243 6.243L1 11.486ZM11.486 1L6.242 6.243L11.486 1ZM6.242 6.243L1 1L6.242 6.243Z"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </button>
-                  <button class="btn-createTask btn-priority-flex btn-State" id="colorChange"
+                  <button class="btn-createTask btn-priority-flex btn-State btn-footer-small" id="colorChange"
                     onclick="CreateTask()" disabled >Create Task
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#29ABE2" xmlns="http://www.w3.org/2000/svg">
                       <mask id="mask0_411527_6018" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
