@@ -34,7 +34,7 @@ function closeAddTaskOverlay() {
   document.body.style.overflow = "auto";
   clearInputs();
   renderBoard();
-  document.getElementById("addTaskFormContainer").innerHTML = "";  
+  document.getElementById("addTaskFormContainer").innerHTML = "";
 }
 
 /**
@@ -57,7 +57,6 @@ function closeTaskDetailsOverlay() {
   wrapper.innerHTML = "";
   document.body.style.overflow = "auto";
   renderBoard();
-
 }
 
 /**

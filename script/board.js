@@ -397,10 +397,11 @@ function updateAllEmptyMessages() {
  * @returns {void}
  */
 function searchBar() {
-  const input = document.getElementById("searchInput");
+  const input = document.querySelector("#searchInput");
+  const inputRes = document.querySelector("#searchInputResponsive")
   const board = document.querySelector(".board-container");
-  if (!board || !input || !fetchData?.tasks) return;
-  const q = input.value.trim().toLowerCase();
+  if (!board || !input || !inputRes || !fetchData?.tasks) return;
+  const q = input.value.trim().toLowerCase() || inputRes.value.trim().toLowerCase();
   if (q.length < 3) {
     renderBoard();
     updateAllEmptyMessages();
@@ -417,33 +418,7 @@ function searchBar() {
   renderBoardFromEntries(filtered);
   updateAllEmptyMessages();
 }
-/**
- * Reads the board search input and filters tasks by title.
- * Only runs if the board page exists (board-container is present).
- * If the input has less than 3 characters, the full board will be rendered again.
- * @returns {void}
- */
-function searchBar() {
-  const input = document.getElementById("searchInputResponsive");
-  const board = document.querySelector(".board-container");
-  if (!board || !input || !fetchData?.tasks) return;
-  const q = input.value.trim().toLowerCase();
-  if (q.length < 3) {
-    renderBoard();
-    updateAllEmptyMessages();
-    return;
-  }
-  const filtered = Object.entries(fetchData.tasks).filter(([id, task]) => {
-    const titleMatch =
-      typeof task?.title === "string" && task.title.toLowerCase().includes(q);
-    const descMatch =
-      typeof task?.description === "string" &&
-      task.description.toLowerCase().includes(q);
-    return titleMatch || descMatch;
-  });
-  renderBoardFromEntries(filtered);
-  updateAllEmptyMessages();
-}
+
 /**
  * Renders the board using a filtered list of task entries.
  * Each entry must be a tuple of [taskId, taskObject].
