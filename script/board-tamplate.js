@@ -12,10 +12,13 @@ function loadAddTaskFormIntoOverlay() {
         </div>  
   <section class="add-task-content">
           <div class="wrapper-popup">
-            <h1 class="h1-content">Add Task
-          <button class="close-overlay" onclick="closeAddTaskOverlay()">
-            <img class="icon normal" src="../assets/img/close-icon.svg" alt="close">
-            <img class="icon hover" src="../assets/img/close-hover.svg" alt="close hover">
+<div class="edit-header">
+        <h1 class="h1-content edit">Add Task</h1>
+        <button class="close-overlay" onclick="closeAddTaskOverlay()">
+        <img class="icon normal" src="../assets/img/close-icon.svg" alt="close">
+        <img class="icon hover" src="../assets/img/close-hover.svg" alt="close hover">
+        </button>
+      </div>
           </button>
           </button></h1>
             <main class="main-content">

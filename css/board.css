@@ -238,7 +238,7 @@ h4 {
   color: var(--color-text-heading);
 }
 
-.cards > span {
+.cards>span {
   display: block;
   margin: 0 0 var(--space-18);
   font-size: 16px;
@@ -382,8 +382,8 @@ taskDetailsOverlay {
   border: none;
   background: none;
   padding: 0;
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   position: relative;
   cursor: pointer;
 }
@@ -517,7 +517,7 @@ taskDetailsOverlay {
   cursor: pointer;
 }
 
-.checkbox-input:checked + .checkbox-box {
+.checkbox-input:checked+.checkbox-box {
   background-image: url("../assets/img/checkboxChecked.svg");
   background-size: 24px 24px;
 }
@@ -629,6 +629,8 @@ taskDetailsOverlay {
   padding-left: 20px;
   padding-right: 20px;
   overflow: auto;
+  margin-left: 8px;
+  margin-right: 8px;  
 }
 
 .overlay-container .add-task-content {

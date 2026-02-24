@@ -139,7 +139,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 460px) {
   .board-header h1 {
     font-size: 48px;
   }
@@ -152,9 +152,24 @@
     padding: 24px;
   }
 
+  .wrapper-popup {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .card {
+    min-width: 0px;
+    max-width: 0px;
+  }
+
+
   .button-task {
     width: 40px;
     height: 40px;
+  }
+
+  .overlay-container .card {
+    max-width: 0px;
   }
 }
 
