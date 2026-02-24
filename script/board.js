@@ -32,12 +32,12 @@ function initDragAndDrop() {
     col.addEventListener("dragenter", onDragEnter);
     col.addEventListener("dragleave", onDragLeave);
     col.addEventListener("drop", onDrop);
-    
+
     // Touch-Events für Mobile
     col.addEventListener("touchmove", onTouchMove, { passive: false });
     col.addEventListener("touchend", onTouchEnd);
   });
-  
+
   // Touch-Events für alle Task-Cards hinzufügen
   initTouchOnCards();
 }
@@ -279,13 +279,13 @@ async function onDrop(e) {
 function onTouchStart(e) {
   const card = /** @type {HTMLElement} */ (e.currentTarget);
   const touch = e.touches[0];
-  
+
   touchDraggedElement = card;
   touchDraggedId = card.getAttribute("data-id") || "";
   touchStartX = touch.clientX;
   touchStartY = touch.clientY;
   isDragging = false;
-  
+
   // KEIN preventDefault() hier - ermöglicht horizontales Scrollen
 }
 
@@ -296,11 +296,11 @@ function onTouchStart(e) {
  */
 function onTouchMove(e) {
   if (!touchDraggedElement) return;
-  
+
   const touch = e.touches[0];
   const deltaX = Math.abs(touch.clientX - touchStartX);
   const deltaY = Math.abs(touch.clientY - touchStartY);
-  
+
   // Prüfe ob Bewegung vertikal (Drag) oder horizontal (Scroll) ist
   if (!isDragging) {
     if (deltaY > DRAG_THRESHOLD && deltaY > deltaX) {
@@ -317,18 +317,18 @@ function onTouchMove(e) {
       return;
     }
   }
-  
+
   // Nur bei aktivem Drag preventDefault aufrufen
   if (isDragging) {
     e.preventDefault();
-    
+
     const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
-    
+
     // Entferne alle drop-target Klassen
     document.querySelectorAll(".drop-target").forEach((el) => {
       el.classList.remove("drop-target");
     });
-    
+
     // Finde die nächste Column unter dem Touch-Punkt
     const column = elementUnderTouch?.closest(".in-progress[data-status]");
     if (column) {
@@ -345,13 +345,13 @@ function onTouchMove(e) {
  */
 async function onTouchEnd(e) {
   if (!touchDraggedElement || !touchDraggedId) return;
-  
+
   // Nur wenn wirklich gedragged wurde, Task verschieben
   if (isDragging) {
     const touch = e.changedTouches[0];
     const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
     const targetColumn = elementUnderTouch?.closest(".in-progress[data-status]");
-    
+
     if (targetColumn) {
       const newState = targetColumn.getAttribute("data-status") || "";
       if (fetchData?.tasks?.[touchDraggedId]) {
@@ -360,12 +360,12 @@ async function onTouchEnd(e) {
       }
       targetColumn.classList.remove("drop-target");
     }
-    
+
     touchDraggedElement.classList.remove("dragging");
     renderBoard();
     updateAllEmptyMessages();
   }
-  
+
   // Cleanup
   touchDraggedElement = null;
   touchDraggedId = null;
@@ -417,7 +417,33 @@ function searchBar() {
   renderBoardFromEntries(filtered);
   updateAllEmptyMessages();
 }
-
+/**
+ * Reads the board search input and filters tasks by title.
+ * Only runs if the board page exists (board-container is present).
+ * If the input has less than 3 characters, the full board will be rendered again.
+ * @returns {void}
+ */
+function searchBar() {
+  const input = document.getElementById("searchInputResponsive");
+  const board = document.querySelector(".board-container");
+  if (!board || !input || !fetchData?.tasks) return;
+  const q = input.value.trim().toLowerCase();
+  if (q.length < 3) {
+    renderBoard();
+    updateAllEmptyMessages();
+    return;
+  }
+  const filtered = Object.entries(fetchData.tasks).filter(([id, task]) => {
+    const titleMatch =
+      typeof task?.title === "string" && task.title.toLowerCase().includes(q);
+    const descMatch =
+      typeof task?.description === "string" &&
+      task.description.toLowerCase().includes(q);
+    return titleMatch || descMatch;
+  });
+  renderBoardFromEntries(filtered);
+  updateAllEmptyMessages();
+}
 /**
  * Renders the board using a filtered list of task entries.
  * Each entry must be a tuple of [taskId, taskObject].
