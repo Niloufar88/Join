@@ -1,3 +1,11 @@
+// Touch-Drag-State für mobile Geräte
+let touchDraggedElement = null;
+let touchDraggedId = null;
+let touchStartX = 0;
+let touchStartY = 0;
+let isDragging = false;
+const DRAG_THRESHOLD = 10; // Minimale Bewegung in Pixel, um Drag zu aktivieren
+
 /**
  * Loads data, normalizes missing task fields, renders the board and initializes subtasks.
  * @async
@@ -14,14 +22,33 @@ async function boardInit() {
 
 /**
  * Attaches drag-and-drop listeners to all board columns that expose a `data-status` attribute.
+ * Also adds touch event listeners for mobile devices.
  * @returns {void}
  */
 function initDragAndDrop() {
+  // Drag-and-Drop für Desktop
   document.querySelectorAll(".in-progress[data-status]").forEach((col) => {
     col.addEventListener("dragover", onDragOver);
     col.addEventListener("dragenter", onDragEnter);
     col.addEventListener("dragleave", onDragLeave);
     col.addEventListener("drop", onDrop);
+    
+    // Touch-Events für Mobile
+    col.addEventListener("touchmove", onTouchMove, { passive: false });
+    col.addEventListener("touchend", onTouchEnd);
+  });
+  
+  // Touch-Events für alle Task-Cards hinzufügen
+  initTouchOnCards();
+}
+
+/**
+ * Attaches touch event listeners to all task cards for mobile drag functionality.
+ * @returns {void}
+ */
+function initTouchOnCards() {
+  document.querySelectorAll(".cards[data-id]").forEach((card) => {
+    card.addEventListener("touchstart", onTouchStart, { passive: false });
   });
 }
 
@@ -242,6 +269,107 @@ async function onDrop(e) {
   col.classList.remove("drop-target");
   renderBoard();
   updateAllEmptyMessages();
+}
+
+/**
+ * Touch start handler for mobile drag functionality.
+ * @param {TouchEvent} e
+ * @returns {void}
+ */
+function onTouchStart(e) {
+  const card = /** @type {HTMLElement} */ (e.currentTarget);
+  const touch = e.touches[0];
+  
+  touchDraggedElement = card;
+  touchDraggedId = card.getAttribute("data-id") || "";
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
+  isDragging = false;
+  
+  // KEIN preventDefault() hier - ermöglicht horizontales Scrollen
+}
+
+/**
+ * Touch move handler: visualizes drop target on mobile.
+ * @param {TouchEvent} e
+ * @returns {void}
+ */
+function onTouchMove(e) {
+  if (!touchDraggedElement) return;
+  
+  const touch = e.touches[0];
+  const deltaX = Math.abs(touch.clientX - touchStartX);
+  const deltaY = Math.abs(touch.clientY - touchStartY);
+  
+  // Prüfe ob Bewegung vertikal (Drag) oder horizontal (Scroll) ist
+  if (!isDragging) {
+    if (deltaY > DRAG_THRESHOLD && deltaY > deltaX) {
+      // Vertikale Bewegung = Drag aktivieren
+      isDragging = true;
+      touchDraggedElement.classList.add("dragging");
+    } else if (deltaX > DRAG_THRESHOLD) {
+      // Horizontale Bewegung = Scroll, Drag abbrechen
+      touchDraggedElement = null;
+      touchDraggedId = null;
+      return;
+    } else {
+      // Noch keine klare Richtung
+      return;
+    }
+  }
+  
+  // Nur bei aktivem Drag preventDefault aufrufen
+  if (isDragging) {
+    e.preventDefault();
+    
+    const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+    
+    // Entferne alle drop-target Klassen
+    document.querySelectorAll(".drop-target").forEach((el) => {
+      el.classList.remove("drop-target");
+    });
+    
+    // Finde die nächste Column unter dem Touch-Punkt
+    const column = elementUnderTouch?.closest(".in-progress[data-status]");
+    if (column) {
+      column.classList.add("drop-target");
+    }
+  }
+}
+
+/**
+ * Touch end handler: completes the drag operation on mobile.
+ * @async
+ * @param {TouchEvent} e
+ * @returns {Promise<void>}
+ */
+async function onTouchEnd(e) {
+  if (!touchDraggedElement || !touchDraggedId) return;
+  
+  // Nur wenn wirklich gedragged wurde, Task verschieben
+  if (isDragging) {
+    const touch = e.changedTouches[0];
+    const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+    const targetColumn = elementUnderTouch?.closest(".in-progress[data-status]");
+    
+    if (targetColumn) {
+      const newState = targetColumn.getAttribute("data-status") || "";
+      if (fetchData?.tasks?.[touchDraggedId]) {
+        fetchData.tasks[touchDraggedId].state = /** @type {any} */ (newState);
+        await postState();
+      }
+      targetColumn.classList.remove("drop-target");
+    }
+    
+    touchDraggedElement.classList.remove("dragging");
+    renderBoard();
+    updateAllEmptyMessages();
+  }
+  
+  // Cleanup
+  touchDraggedElement = null;
+  touchDraggedId = null;
+  isDragging = false;
 }
 
 /**
