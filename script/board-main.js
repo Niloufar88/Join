@@ -106,7 +106,9 @@ function renderBoardFromEntries(entries) {
   initDragAndDrop();
 }
 
-// Initialisierung bei DOM ready
+/**
+ * Initialisierung bei DOM ready
+ */
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initOverlayClickHandlers);
 } else {

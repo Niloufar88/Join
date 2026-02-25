@@ -4,8 +4,7 @@
  * @returns {Promise<void>}
  */
 async function initAddTask() {
-  await getData();             
-  clearInputs();               
+  await getData();   
   bindAddTaskListeners(document); 
 }
 

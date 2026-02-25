@@ -74,9 +74,9 @@ function capitalizeLettersFullName(contacts) {
 }
 
 /**
- * 
- * @param {Object} task 
- * @returns 
+ *
+ * @param {Object} task
+ * @returns
  */
 function getSubtaskStats(task) {
   const subtasks = task.subtasks || [];
@@ -84,3 +84,5 @@ function getSubtaskStats(task) {
   const checked = subtasks.filter((sub) => sub.state === "check").length;
   return { total, checked };
 }
+
+

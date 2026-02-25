@@ -1,3 +1,11 @@
+/** @type {HTMLElement|null} */
+let touchDraggedElement = null;
+let touchDraggedId = null;
+let touchStartX = 0;
+let touchStartY = 0;
+let isDragging = false;
+const DRAG_THRESHOLD = 10;
+
 /**
  * Drag start handler: stores the card id in the dataTransfer and marks the element.
  * @param {DragEvent} e
@@ -56,7 +64,8 @@ async function onDrop(e) {
   e.preventDefault();
   const col = e.currentTarget;
   const newState = col.getAttribute("data-status") || "";
-  const cardId = e.dataTransfer.getData("text/plain") || e.dataTransfer.getData("text");
+  const cardId =
+    e.dataTransfer.getData("text/plain") || e.dataTransfer.getData("text");
   if (fetchData?.tasks?.[cardId]) {
     fetchData.tasks[cardId].state = newState;
     await postState();
@@ -89,7 +98,6 @@ function onTouchMove(e) {
   const touch = e.touches[0];
   const deltaX = Math.abs(touch.clientX - touchStartX);
   const deltaY = Math.abs(touch.clientY - touchStartY);
-
   if (!isDragging) {
     if (deltaY > DRAG_THRESHOLD && deltaY > deltaX) {
       isDragging = true;
@@ -100,9 +108,9 @@ function onTouchMove(e) {
       return;
     } else return;
   }
-
   if (isDragging) {
     e.preventDefault();
+    const touch = e.touches[0];
     const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
     document.querySelectorAll(".drop-target").forEach((el) => el.classList.remove("drop-target"));
     const column = elementUnderTouch?.closest(".in-progress[data-status]");
@@ -119,8 +127,13 @@ async function onTouchEnd(e) {
   if (!touchDraggedElement || !touchDraggedId) return;
   if (isDragging) {
     const touch = e.changedTouches[0];
-    const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
-    const targetColumn = elementUnderTouch?.closest(".in-progress[data-status]");
+    const elementUnderTouch = document.elementFromPoint(
+      touch.clientX,
+      touch.clientY,
+    );
+    const targetColumn = elementUnderTouch?.closest(
+      ".in-progress[data-status]",
+    );
     if (targetColumn) {
       const newState = targetColumn.getAttribute("data-status") || "";
       if (fetchData?.tasks?.[touchDraggedId]) {

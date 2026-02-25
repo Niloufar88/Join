@@ -8,7 +8,14 @@ function renderContact(list = contactsState) {
   if (!el) return;
   let content = "";
   for (const contact of list) {
-    content += renderContactHTML(contact.initials, contact.name, contact.color, contact.id, contact.checked,);}
+    content += renderContactHTML(
+      contact.initials,
+      contact.name,
+      contact.color,
+      contact.id,
+      contact.checked,
+    );
+  }
   el.innerHTML = content;
 }
 
@@ -21,7 +28,10 @@ function renderSelectedContactsInitials() {
   if (!container) return;
   container.innerHTML = "";
   let contactCounter = 0;
-  contactsState.filter((c) => c.checked).forEach((c) => {contactCounter++;
+  contactsState
+    .filter((c) => c.checked)
+    .forEach((c) => {
+      contactCounter++;
       if (contactCounter <= 5) {
         container.innerHTML += letterInitials(c);
       } else if (contactCounter === 6) {
@@ -43,7 +53,9 @@ function contactSearch() {
     renderContact();
     return;
   }
-  const filtered = contactsState.filter((c) => c.name.toLowerCase().includes(value),);
+  const filtered = contactsState.filter((c) =>
+    c.name.toLowerCase().includes(value),
+  );
   renderContact(filtered);
 }
 
@@ -146,7 +158,10 @@ function renderSubtasks() {
   let activeContainer = null;
   if (addTaskOverlay && addTaskOverlay.style.display === "flex") {
     activeContainer = addTaskOverlay;
-  } else if (taskDetailsOverlay && taskDetailsOverlay.style.display === "flex") {
+  } else if (
+    taskDetailsOverlay &&
+    taskDetailsOverlay.style.display === "flex"
+  ) {
     activeContainer = taskDetailsOverlay;
   }
   if (!activeContainer) {
@@ -180,12 +195,15 @@ function renderSubtaskList(container) {
 function changeSubtask(i) {
   const activeOverlay = getActiveOverlay();
   const searchContext = activeOverlay || document;
-  const newSubtask = searchContext.querySelector(`.sub-container[data-index="${i}"]`);
+  const newSubtask = searchContext.querySelector(
+    `.sub-container[data-index="${i}"]`,
+  );
   if (!newSubtask) return;
   const currentValue = subTaskInput[i] || "";
   newSubtask.innerHTML = renderEditSubtaskForm(i, currentValue);
   let newInputField = searchContext.querySelector(`#edit-input-${i}`);
-  if (!newInputField) newInputField = document.getElementById(`edit-input-${i}`);
+  if (!newInputField)
+    newInputField = document.getElementById(`edit-input-${i}`);
   if (newInputField) newInputField.focus();
 }
 
@@ -201,7 +219,7 @@ function saveSubtaskEdit(i) {
   if (!subEdit) subEdit = document.getElementById(`edit-input-${i}`);
   if (!subEdit) return;
   const newValue = subEdit.value.trim();
-  if (newValue === '') {
+  if (newValue === "") {
     subTaskInput.splice(i, 1);
   } else {
     subTaskInput[i] = newValue;
@@ -229,10 +247,18 @@ function deleteSubtask(i) {
  * @returns {HTMLElement|null}
  */
 function getActiveOverlay() {
+  if (
+    document.getElementById("addTaskOverlay") ||
+    document.getElementById("taskDetailsOverlay")
+  ) {
+    return;
+  }
   const addTaskOverlay = document.getElementById("addTaskOverlay");
   const taskDetailsOverlay = document.getElementById("taskDetailsOverlay");
-  if (addTaskOverlay && addTaskOverlay.style.display === "flex") return addTaskOverlay;
-  if (taskDetailsOverlay && taskDetailsOverlay.style.display === "flex") return taskDetailsOverlay;
+  if (addTaskOverlay && addTaskOverlay.style.display === "flex")
+    return addTaskOverlay;
+  if (taskDetailsOverlay && taskDetailsOverlay.style.display === "flex")
+    return taskDetailsOverlay;
   return null;
 }
 
@@ -266,16 +292,20 @@ function clearInputs() {
   document.getElementById("duedate").value = "";
   document.getElementById("subtasks").value = "";
   document.getElementById("SubtaskList").innerHTML = "";
-  document.getElementById("selectContact").innerHTML = "";  
+  document.getElementById("selectContact").innerHTML = "";
   const prioMedium = document.getElementById("prio-medium");
   const categoryBtn = document.getElementById("categoryBtn");
   if (prioMedium) prioMedium.checked = true;
-  document.querySelectorAll('input[name="priorityCategory"]').forEach((r) => (r.checked = false));
-  if (categoryBtn) categoryBtn.textContent = "Select task category";  
+  document
+    .querySelectorAll('input[name="priorityCategory"]')
+    .forEach((r) => (r.checked = false));
+  if (categoryBtn) categoryBtn.textContent = "Select task category";
   subTaskInput = [];
-  contactsState.forEach((contact) => { contact.checked = false; });
-  unbindAddTaskListeners(document)
-  bindAddTaskListeners(document)
+  contactsState.forEach((contact) => {
+    contact.checked = false;
+  });
+  unbindAddTaskListeners(document);
+  bindAddTaskListeners(document);
 }
 
 /**
@@ -286,7 +316,7 @@ function popup() {
   const createPopUp = document.querySelector(".popup-added");
   if (!createPopUp) return;
   createPopUp.classList.remove("show");
-  void createPopUp.offsetWidth; 
+  void createPopUp.offsetWidth;
   createPopUp.classList.add("show");
   setTimeout(popupHide, 2000);
 }

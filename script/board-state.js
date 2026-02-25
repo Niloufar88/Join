@@ -1,10 +1,10 @@
-/** @type {HTMLElement|null} */
-let touchDraggedElement = null;
-let touchDraggedId = null;
-let touchStartX = 0;
-let touchStartY = 0;
-let isDragging = false;
-const DRAG_THRESHOLD = 10;
+// /** @type {HTMLElement|null} */
+// let touchDraggedElement = null;
+// let touchDraggedId = null;
+// let touchStartX = 0;
+// let touchStartY = 0;
+// let isDragging = false;
+// const DRAG_THRESHOLD = 10;
 
 /**
  * Ensures that each task has a `state` field.

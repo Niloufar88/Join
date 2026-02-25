@@ -73,7 +73,6 @@ function handleGlobalClickCategory(e) {
       categoryBtn.classList.remove("input-focus");
     }
   }
-
   if (typeof isValid === "function") isValid();
 }
 
@@ -84,11 +83,9 @@ function handleGlobalClickCategory(e) {
  */
 function handleGlobalClickContact(e) {
   let contactsDropdown = getActiveOverlay()
-    ? activeOverlay.querySelector("#selectContacts")
-    : null;
+    ? activeOverlay.querySelector("#selectContacts") : null;
   let contactsBtn = getActiveOverlay()
-    ? activeOverlay.querySelector("#BTNToggleContacts")
-    : null;
+    ? activeOverlay.querySelector("#BTNToggleContacts") : null;
   if (!contactsDropdown)
     contactsDropdown = document.getElementById("selectContacts");
   if (!contactsBtn) contactsBtn = document.getElementById("BTNToggleContacts");
