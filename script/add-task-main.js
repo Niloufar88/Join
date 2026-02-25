@@ -16,13 +16,11 @@ async function initAddTask() {
  */
 async function createTask() {
   titleDuplicateCheck(); 
-  if (!valid.title) return;
-  
+  if (!valid.title) return;  
   const payload = getDataFromPage(); 
   await postData(payload);
   clearInputs();
-  popup();
-  
+  popup();  
   setTimeout(() => {
     window.location.href = "../html/board.html";
   }, 2000);

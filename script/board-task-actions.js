@@ -45,7 +45,9 @@ function editDeleteSubtask(taskId, i) {
  * @param {number} i
  */
 function editChangeSubtask(taskId, i) {
-  const subContainer = document.querySelector(`.sub-container[data-index="${i}"]`);
+  const subContainer = document.querySelector(
+    `.sub-container[data-index="${i}"]`,
+  );
   if (!subContainer || !subTaskInput[i]) return;
   const currentValue = subTaskInput[i];
   subContainer.innerHTML = renderEditSubtaskForm(i, currentValue);
@@ -70,8 +72,7 @@ function editTaskOnBoard(id) {
     renderSelectedContactsInitials();
     renderSubtasksDetailsEdit(id);
   } catch (error) {
-    console.error("Error opening task edit mode:", error);
-    document.body.style.overflow = "auto";
+    return;
   }
   bindAddTaskListeners(document);
 }
@@ -100,7 +101,6 @@ async function saveEditedTask(id) {
     closetaskDetailsOverlay();
     renderBoard();
   } catch (error) {
-    console.error("Error saving edited task:", error);
-    alert("Fehler beim Speichern der Aufgabe. Bitte versuchen Sie es erneut.");
+    return;
   }
 }

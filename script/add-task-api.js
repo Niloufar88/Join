@@ -15,11 +15,7 @@ async function getData() {
   fetchData = data;
   contactsState = Object.entries(data?.contacts || {}).map(([key, contact]) => {
     return {
-      id: key,
-      name: contact.name,
-      initials: contact.initials,
-      color: contact.color,
-      checked: false,
+      id: key, name: contact.name, initials: contact.initials, color: contact.color, checked: false,
     };
   });
 }

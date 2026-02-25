@@ -54,10 +54,8 @@ function buildCardDescription(description) {
  */
 function buildCardProgress(task) {
   const { total, checked } = getSubtaskStats(task);
-  if (total === 0) return "";
-
-  const percent = Math.round((checked / total) * 100);
-  return `<div class="progress"><div style="width:${percent}%"></div></div>`;
+  if (checked === 0) return "";
+  return `<div class="progress"><div style="width:${total}%"></div></div>`;
 }
 
 /**
@@ -90,20 +88,7 @@ function renderContactAvatarHTML(contact) {
   return `<div class="avatar" title="${contact.name}">${initials}</div>`;
 }
 
-/**
- * Extracts initials from a full name.
- * @param {string} name
- * @returns {string}
- */
-function getInitials(name) {
-  if (!name) return "?";
-  const parts = name.trim().split(" ");
-  return parts
-    .slice(0, 2)
-    .map((p) => p[0])
-    .join("")
-    .toUpperCase();
-}
+
 
 /**
  * Template for task popup details.

@@ -104,3 +104,18 @@ function renderSubtasksDetailsEdit(id) {
   }
   subTaskContent.innerHTML = html;
 }
+
+/**
+ * Extracts initials from a full name.
+ * @param {string} name
+ * @returns {string}
+ */
+function getInitials(name) {
+  if (!name) return "?";
+  const parts = name.trim().split(" ");
+  return parts
+    .slice(0, 2)
+    .map((p) => p[0])
+    .join("")
+    .toUpperCase();
+}

@@ -8,14 +8,7 @@ function renderContact(list = contactsState) {
   if (!el) return;
   let content = "";
   for (const contact of list) {
-    content += renderContactHTML(
-      contact.initials,
-      contact.name,
-      contact.color,
-      contact.id,
-      contact.checked,
-    );
-  }
+    content += renderContactHTML(contact.initials, contact.name, contact.color, contact.id, contact.checked,);}
   el.innerHTML = content;
 }
 
@@ -28,10 +21,7 @@ function renderSelectedContactsInitials() {
   if (!container) return;
   container.innerHTML = "";
   let contactCounter = 0;
-  contactsState
-    .filter((c) => c.checked)
-    .forEach((c) => {
-      contactCounter++;
+  contactsState.filter((c) => c.checked).forEach((c) => {contactCounter++;
       if (contactCounter <= 5) {
         container.innerHTML += letterInitials(c);
       } else if (contactCounter === 6) {
@@ -53,9 +43,7 @@ function contactSearch() {
     renderContact();
     return;
   }
-  const filtered = contactsState.filter((c) =>
-    c.name.toLowerCase().includes(value),
-  );
+  const filtered = contactsState.filter((c) => c.name.toLowerCase().includes(value),);
   renderContact(filtered);
 }
 
@@ -273,28 +261,21 @@ function cancelSubtask() {
  * @returns {void}
  */
 function clearInputs() {
-  const title = document.getElementById("title");
-  const description = document.getElementById("description");
-  const duedate = document.getElementById("duedate");
-  const subtasks = document.getElementById("subtasks");
-  const subtaskList = document.getElementById("SubtaskList");
-  const selectContact = document.getElementById("selectContact");
-  
-  if (title) title.value = "";
-  if (description) description.value = "";
-  if (duedate) duedate.value = "";
-  if (subtasks) subtasks.value = "";
-  if (subtaskList) subtaskList.innerHTML = "";
-  if (selectContact) selectContact.innerHTML = "";
-  
+  document.getElementById("title").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("duedate").value = "";
+  document.getElementById("subtasks").value = "";
+  document.getElementById("SubtaskList").innerHTML = "";
+  document.getElementById("selectContact").innerHTML = "";  
   const prioMedium = document.getElementById("prio-medium");
   const categoryBtn = document.getElementById("categoryBtn");
   if (prioMedium) prioMedium.checked = true;
   document.querySelectorAll('input[name="priorityCategory"]').forEach((r) => (r.checked = false));
-  if (categoryBtn) categoryBtn.textContent = "Select task category";
-  
+  if (categoryBtn) categoryBtn.textContent = "Select task category";  
   subTaskInput = [];
   contactsState.forEach((contact) => { contact.checked = false; });
+  unbindAddTaskListeners(document)
+  bindAddTaskListeners(document)
 }
 
 /**
