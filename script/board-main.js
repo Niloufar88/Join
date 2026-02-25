@@ -13,17 +13,21 @@ async function InitBoard() {
 }
 
 /**
- * Attaches drag-and-drop listeners to all board columns.
+ * Initialisiert die Drag-and-Drop-Funktionalität für alle Status-Spalten.
+ * Registriert Event-Listener für Desktop (Drag-Events) und Mobile (Touch-Events)
+ * an Elementen mit der Klasse '.in-progress' und dem Attribut 'data-status'.
+ * * @function
+ * @returns {void}
  */
 function initDragAndDrop() {
-  document.querySelectorAll(".in-progress[data-status]").forEach((col) => {
+  document.querySelectorAll(".in-progress[data-status]").forEach((col) => {   
     col.addEventListener("dragover", onDragOver);
     col.addEventListener("dragenter", onDragEnter);
     col.addEventListener("dragleave", onDragLeave);
     col.addEventListener("drop", onDrop);
-    col.addEventListener("touchmove", onTouchMove, { passive: false });
+    col.addEventListener("touchmove", onTouchMove, { passive: false }); 
     col.addEventListener("touchend", onTouchEnd);
-  });
+  });  
   initTouchOnCards();
 }
 

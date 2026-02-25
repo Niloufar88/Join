@@ -91,12 +91,12 @@ function onTouchStart(e) {
 
 /**
  * Verarbeitet die Touch-Bewegung.
- * @param {TouchEvent} e 
+ * @param {TouchEvent} e
  */
 function onTouchMove(e) {
   if (!touchDraggedElement) return;
   if (e.cancelable) {
-    e.preventDefault(); 
+    e.preventDefault();
   }
   const isCurrentlyDragging = handleDragDetection(e);
   if (!isCurrentlyDragging) return;
@@ -120,8 +120,7 @@ function handleDragDetection(e) {
       isDragging = true;
       touchDraggedElement.classList.add("dragging");
       if (e.cancelable) e.preventDefault();
-    }
-    else if (deltaX > DRAG_THRESHOLD) {
+    } else if (deltaX > DRAG_THRESHOLD) {
       touchDraggedElement = null;
       touchDraggedId = null;
       return false;
@@ -151,7 +150,28 @@ function updateDropTargetHighlight(x, y) {
 }
 
 /**
- * Touch end handler: completes the drag operation on mobile.
+ * Verarbeitet das Ablegen eines Tasks an einer bestimmten Position.
+ * @async
+ * @param {number} x - X-Koordinate des Touch-Endes
+ * @param {number} y - Y-Koordinate des Touch-Endes
+ */
+async function handleTaskDrop(x, y) {
+  const elementUnderTouch = document.elementFromPoint(x, y);
+  const targetColumn = elementUnderTouch?.closest(".in-progress[data-status]");
+  if (targetColumn) {
+    const newState = targetColumn.getAttribute("data-status") || "";
+    if (fetchData?.tasks?.[touchDraggedId]) {
+      fetchData.tasks[touchDraggedId].state = newState;
+      await postState();
+    }
+    targetColumn.classList.remove("drop-target");
+    return true;
+  }
+  return false; 
+}
+
+/**
+ * Touch end handler: schließt die Drag-Operation auf Mobile ab.
  * @async
  * @param {TouchEvent} e
  */
@@ -159,21 +179,7 @@ async function onTouchEnd(e) {
   if (!touchDraggedElement || !touchDraggedId) return;
   if (isDragging) {
     const touch = e.changedTouches[0];
-    const elementUnderTouch = document.elementFromPoint(
-      touch.clientX,
-      touch.clientY,
-    );
-    const targetColumn = elementUnderTouch?.closest(
-      ".in-progress[data-status]",
-    );
-    if (targetColumn) {
-      const newState = targetColumn.getAttribute("data-status") || "";
-      if (fetchData?.tasks?.[touchDraggedId]) {
-        fetchData.tasks[touchDraggedId].state = newState;
-        await postState();
-      }
-      targetColumn.classList.remove("drop-target");
-    }
+    await handleTaskDrop(touch.clientX, touch.clientY);
     touchDraggedElement.classList.remove("dragging");
     renderBoard();
     updateAllEmptyMessages();
