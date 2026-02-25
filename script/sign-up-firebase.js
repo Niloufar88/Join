@@ -130,7 +130,11 @@ function resetPageDefaults() {
   UpdateIcon(passwordConfirm, iconPasswordDivConfirm);
 }
 
-// SHA-256 Hash-Funktion
+/**
+ * a function which hashes a password using the SHA-256 algorithm.
+ * @param {string} password - The password to be hashed.
+ * @returns {Promise<string>} - Returns a promise that resolves to the hashed password in hexadecimal format.
+ */
 async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);

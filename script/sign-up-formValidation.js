@@ -1,106 +1,4 @@
 /**
- * signup Validation functions, which checks for empty fields, validates the name, email, password and confirm password inputs. If any validation fails, it shows an appropriate error message and highlights the relevant input fields in red.
- * @returns {Promise<boolean>} - Returns true if all validations pass, false otherwise.
- */
-
-async function signupValidation() {
-  const isNullCheckValid = nullCheckValidation();
-  const isNameValid = await nameValidation();
-  const isEmailValid = await emailValidation();
-  const isPasswordValid = passwordValidation();
-  const isConfirmPasswordValid = confirmPasswordValidation();
-  if (
-    !isNullCheckValid ||
-    !isNameValid ||
-    !isEmailValid ||
-    !isPasswordValid ||
-    !isConfirmPasswordValid
-  ) {
-    if (
-      isNullCheckValid &&
-      isNameValid &&
-      isEmailValid &&
-      isPasswordValid &&
-      isConfirmPasswordValid
-    ) {
-      confirmPasswordErrorMessage(
-        "something went wrong. check the fields and try again.",
-      );
-    }
-    return false;
-  } else {
-    resetBorderColors();
-    const errorMsg = document.getElementById("confirmpassword-error-message");
-    errorMsg.style.visibility = "hidden";
-    return true;
-  }
-}
-
-/**
- * This function checks if any of the input fields are empty. If so, it highlights the empty fields in red and displays an error message prompting the user to fill in all fields.
- * @returns {boolean} - Returns true if all fields are filled, false otherwise.
- */
-function nullCheckValidation() {
-  const name = document.getElementById("signup-name").value.trim();
-  const email = document.getElementById("signup-email").value.trim();
-  const password = document.getElementById("signup-password").value.trim();
-  const confirmPassword = document
-    .getElementById("signup-confirm-password")
-    .value.trim();
-  resetBorderColors();
-  if (!name || !email || !password || !confirmPassword) {
-    inputBorderColorsRed();
-    return false;
-  }
-  return true;
-}
-
-/**
- * a function which highlights the input fields with red borders if they are empty.
- */
-
-function borderColorVariables() {
-  const passwordContainer =
-    document.getElementById("signup-password").parentElement;
-  const confirmPasswordContainer = document.getElementById(
-    "signup-confirm-password",
-  ).parentElement;
-  return { passwordContainer, confirmPasswordContainer };
-}
-
-function inputBorderColorsRed() {
-  const nameContainer = document.getElementById("signup-name").parentElement;
-  const emailContainer = document.getElementById("signup-email").parentElement;
-  const { passwordContainer, confirmPasswordContainer } =
-    borderColorVariables();
-  if (!document.getElementById("signup-name").value.trim())
-    nameContainer.style.borderColor = "rgb(170, 22, 22)";
-  if (!document.getElementById("signup-email").value.trim())
-    emailContainer.style.borderColor = "rgb(170, 22, 22)";
-  if (!document.getElementById("signup-password").value.trim())
-    passwordContainer.style.borderColor = "rgb(170, 22, 22)";
-  if (!document.getElementById("signup-confirm-password").value.trim())
-    confirmPasswordContainer.style.borderColor = "rgb(170, 22, 22)";
-}
-
-/**
- * a function which sets the border color of the input fields back to the default color (#ccc) when the user starts typing in the fields or when they are not empty anymore.
- */
-function resetBorderColors() {
-  const nameContainer = document.getElementById("signup-name").parentElement;
-  const emailContainer = document.getElementById("signup-email").parentElement;
-  const passwordContainer =
-    document.getElementById("signup-password").parentElement;
-  const confirmPasswordContainer = document.getElementById(
-    "signup-confirm-password",
-  ).parentElement;
-  nameContainer.style.borderColor = "#ccc";
-  emailContainer.style.borderColor = "#ccc";
-  passwordContainer.style.borderColor = "#ccc";
-  confirmPasswordContainer.style.borderColor = "#ccc";
-}
-
-/**
  * a function which checks all the name validation rules: it checks if the name is empty, if it contains numbers, and if it already exists in Firebase. If any of these checks fail, it shows an appropriate error message and highlights the name input field in red.
  * @returns {boolean} - Returns true if the name is valid, false otherwise.
  */
@@ -156,10 +54,9 @@ function nameNumberContainValidation() {
 }
 
 /**
- * an async function which checks if the name is already taken in Firebase by fetching the existing user names and comparing them with the input name. If the name is already taken, it shows an error message and highlights the name input field in red.
- * @returns {Promise<boolean>} Returns true if name is available, false if already taken
+ * a function which saves the value from the name input field into a variable and returns it as an object.
+ * @returns {Object} - Returns an object containing the name and the name input element.
  */
-
 function existingNameFetchVariables() {
   const name = document
     .getElementById("signup-name")
@@ -169,6 +66,10 @@ function existingNameFetchVariables() {
   return { name, nameInput };
 }
 
+/**
+ * an async function which checks if the name is already taken in Firebase by fetching the existing user names and comparing them with the input name. If the name is already taken, it shows an error message and highlights the name input field in red.
+ * @returns {Promise<boolean>} Returns true if name is available, false if already taken
+ */
 async function existingNameValidation() {
   const { name, nameInput } = existingNameFetchVariables();
   try {
@@ -245,10 +146,9 @@ function emailPatternValidation() {
 }
 
 /**
- * an async function which checks if the email is already registered in Firebase by fetching the existing user emails and comparing them with the input email. If the email is already registered, it shows an error message and clears the input field.
- * @returns {Promise<boolean>} Returns true if email is available, false if already exists
+ * a function which saves the value from the email input field into a variable and returns it as an object.
+ * @returns {Object} - Returns an object containing the email and the email input element.
  */
-
 function existingEmailFetchVariables() {
   const email = document
     .getElementById("signup-email")
@@ -258,6 +158,10 @@ function existingEmailFetchVariables() {
   return { email, emailInput };
 }
 
+/**
+ * an async function which checks if the email is already registered in Firebase by fetching the existing user emails and comparing them with the input email. If the email is already registered, it shows an error message and clears the input field.
+ * @returns {Promise<boolean>} Returns true if email is available, false if already exists
+ */
 async function existingEmailValidation() {
   const { email, emailInput } = existingEmailFetchVariables();
   try {
@@ -323,8 +227,8 @@ function passwordSpaceValidation() {
 }
 
 /**
- * confirmation password validation function which checks if the confirm password input matches the password input. If they don't match, it shows an error message and clears the confirm password input field.
- * @returns {boolean} - Returns true if the confirm password matches the password, false otherwise.
+ * a function which saves the values from the password and confirm password input fields into variables and returns them as an object.
+ * @returns {Object} - Returns an object containing the password, confirm password, and the confirm password input element.
  */
 
 function confirmpasswordVariables() {
@@ -338,6 +242,10 @@ function confirmpasswordVariables() {
   return { password, confirmPassword, confirmPasswordInput };
 }
 
+/**
+ * confirmation password validation function which checks if the confirm password input matches the password input. If they don't match, it shows an error message and clears the confirm password input field.
+ * @returns {boolean} - Returns true if the confirm password matches the password, false otherwise.
+ */
 function confirmPasswordValidation() {
   const { password, confirmPassword, confirmPasswordInput } =
     confirmpasswordVariables();
@@ -388,10 +296,9 @@ function nullConfirmationPasswordValidation() {
 }
 
 /**
- * a function which triggers the registration process in Firebase if all the validation checks pass successfully. It retrieves the values from the input fields and calls the registerUser function, which is responsible for creating a new user account in Firebase with the provided name, email, and password.
- * @returns {Promise<void>} - Returns a promise that resolves when the registration process is complete.
+ * a function which saves the values from the input fields into variables and returns them as an object. It also hashes the password before returning it.
+ * @returns {Promise<Object>} - Returns a promise that resolves to an object containing the name, email, and hashed password.
  */
-
 async function fetchVariables() {
   const name = document
     .getElementById("signup-name")
@@ -406,6 +313,10 @@ async function fetchVariables() {
   return { name, email, hashedPassword };
 }
 
+/**
+ * an async function which performs the registration process by first validating the form, then fetching the input values, hashing the password, and finally registering the user in Firebase. If the registration is successful, it shows a success message and redirects to the login page after a short delay. If there is an error during registration, it shows an error message and re-enables the submit button.
+ * @returns {Promise<void>} - Returns a promise that resolves when the registration process is complete.
+ */
 async function signupRegistrationInFirebase() {
   if (!(await signupValidation())) return;
   try {
@@ -419,7 +330,6 @@ async function signupRegistrationInFirebase() {
       window.location.href = "../html/index.html";
     }, 2000);
   } catch (error) {
-    console.error("Registration error:", error);
     confirmPasswordErrorMessage("Registration failed. Please try again.");
     submitBtn.disabled = !policyCheckbox.checked;
     submitBtn.textContent = "Sign up";

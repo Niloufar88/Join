@@ -21,7 +21,6 @@ const editContactPopup = document.querySelector(".edit-contact-popup");
 const contactDashboard = document.querySelector(".contact-dashboard");
 const contactSection = document.querySelector(".contacts");
 const contactBox = document.querySelector(".contact-box");
-const dialogElement = document.getElementById("edit-menu-dialog");
 let container = document.querySelector(".floating-contact");
 
 /**

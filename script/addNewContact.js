@@ -1,3 +1,5 @@
+const dialogElement = document.getElementById("edit-menu-dialog");
+
 /**
  * get data from input fields in add-contact-popup dynamically
  * validates input fields values
@@ -225,6 +227,14 @@ dialogElement.addEventListener("click", (event) => {
     dialogElement.close();
   }
 });
+
+// Dialog function for edit and delete contact on small screens
+
+// dialogElement.addEventListener("click", () => {
+//   dialogElement.showModal();
+//   dialogElement.classList.add("slide-in");
+//   dialogElement.innerHTML = renderEditToolsDialog();
+// });
 
 /**
  * a function to prevent event bubbling when clicking inside the dialog content

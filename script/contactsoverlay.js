@@ -375,26 +375,38 @@ async function essentialFunctionsForSave() {
 }
 
 /**
- * an async function which proves the validation, get edited data and updated contact data in firebase und executed essential function series after that.
+ *  a function which checks if the contact name, email, and phone number inputs in the edit contact form are valid by calling their respective validation functions. It returns true if all inputs are valid, false otherwise.
+ * @returns {Object|null} Returns an object containing contactId and updatedContact if valid, null otherwise
  */
-async function saveEditedContact() {
+function prepareEditedContactData() {
   isDataValidForSave();
   const editedData = getEditedContactData();
   const contactId = findContactIdFromDisplayed();
   if (!contactId) {
     editContactErrorMsg("Contact not found");
-    return;
+    return null;
   }
   const initials = getInitials(editedData.editedName);
   const contactColor = fetchedData[contactId].color;
-  const updatedContact = {
-    name: editedData.editedName,
-    email: editedData.editedEmail,
-    phone: editedData.editedPhone,
-    initials: initials,
-    color: contactColor,
-    checked: false,
+  return {
+    contactId,
+    updatedContact: {
+      name: editedData.editedName,
+      email: editedData.editedEmail,
+      phone: editedData.editedPhone,
+      initials: initials,
+      color: contactColor,
+      checked: false,
+    },
   };
+}
+
+/**
+ * an async function which updated the data in firebase and after that executes the essential functions to refresh the data and show popup message.
+ * @param {string} contactId
+ * @param {Object} updatedContact
+ */
+async function updateAndRefreshContact(contactId, updatedContact) {
   try {
     await updateContactInFirebase(contactId, updatedContact);
     await essentialFunctionsForSave();
@@ -403,52 +415,13 @@ async function saveEditedContact() {
   }
 }
 
-// Dialog function for edit and delete contact on small screens
-
-dialogElement.addEventListener("click", () => {
-  dialogElement.showModal();
-  dialogElement.classList.add("slide-in");
-  dialogElement.innerHTML = renderEditToolsDialog();
-});
-
 /**
- * a function which opens a dialog with edit and delete options for contacts on small screens
- * checks if dialog element exists
- * gets edit tool elements container
- * @returns {void}
+ * an async function which gets the prepared data from the edit contact form, validates it, and updates the contact in Firebase if valid.
+ * @returns {Promise<void>}
  */
-function openEditMenuDialog() {
-  const editMenuDialog = document.getElementById("edit-menu-dialog");
-  if (!editMenuDialog) return;
-  const editToolEls = document.getElementById("contact-edit-tools");
-  if (!editToolEls) return;
-  editMenuDialog.classList.remove("slide-out");
-  editMenuDialog.innerHTML = renderEditToolsDialog();
-  editMenuDialog.classList.add("editToolClicked");
-  editMenuDialog.offsetHeight;
-  editMenuDialog.showModal();
-  editMenuDialog.classList.add("slide-in");
-}
-
-/**
- * a function which closes the edit menu dialog on small screens with animation
- * checks if dialog element exists
- * removes animation classes and adds slide-out class to trigger animation
- * closes dialog and clears innerHTML after animation duration
- * @returns
- */
-function closeEditMenuDialog() {
-  const editMenuDialog = document.getElementById("edit-menu-dialog");
-  if (!editMenuDialog) return;
-  editMenuDialog.classList.remove("editToolClicked");
-  editMenuDialog.classList.remove("slide-in");
-  editMenuDialog.offsetHeight;
-  editMenuDialog.classList.add("slide-out");
-  editMenuDialog.close();
-  setTimeout(() => {
-    if (editMenuDialog) {
-      editMenuDialog.classList.remove("slide-out");
-      editMenuDialog.innerHTML = "";
-    }
-  }, 500);
+async function saveEditedContact() {
+  const contactData = prepareEditedContactData();
+  if (!contactData) return;
+  const { contactId, updatedContact } = contactData;
+  await updateAndRefreshContact(contactId, updatedContact);
 }
