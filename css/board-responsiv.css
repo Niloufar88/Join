@@ -92,6 +92,7 @@
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    max-height: 60px;
   }
 }
 
