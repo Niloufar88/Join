@@ -74,15 +74,17 @@ function capitalizeLettersFullName(contacts) {
 }
 
 /**
- *
+ * Berechnet die Statistiken für Subtasks.
  * @param {Object} task
- * @returns
+ * @returns {Object|null} Stats-Objekt oder null, wenn keine Subtasks vorhanden sind.
  */
 function getSubtaskStats(task) {
   const subtasks = task.subtasks || [];
   const total = subtasks.length;
   const checked = subtasks.filter((sub) => sub.state === "check").length;
+  if (total === 0 || checked === 0) {
+    return null; 
+  }
   return { total, checked };
 }
-
 

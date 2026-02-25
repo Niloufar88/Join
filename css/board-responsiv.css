@@ -24,13 +24,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    /* width: clamp(180px, 16vw, 320px); */
+    align-items: center;   
   }
 
-  .in-progress {
-    /* width: clamp(180px, 16vw, 320px); */
+  .cards .avatars {
+    padding-right: 0px;
   }
+
 }
 
 @media (max-width: 1065px) {

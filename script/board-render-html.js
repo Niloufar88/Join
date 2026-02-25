@@ -11,7 +11,7 @@ function renderTasksHTML(task, id) {
       ${buildCardHeader(task, filterCategory(task.category))}
       ${buildCardTitle(task.title)}
       ${buildCardDescription(task.description)}
-      ${buildCardProgress(task)}
+      
       ${buildCardFooter(task, filterPriority(task.priority), id)}
     </div>
   `;
@@ -45,14 +45,14 @@ function buildCardDescription(description) {
   return `<p class="card-desc">${description || ""}</p>`;
 }
 
-/**
- * Builds progress bar for subtasks.
- * @param {Task} task
- * @returns {string}
- */
-function buildCardProgresshtml(task) {
-  return `<div class="progress"><div style="width:${task}%"></div></div>`;
-}
+// /**
+//  * Builds progress bar for subtasks.
+//  * @param {Task} task
+//  * @returns {string}
+//  */
+// function buildCardProgresshtml(task) {
+//   return `<div class="progress"><div style="width:${task}%"></div></div>`;
+// }
 
 /**
  * Builds card footer with priority, avatars and date.
@@ -622,7 +622,7 @@ function renderTasksHTML(task, id) {
                   <p class="tag ${filterCategory(task.category)}">${task.category}</p>   
                   <h4>${task.title}</h4>
                   <span class="span-overflow">${task.description}</span>
-                   ${getProgressSubtask(getSubtaskStats(task))}                  
+                   ${buildCardProgress(task)}                  
                   <div class ="nav">
                   <div class="avatars" >${renderTaskContact(task.contacts, 4)}</div>
                   <div class="${filterPriority(task.priority)} prio-wrapper"></div>            
@@ -631,16 +631,17 @@ function renderTasksHTML(task, id) {
                 </div>     
   `;
 }
-
 /**
  *
  * @param {Object} stats
  * @returns
  */
-function getProgressSubtaskZero(stats) {
-  return `<div class="progress-scale-hidden"></div>`;
+function getProgressSubtaskZero() {
+  return `<div class="progress-scale-hidden">
+     Subtasks
+    </div>
+  `;
 }
-
 /**
  *
  * @param {Object} stats
