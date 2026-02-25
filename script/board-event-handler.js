@@ -90,11 +90,28 @@ function onTouchStart(e) {
 }
 
 /**
- * Touch move handler: visualizes drop target on mobile.
- * @param {TouchEvent} e
+ * Verarbeitet die Touch-Bewegung.
+ * @param {TouchEvent} e 
  */
 function onTouchMove(e) {
   if (!touchDraggedElement) return;
+  if (e.cancelable) {
+    e.preventDefault(); 
+  }
+  const isCurrentlyDragging = handleDragDetection(e);
+  if (!isCurrentlyDragging) return;
+  const touch = e.touches[0];
+  updateDropTargetHighlight(touch.clientX, touch.clientY);
+}
+
+/**
+ * Erkennt anhand der Schwellenwerte (Threshold), ob der Nutzer scrollen oder draggen möchte.
+ * Verhindert das Standard-Scrolling, falls ein Drag aktiv ist.
+ * * @param {TouchEvent} e - Das Touch-Event zur Positionsbestimmung.
+ * @returns {boolean} True, wenn das Element gerade aktiv gezogen wird.
+ */
+function handleDragDetection(e) {
+  if (isDragging && e.cancelable) e.preventDefault();
   const touch = e.touches[0];
   const deltaX = Math.abs(touch.clientX - touchStartX);
   const deltaY = Math.abs(touch.clientY - touchStartY);
@@ -102,19 +119,34 @@ function onTouchMove(e) {
     if (deltaY > DRAG_THRESHOLD && deltaY > deltaX) {
       isDragging = true;
       touchDraggedElement.classList.add("dragging");
-    } else if (deltaX > DRAG_THRESHOLD) {
+      if (e.cancelable) e.preventDefault();
+    }
+    else if (deltaX > DRAG_THRESHOLD) {
       touchDraggedElement = null;
       touchDraggedId = null;
-      return;
-    } else return;
+      return false;
+    } else {
+      return false;
+    }
   }
-  if (isDragging) {
-    e.preventDefault();
-    const touch = e.touches[0];
-    const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
-    document.querySelectorAll(".drop-target").forEach((el) => el.classList.remove("drop-target"));
-    const column = elementUnderTouch?.closest(".in-progress[data-status]");
-    if (column) column.classList.add("drop-target");
+  return isDragging;
+}
+
+/**
+ * Findet das Element unter den Koordinaten und setzt die visuelle Markierung
+ * für die Ziel-Spalte (Drop-Target).
+ * * @param {number} x - Die X-Koordinate (clientX) des Touches.
+ * @param {number} y - Die Y-Koordinate (clientY) des Touches.
+ * @returns {void}
+ */
+function updateDropTargetHighlight(x, y) {
+  const elementUnderTouch = document.elementFromPoint(x, y);
+  document.querySelectorAll(".drop-target").forEach((el) => {
+    el.classList.remove("drop-target");
+  });
+  const column = elementUnderTouch?.closest(".in-progress[data-status]");
+  if (column) {
+    column.classList.add("drop-target");
   }
 }
 
