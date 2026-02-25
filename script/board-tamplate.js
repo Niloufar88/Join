@@ -151,7 +151,7 @@ function loadAddTaskFormIntoOverlay() {
                       <label for="subtasks">Subtasks</label>
                       <div class="subtask-input-container">
                         <div class="input-wrapper">
-                          <input id="subtasks" type="text" onclick="createSubtasks()" placeholder="Add new subtask">
+                          <input id="subtasks" type="text" onclick="focusSubtaskInput()" placeholder="Add new subtask">
                           <div class="img-container" id="showHiddenSubtasks">
                             <img src="../assets/img/Subtasks cancel.svg" class="input-icon-cancel"
                               onclick="cancelSubtask()">
@@ -181,7 +181,7 @@ function loadAddTaskFormIntoOverlay() {
                     </svg>
                   </button>
                   <button class="btn-createTask btn-priority-flex btn-State btn-footer-small" id="colorChange"
-                    onclick="CreateTask()" disabled >Create Task
+                    onclick="createTask()" disabled >Create Task
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#29ABE2" xmlns="http://www.w3.org/2000/svg">
                       <mask id="mask0_411527_6018" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                         width="24" height="24">
@@ -202,7 +202,7 @@ function loadAddTaskFormIntoOverlay() {
 
 /**
  * Creates the HTML for the task details overlay.
- * @param {import("./add-task.js").TaskPayload|any} task
+ * @param {import("./add-task-main.js").TaskPayload|any} task
  * @param {string} taskID
  * @returns {string}
  */
@@ -254,7 +254,7 @@ function taskPopup(task, taskID) {
 
 /**
  * Creates the HTML for the task edit overlay.
- * @param {import("./add-task.js").TaskPayload|any} task
+ * @param {import("./add-task-main.js").TaskPayload|any} task
  * @param {string} id
  * @returns {string}
  */
@@ -367,7 +367,7 @@ function taskPopupEditMode(task, id) {
               <label for="subtasks">Subtasks</label>
               <div class="subtask-input-container">
                 <div class="input-wrapper">
-                  <input id="subtasks" type="text" onclick="createSubtasks()" placeholder="Add new subtask">
+                  <input id="subtasks" type="text" onclick="focusSubtaskInput()" placeholder="Add new subtask">
                   <div class="img-container" id="showHiddenSubtasks">
                     <img src="../assets/img/Subtasks cancel.svg" class="input-icon-cancel" onclick="cancelSubtask()">
                     <div class="seperator-small"></div>
@@ -416,7 +416,7 @@ function renderSubtasksDetailsEditHTML(subtask, i, id) {
 
 /**
  * Renders the HTML for a task card on the board.
- * @param {import("./add-task.js").TaskPayload|any} task
+ * @param {import("./add-task-main.js").TaskPayload|any} task
  * @param {string} id
  * @returns {string}
  */

@@ -1,11 +1,11 @@
 /**
  * Builds the HTML for a single contact row inside the contacts dropdown.
- * @param {string} initials
- * @param {string} name
- * @param {string} color
- * @param {string|number} id
- * @param {boolean} checked
- * @returns {string}
+ * @param {string} initials - The contact's initials
+ * @param {string} name - The contact's full name
+ * @param {string} color - The contact's color code
+ * @param {string|number} id - The unique contact ID
+ * @param {boolean} checked - Whether the checkbox is pre-checked
+ * @returns {string} HTML string for the contact row
  */
 function renderContactHTML(initials, name, color, id, checked) {
     return `    
@@ -26,10 +26,10 @@ function renderContactHTML(initials, name, color, id, checked) {
 
 /**
  * Builds the HTML for a contact row used in the contact search UI.
- * @param {string} initials
- * @param {string} name
- * @param {string} color
- * @returns {string}
+ * @param {string} initials - The contact's initials
+ * @param {string} name - The contact's full name
+ * @param {string} color - The contact's color code
+ * @returns {string} HTML string for the contact search row
  */
 function renderContactSearchHTML(initials, name, color) {
     return `    
@@ -48,8 +48,8 @@ function renderContactSearchHTML(initials, name, color) {
 
 /**
  * Builds the HTML for a single selected contact initials badge.
- * @param {{color: string, initials: string}} contact
- * @returns {string}
+ * @param {{color: string, initials: string}} contact - The contact object
+ * @returns {string} HTML string for the initials badge
  */
 function letterInitials(contact) {
     return `
@@ -59,21 +59,25 @@ function letterInitials(contact) {
     `;
 }
 
-function letterInitialsMax(contact) {
+/**
+ * Builds the HTML for an overflow badge showing remaining contacts count.
+ * @param {number} count - The number of additional contacts
+ * @returns {string} HTML string for the overflow badge
+ */
+function renderOverflowBadge(count) {
     return `<span class="initials-circle counter">
-            + ${contact}
+            + ${count}
             </span>
     `;
 }
 
-
 /**
  * Builds the HTML for a single subtask list entry.
- * @param {string} subTaskInput
- * @param {number} i
- * @returns {string}
+ * @param {string} subTaskInput - The subtask text content
+ * @param {number} i - The index of the subtask
+ * @returns {string} HTML string for the subtask item
  */
-function subTaskContentHMTL(subTaskInput, i) {
+function renderSubtaskItemHTML(subTaskInput, i) {
     return `
     <div class="sub-container" data-index="${i}">
         <span class="display-flex">&bull; ${subTaskInput}</span>
@@ -89,11 +93,11 @@ function subTaskContentHMTL(subTaskInput, i) {
 
 /**
  * Builds the HTML for editing a single subtask entry.
- * @param {number} i
- * @param {string} currentValue
- * @returns {string}
+ * @param {number} i - The index of the subtask
+ * @param {string} currentValue - The current text value
+ * @returns {string} HTML string for the editable subtask form
  */
-function changeSubtaskHtml(i, currentValue) {
+function renderEditSubtaskForm(i, currentValue) {
     return `<div class="input-wrapper"><input type="text" value="${currentValue}" id="edit-input-${i}"
     title="Enter the new text">    
     <div class="img-container" style="display: flex;">

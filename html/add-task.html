@@ -21,7 +21,6 @@
 </head>
 
 <body onload="initAddTask()">
-
   <div class="body-div">
     <div class="content-wrapper">
       <aside class="sidebar">
@@ -213,7 +212,7 @@
                     <label for="subtasks">Subtasks</label>
                     <div class="subtask-input-container">
                       <div class="input-wrapper">
-                        <input id="subtasks" type="text" onclick="createSubtasks()" placeholder="Add new subtask">
+                        <input id="subtasks" type="text" onclick="focusSubtaskInput()" placeholder="Add new subtask">
                         <div class="img-container" id="showHiddenSubtasks">
                           <img src="../assets/img/Subtasks cancel.svg" class="input-icon-cancel"
                             onclick="cancelSubtask()">
@@ -242,7 +241,7 @@
                     </svg>
                   </button>
                   <button class="btn-createTask btn-priority-flex btn-State btn-footer-small" id="colorChange"
-                    onclick="CreateTask()" disabled>Create Task
+                    onclick="createTask()" disabled>Create Task
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#29ABE2" xmlns="http://www.w3.org/2000/svg">
                       <mask id="mask0_411527_6018" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                         width="24" height="24">
@@ -262,12 +261,13 @@
     </div>
   </div>
   <div class="menuOverlay hidden"></div>
-
-
 </body>
-<!--<script src="../script/auth-script.js"></script>-->
+<!-- adding Scripts -->
 <script src="../script/sidebar_and_header_script.js"></script>
-<script src="../script/add-task.js"></script>
-<script src="../script/add-taskHTML.js"></script>
-
+<script src="../script/add-task-api.js" defer></script>
+<script src="../script/add-task-render-html.js"></script>
+<script src="../script/add-task-ui-helpers.js" defer></script>
+<script src="../script/add-task-validation.js" defer></script>
+<script src="../script/add-task-event-handler.js" defer></script>
+<script src="../script/add-task-main.js" defer></script>
 </html>

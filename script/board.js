@@ -651,7 +651,7 @@ function editChangeSubtask(taskId, i) {
   if (!subContainer) return;
   if (!subTaskInput[i]) return;
   const currentValue = subTaskInput[i];
-  subContainer.innerHTML = changeSubtaskHtml(i, currentValue);
+  subContainer.innerHTML = renderEditSubtaskForm(i, currentValue);
   const newInputField = document.getElementById(`edit-input-${i}`);
   if (newInputField) newInputField.focus();
 }
@@ -671,7 +671,7 @@ function editTaskOnBoard(id) {
     overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
     renderContact();
-    assignedToLettersCheckContact();
+    renderSelectedContactsInitials();
     renderSubtasksDetailsEdit(id); // Renders subtasks into #SubtaskList
   } catch (error) {
     console.error("Error opening task edit mode:", error);
