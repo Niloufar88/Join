@@ -1,0 +1,226 @@
+@media (max-width: 991px) {
+  .edit-contact-overlay {
+    flex-direction: column;
+    width: clamp(60%, 60vw, 55%);
+    height: calc(100vh - 180px);
+    top: 51%;
+    right: calc(100vw - 80%);
+  }
+
+  .edit-contact-overlay .edit-contact-overview {
+    width: 100%;
+    height: 40%;
+    padding: clamp(24px, 8vw, 48px);
+    border-radius: 30px 30px 0 0;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-overview
+    .edit-contact-text
+    .edit-contact-title {
+    font-size: clamp(24px, 8vw, 36px);
+  }
+
+  .edit-contact-overlay .edit-contact-overview .join-logo-contact {
+    display: none;
+  }
+
+  .edit-contact-overlay .edit-contact-container {
+    width: 100%;
+    height: 65%;
+    padding: 24px;
+    border-radius: 0 0 30px 30px;
+  }
+
+  .edit-contact-overlay .edit-contact-container .close-btn {
+    font-size: clamp(18px, 4vw, 22px);
+    width: 24px;
+    height: 24px;
+    top: -200px;
+    right: 35px;
+    color: white;
+  }
+
+  .edit-contact-overlay .edit-contact-container .close-btn:hover {
+    background-color: rgba(41, 171, 226, 1);
+  }
+
+  .edit-contact-overlay .edit-contact-container .edit-contact-form {
+    flex-direction: column;
+    padding-left: 0;
+    margin-top: 0;
+    gap: 8px;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contact-badge {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: calc(40% - 200px);
+    margin-bottom: 0;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm
+    .edit-contact-buttons {
+    justify-content: center;
+  }
+
+  .primary-btn-default-icon {
+    font-size: clamp(16px, 4vw, 18px);
+  }
+
+  .secondary-btn-default-icon {
+    font-size: clamp(16px, 4vw, 18px);
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm
+    .inputContainer {
+    min-width: 0;
+    width: 100%;
+    height: 40px;
+    padding: 8px 16px;
+    margin-bottom: 0;
+  }
+
+  .editValidationErrorMsg {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .edit-contact-overlay {
+    flex-direction: column;
+    width: clamp(90%, 90vw, 80%);
+    height: calc(100vh - 180px);
+    top: 51%;
+    right: calc(100vw - 95%);
+  }
+
+  .edit-contact-overlay
+    .edit-contact-overview
+    .edit-contact-text
+    .edit-contact-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 450px) {
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm {
+    margin-top: 24px;
+  }
+
+  .edit-contact-overlay .edit-contact-container .close-btn {
+    top: -180px;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm
+    .inputContainer {
+    min-width: 0;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 0;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm
+    .inputContainer
+    img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm
+    .inputContainer
+    input {
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm
+    .inputContainer
+    input::placeholder {
+    font-size: 14px;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm
+    .edit-contact-buttons
+    button {
+    height: 36px;
+  }
+
+  .edit-contact-overlay .edit-contact-overview {
+    height: 40%;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contact-badge {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: calc(40% - 190px);
+    margin-bottom: 0;
+  }
+
+  .primary-btn-default-icon {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .secondary-btn-default-icon {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .edit-contact-overlay
+    .edit-contact-container
+    .edit-contact-form
+    .contactForm
+    .inputContainer {
+    padding: 4px 8px;
+  }
+
+  .editValidationErrorMsg {
+    color: rgba(230, 0, 38, 1);
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 10px;
+    visibility: hidden;
+  }
+}
