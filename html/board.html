@@ -24,7 +24,7 @@
 
 </head>
 
-<body onload="boardInit()">
+<body onload="InitBoard()">
 
   <div class="body-div">
     <div class="content-wrapper">
@@ -104,7 +104,8 @@
 
             <div class="subtask-input-container show-hidden">
               <div class="input-wrapper">
-                <input id="searchInputResponsive" oninput="searchBar()" type="text" placeholder="Find Task" class="search-task">
+                <input id="searchInputResponsive" oninput="searchBar()" type="text" placeholder="Find Task"
+                  class="search-task">
                 <div class="img-container-search" id="showHidden" style="display: flex;">
                   <div class="padding">
                     <div class="seperator-small"></div>
@@ -174,16 +175,30 @@
   </div>
   <div class="menuOverlay hidden"></div>
 </body>
-<!--<script src="../script/auth-script.js"></script>-->
-<!-- <script src="../script/add-taskHTML.js"></script> -->
-
-<script src="../script/board-tamplate.js"></script>
-<script src="../script/board-overlay.js"></script>
-<script src="../script/board.js"></script>
-<script src="../script/add-task.js"></script>
-<script src="../script/add-taskHTML.js"></script>
 
 <script src="../script/sidebar_and_header_script.js"></script>
+
+<script src="../script/add-task-api.js" defer></script>
+<script src="../script/add-task-render-html.js"></script>
+<script src="../script/add-task-ui-helpers.js" defer></script>
+<script src="../script/add-task-validation.js" defer></script>
+<script src="../script/add-task-event-handler.js" defer></script>
+<script src="../script/add-task-main.js" defer></script>
+
+<!-- <script src="../script/board.js"></script>
+<script src="../script/"></script> -->
+
+<script src="../script/board-state.js" defer></script>
+<script src="../script/board-api.js" defer></script>
+<script src="../script/board-templates.js" defer></script>
+<script src="../script/board-render-html.js" defer></script>
+<script src="../script/board-ui-helpers.js" defer></script>
+<script src="../script/board-validation.js" defer></script>
+<script src="../script/board-overlay.js" defer></script>
+<script src="../script/board-event-handler.js" defer></script>
+<script src="../script/board-task-actions.js" defer></script>
+<script src="../script/board-main.js" defer></script>
+
 
 
 </html>
