@@ -17,9 +17,6 @@ async function loadDataBase() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const responseToJson = await response.json();
-
-    // Firebase returns object with IDs as keys: { "-NxAbc": {name, email, phone}, ... }
-    // Convert to object where each contact has its id: { "-NxAbc": {id: "-NxAbc", name, email, phone}, ... }
     if (responseToJson && typeof responseToJson === "object") {
       fetchedData = {};
       for (const [id, contactData] of Object.entries(responseToJson)) {
@@ -36,7 +33,11 @@ async function loadDataBase() {
   }
 }
 
-// Save new contact to Firebase realtime Database:
+/**
+ * a function which saves a new contact to the Firebase Realtime Database.
+ * @param {Object} contact - The contact object containing name, email, and phone.
+ * @returns {Object} The result of the save operation.
+ */
 async function saveContact(contact) {
   try {
     const response = await fetch(storageUrl + ".json", {
@@ -46,11 +47,9 @@ async function saveContact(contact) {
       },
       body: JSON.stringify(contact),
     });
-
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const result = await response.json();
     return result;
   } catch (error) {
@@ -70,7 +69,6 @@ async function deleteContact(contactId) {
     const response = await fetch(`${storageUrl}/${contactId}.json`, {
       method: "DELETE",
     });
-
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -82,7 +80,12 @@ async function deleteContact(contactId) {
   }
 }
 
-// Update existing contact in Firebase realtime Database:
+/**
+ * a function which updates an existing contact in the Firebase Realtime Database.
+ * @param {string} contactId - The ID of the contact to be updated.
+ * @param {Object} updatedContact - The updated contact object containing name, email, and phone.
+ * @returns {Object} The result of the update operation.
+ */
 async function updateContactInFirebase(contactId, updatedContact) {
   try {
     const response = await fetch(`${storageUrl}/${contactId}.json`, {
@@ -92,11 +95,9 @@ async function updateContactInFirebase(contactId, updatedContact) {
       },
       body: JSON.stringify(updatedContact),
     });
-
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const result = await response.json();
     return result;
   } catch (error) {
@@ -107,7 +108,7 @@ async function updateContactInFirebase(contactId, updatedContact) {
 
 /**
  * an async function to fetch existing user names from the Firebase Realtime Database and return them as an array. This function is used to check if a user name is already registered before allowing a new registration.
- * @returns an Array with possible registered Names
+ * @returns {Array} An array with possible registered names.
  */
 async function fetchExistingContactName() {
   try {
@@ -115,10 +116,8 @@ async function fetchExistingContactName() {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const data = await response.json();
     const existingNames = [];
-
     if (data && typeof data === "object") {
       for (const [id, contactData] of Object.entries(data)) {
         if (contactData.name) {
@@ -134,8 +133,8 @@ async function fetchExistingContactName() {
 }
 
 /**
- * an async function to fetch existing contact emails from the Firebase Realtime Database and return them as an array. This function is used to check if an email is already exists before allowing to be saved again.
- * @returns an Array of already saved contact Emails
+ * an async function to fetch existing contact emails from the Firebase Realtime Database and return them as an array. This function is used to check if an email already exists before allowing it to be saved again.
+ * @returns {Array} An array of already saved contact emails.
  */
 async function fetchExistingContactEmail() {
   try {
@@ -143,10 +142,8 @@ async function fetchExistingContactEmail() {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const data = await response.json();
     const existingEmails = [];
-
     if (data && typeof data === "object") {
       for (const [id, contactData] of Object.entries(data)) {
         if (contactData.email) {
