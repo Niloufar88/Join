@@ -8,19 +8,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* background: #f6f7f8; */
 }
-
-/* .body-div {
-  
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-} */
 
 /* CSS Header */
 #login-header {
@@ -34,13 +23,6 @@
   align-items: center;
   padding: 40px;
 }
-
-/* .header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding: 20px 40px;
-} */
 
 #login-header .logo {
   width: auto;
@@ -67,7 +49,6 @@
 
 .auth-nav-mobile {
   visibility: hidden;
-  /* display: none; */
 }
 
 .signup-btn,
@@ -110,12 +91,9 @@
 #login-main .login-container {
   background: white;
   padding: 48px 100px;
-  /* padding: 60px 40px; */
   border-radius: 30px;
   box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04);
   text-align: center;
-  /* width: 472px; */
-  /* width: 600px; */
 }
 
 #login-main .login-container h1 {
@@ -149,11 +127,6 @@
   border-color: #29abe2;
 }
 
-/* .input-group input[type="email"].error,
-.input-group input[type="password"].error {
-  border-color: rgba(230, 0, 38, 1);
-} */
-
 .error-msg {
   color: #e60026;
   font-size: 14px;
@@ -161,15 +134,6 @@
   visibility: hidden;
   text-align: left;
 }
-
-/* .error-msg.d-none {
-  display: none;
-} */
-
-/* .input-group input.error,
-.input-group input.error:focus {
-  border-color: rgba(230, 0, 38, 1);
-} */
 
 .input-icon {
   position: absolute;
@@ -221,9 +185,6 @@
 }
 
 #login-footer {
-  /* position: absolute;
-  bottom: 0;
-  left: 0; */
   width: 100%;
   max-width: 1920px;
   display: flex;
@@ -246,9 +207,6 @@
 }
 
 .image-sequence {
-  /* position: absolute; */
-  /* left: 20px;
-  top: 20px; */
   position: fixed;
   z-index: 1000;
   background: #f6f7f800;
@@ -258,7 +216,6 @@
 
 .image-sequence.animate-logo {
   animation: logoMove 1s cubic-bezier(0.37, 0.09, 0.93, 0.64) forwards;
-  /* position: absolute; */
   position: fixed;
   top: 50%;
   left: 50%;
