@@ -68,7 +68,6 @@ async function deleteContactFromEditOverlay(event) {
     }
   } catch (error) {
     console.error("Error deleting contact:", error);
-    alert("Failed to delete contact. Please try again.");
   }
 }
 

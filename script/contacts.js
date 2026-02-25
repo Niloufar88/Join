@@ -246,6 +246,14 @@ function getFromDomAndFindInFirebase(event) {
   return { foundContact, contactData };
 }
 
+/**
+ * a function which handles the display of a floating contact card when a contact is clicked, by calling up all four functions sequentially:
+ * checks if floating container exists
+ * gets contact data from clicked DOM element
+ * finds contact in fetchedData by name and email
+ * renders floating contact card using renderFloatingCard funtion with 2 parameters or error message
+ * @param {Event} event
+ */
 function showFloatingCard(event) {
   floatingContainer();
   const { foundContact, contactData } = getFromDomAndFindInFirebase(event);
@@ -303,6 +311,12 @@ function handleContactClick(event) {
   showFloatingCard(event);
 }
 
+/**
+ * a function which switches the view to a floating contact card on small screens when a contact is clicked
+ * hides the main contact section and shows the contact dashboard
+ * creates a blue arrow element for navigation back to the contact section
+ * adds click event listener to the blue arrow to toggle visibility of sections and remove the arrow
+ */
 function showFloatingCardOnSmallScreens() {
   contactSection.style.display = "none";
   contactDashboard.style.display = "block";
@@ -411,6 +425,12 @@ async function deleteFloatingData(event) {
   }
 }
 
+/**
+ * an async function which performs a series of operations to delete a contact and update the UI accordingly
+ * calls loadDataBase to refresh data from Firebase realtime Database
+ * calls createContactList to re-render the contact list with updated data
+ * and executed a popup message only if the max width is greater than 450px
+ */
 async function deleteFloatingDataFunctionSeries() {
   await loadDataBase();
   await createContactList();
@@ -420,56 +440,5 @@ async function deleteFloatingDataFunctionSeries() {
   } else {
     contactSection.style.display = "block";
     contactDashboard.style.display = "none";
-    // blueArrow.remove();
   }
-}
-
-// Dialog function for edit and delete contact on small screens
-
-dialogElement.addEventListener("click", () => {
-  dialogElement.showModal();
-  dialogElement.classList.add("slide-in");
-  dialogElement.innerHTML = renderEditToolsDialog();
-});
-
-/**
- * a function which opens a dialog with edit and delete options for contacts on small screens
- * checks if dialog element exists
- * gets edit tool elements container
- * @returns {void}
- */
-function openEditMenuDialog() {
-  const editMenuDialog = document.getElementById("edit-menu-dialog");
-  if (!editMenuDialog) return;
-  const editToolEls = document.getElementById("contact-edit-tools");
-  if (!editToolEls) return;
-  editMenuDialog.classList.remove("slide-out");
-  editMenuDialog.innerHTML = renderEditToolsDialog();
-  editMenuDialog.classList.add("editToolClicked");
-  editMenuDialog.offsetHeight;
-  editMenuDialog.showModal();
-  editMenuDialog.classList.add("slide-in");
-}
-
-/**
- * a function which closes the edit menu dialog on small screens with animation
- * checks if dialog element exists
- * removes animation classes and adds slide-out class to trigger animation
- * closes dialog and clears innerHTML after animation duration
- * @returns
- */
-function closeEditMenuDialog() {
-  const editMenuDialog = document.getElementById("edit-menu-dialog");
-  if (!editMenuDialog) return;
-  editMenuDialog.classList.remove("editToolClicked");
-  editMenuDialog.classList.remove("slide-in");
-  editMenuDialog.offsetHeight;
-  editMenuDialog.classList.add("slide-out");
-  editMenuDialog.close();
-  setTimeout(() => {
-    if (editMenuDialog) {
-      editMenuDialog.classList.remove("slide-out");
-      editMenuDialog.innerHTML = "";
-    }
-  }, 500);
 }

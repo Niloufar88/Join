@@ -284,10 +284,8 @@ addContactPopupEl.addEventListener("click", (e) => {
 });
 
 /**
- * makes a async function to save edited contact to Firebase, defines editedData variable to get edited contact data from input fields ,defines contactId variable to find contact ID from displayed data, checks if editedData and contactId are available, creates updatedContact object with edited values, updates contact in Firebase using updateContactInFirebase with 2 parameters:
- * @param {String} contactId
- * @param {Object} updatedContact
- * reloads database and updates contact list, closes edit contact overlay and hides container, shows popup message on successful save
+ * a function which checks if the edited contact name is valid for saving. It validates the name input and shows an error message if the name is empty.
+ * @returns {boolean} Returns true if the name is valid, false otherwise
  */
 function isNameValidForSave() {
   const nameError = document.getElementById("editnameErrorMsg");
@@ -301,6 +299,10 @@ function isNameValidForSave() {
   }
 }
 
+/**
+ * a function which checks if the edited contact email is valid for saving. It validates the email input and shows an error message if the email is empty or does not match a valid pattern.
+ * @returns {boolean} Returns true if the email is valid, false otherwise
+ */
 function isEmailValidForSave() {
   const emailError = document.getElementById("editemailErrorMsg");
   const isEmailValid = editContactEmailValidation();
@@ -313,6 +315,10 @@ function isEmailValidForSave() {
   }
 }
 
+/**
+ * a function which checks if the edited contact phone number is valid for saving. It validates the phone input and shows an error message if the phone number is empty or does not match a valid pattern.
+ * @returns {boolean} Returns true if the phone number is valid, false otherwise
+ */
 function isPhoneValidForSave() {
   const phoneError = document.getElementById("editphoneErrorMsg");
   const isPhoneValid = editContactPhoneValidation();
@@ -325,6 +331,9 @@ function isPhoneValidForSave() {
   }
 }
 
+/**
+ * a function which hides all error messages in the edit contact form by setting their visibility to hidden. It selects the error message elements for name, email, and phone inputs and hides each one if it exists.
+ */
 function dataErrorForSave() {
   const nameError = document.getElementById("editnameErrorMsg");
   const emailError = document.getElementById("editemailErrorMsg");
@@ -334,6 +343,10 @@ function dataErrorForSave() {
   if (phoneError) phoneError.style.visibility = "hidden";
 }
 
+/**
+ * a function which checks all the validation rules. if invalid it executes the functions to show error messages for each invalid input. if all inputs are valid, it allows the save operation to proceed.
+ * @returns {boolean} Returns true if all inputs are valid, false otherwise
+ */
 function isDataValidForSave() {
   dataErrorForSave();
   const isValid = validateEditContactForm();
@@ -345,14 +358,25 @@ function isDataValidForSave() {
   }
 }
 
+/**
+ * a nasync functin which loads the database, updates the contact list, closes the edit contact overlay, hides the container, and shows a popup message on successful save. It is called after successfully updating the contact in Firebase to refresh the displayed data and provide feedback to the user.
+ */
 async function essentialFunctionsForSave() {
   await loadDataBase();
   await createContactList();
   closeEditContactOverlay();
   container.classList.add("d-none");
-  popupMessage("Contact successfully saved!");
+  if (window.innerWidth > 450) {
+    popupMessage("Contact successfully saved!");
+  } else {
+    contactSection.style.display = "block";
+    contactDashboard.style.display = "none";
+  }
 }
 
+/**
+ * an async function which proves the validation, get edited data and updated contact data in firebase und executed essential function series after that.
+ */
 async function saveEditedContact() {
   isDataValidForSave();
   const editedData = getEditedContactData();
@@ -376,6 +400,55 @@ async function saveEditedContact() {
     await essentialFunctionsForSave();
   } catch (error) {
     console.error("Error saving edited contact:", error);
-    alert("Failed to save contact. Please try again.");
   }
+}
+
+// Dialog function for edit and delete contact on small screens
+
+dialogElement.addEventListener("click", () => {
+  dialogElement.showModal();
+  dialogElement.classList.add("slide-in");
+  dialogElement.innerHTML = renderEditToolsDialog();
+});
+
+/**
+ * a function which opens a dialog with edit and delete options for contacts on small screens
+ * checks if dialog element exists
+ * gets edit tool elements container
+ * @returns {void}
+ */
+function openEditMenuDialog() {
+  const editMenuDialog = document.getElementById("edit-menu-dialog");
+  if (!editMenuDialog) return;
+  const editToolEls = document.getElementById("contact-edit-tools");
+  if (!editToolEls) return;
+  editMenuDialog.classList.remove("slide-out");
+  editMenuDialog.innerHTML = renderEditToolsDialog();
+  editMenuDialog.classList.add("editToolClicked");
+  editMenuDialog.offsetHeight;
+  editMenuDialog.showModal();
+  editMenuDialog.classList.add("slide-in");
+}
+
+/**
+ * a function which closes the edit menu dialog on small screens with animation
+ * checks if dialog element exists
+ * removes animation classes and adds slide-out class to trigger animation
+ * closes dialog and clears innerHTML after animation duration
+ * @returns
+ */
+function closeEditMenuDialog() {
+  const editMenuDialog = document.getElementById("edit-menu-dialog");
+  if (!editMenuDialog) return;
+  editMenuDialog.classList.remove("editToolClicked");
+  editMenuDialog.classList.remove("slide-in");
+  editMenuDialog.offsetHeight;
+  editMenuDialog.classList.add("slide-out");
+  editMenuDialog.close();
+  setTimeout(() => {
+    if (editMenuDialog) {
+      editMenuDialog.classList.remove("slide-out");
+      editMenuDialog.innerHTML = "";
+    }
+  }, 500);
 }
