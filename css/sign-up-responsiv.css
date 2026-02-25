@@ -1,16 +1,7 @@
 @media (max-width: 991px) {
-  /* #sign-up-header .header-img {
-    max-width: 70px;
-    margin-left: 0;
-    margin-top: 0;
-  } */
-
   .signup-heading h1 {
     font-size: 45px;
   }
-  /* form {
-    width: 90%;
-  } */
 }
 
 @media (max-width: 767px) {
