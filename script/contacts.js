@@ -1,27 +1,3 @@
-const contactContainer = document.querySelector(
-  ".contacts .contact-list .contact-list-items .contact-container",
-);
-const contactName = document.querySelector(
-  ".contacts .contact-list .contact-list-items .contact-container .contactName",
-);
-const addContactPopup = document.querySelector(".add-contact-popup");
-const contactListEl = document.querySelector(".contacts .contact-list");
-const contactBadge = document.querySelector(
-  ".contacts .contact-list .contact-list-items .contact-badge",
-);
-const contactAlphabet = document.querySelector(
-  ".contacts .contact-list .contact-list-items .contact-alphabet",
-);
-const cancelBtn = document.getElementById("cancelBtn");
-const nameInput = document.getElementById("name_input");
-const emailInput = document.getElementById("email_input");
-const phoneInput = document.getElementById("phone_input");
-const createMessage = document.querySelector(".popup-message");
-const editContactPopup = document.querySelector(".edit-contact-popup");
-const contactDashboard = document.querySelector(".contact-dashboard");
-const contactSection = document.querySelector(".contacts");
-const contactBox = document.querySelector(".contact-box");
-const dialogElement = document.getElementById("edit-menu-dialog");
 let container = document.querySelector(".floating-contact");
 
 /**
@@ -169,9 +145,6 @@ function floatingContainer() {
  * @param {Event} event
  * get contact data from clicked DOM element using event delegation method to target contact container, name Element and email Element
  * validates that contact-container exists
- * retrieves contact color from contact-badge element style
- * retrieves contact name and email from text Content of element values
- * validates that name and email exist
  * @returns an object with contactName, contactEmail, and contactColor
  */
 function getContactDataFromDOM(event) {
@@ -230,8 +203,7 @@ function renderFloatingCard(foundContact) {
 /**
  * @param {Event} event
  * Ensures that the floating card is displayed when a contact is clicked, by calling up all four functions sequentially:
- * checks if floating container exists
- * gets contact data from clicked DOM element
+ * checks if floating container exists, gets contact data from clicked DOM element
  * finds contact in fetchedData by name and email
  * renders floating contact card using renderFloatingCard funtion with 2 parameters or error message
  */
@@ -298,10 +270,7 @@ function handleContactClick(event) {
       contactContainer.classList.remove("active");
       return;
     }
-    document.querySelectorAll(".contact-container").forEach((container) => {
-      container.classList.remove("active");
-      container.style.pointerEvents = "auto";
-    });
+    containerEventHandler();
     contactContainer.classList.add("active");
     contactContainer.style.pointerEvents = "none";
   }
@@ -309,6 +278,13 @@ function handleContactClick(event) {
     showFloatingCardOnSmallScreens();
   }
   showFloatingCard(event);
+}
+
+function containerEventHandler() {
+  document.querySelectorAll(".contact-container").forEach((container) => {
+    container.classList.remove("active");
+    container.style.pointerEvents = "auto";
+  });
 }
 
 /**

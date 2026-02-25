@@ -1,7 +1,5 @@
-const addContactPopupEl = document.querySelector(".add-contact-popup");
-
 /**
- * an async function which checks all validation rules for contact email input in add contact overlay. It first checks if the email is empty, then if it matches a valid email pattern, and finally if the email is already registered in Firebase. If any of the validations fail, it shows an appropriate error message and changes the border color of the input field to red. If all validations pass, it resets the border color and hides any error messages.
+ * an async function which checks all validation rules for contact email input in add contact overlay.
  * @returns {Promise<boolean>} Returns true if all validations pass, false otherwise
  */
 async function contactEmailValidation() {
@@ -69,7 +67,6 @@ function contactOverlayEmailPatternValidation() {
  * an async function which checks if the email is already registered in Firebase by fetching the existing user emails and comparing them with the input email. If the email is already registered, it shows an error message and clears the input field.
  * @returns {Promise<boolean>} Returns true if email is available, false if already exists
  */
-
 function existingEmailValidationVariables() {
   const contactEmail = document
     .getElementById("email_input")
@@ -107,7 +104,7 @@ async function existingEmailValidation() {
 }
 
 /**
- * an async function which checks all validation rules for contact name input in add contact overlay. It first checks if the name is empty, then if the name is already exists in Firebase. If any of the validations fail, it shows an appropriate error message and changes the border color of the input field to red. If all validations pass, it resets the border color and hides any error messages.
+ * an async function which checks all validation rules for contact name input in add contact overlay.
  * @returns {boolean} - Returns true if the name is valid, false otherwise.
  */
 
@@ -150,7 +147,6 @@ function contactNameNullValidation() {
  * an async function which checks if the contact name is already exists in Firebase by fetching the existing contact names and comparing them with the input name. If the contact name is already exists, it shows an error message and clears the input field.
  * @returns {Promise<boolean>} Returns true if name is available, false if already taken
  */
-
 function existingNameValidationVariables() {
   const contactName = document
     .getElementById("name_input")
@@ -189,7 +185,7 @@ async function existingNameValidation() {
 }
 
 /**
- * a function which checks all validation rules for contact phone input in add contact overlay. It first checks if the phone number is empty, then if it matches a valid phone number pattern. If any of the validations fail, it shows an appropriate error message and changes the border color of the input field to red. If all validations pass, it resets the border color and hides any error messages.
+ * a function which checks all validation rules for contact phone input in add contact overlay.
  * @returns {boolean} Returns true if all validations pass, false otherwise
  */
 function contactPhoneValidation() {
@@ -273,15 +269,6 @@ function validateContactFormErrorHandling() {
     });
   }
 }
-
-/**
- * a function which closes the add contact popup overlay by setting its display style to "none". It is called when the user clicks outside the popup content area.
- */
-addContactPopupEl.addEventListener("click", (e) => {
-  if (e.target === addContactPopupEl) {
-    closePopupOverlay();
-  }
-});
 
 /**
  * a function which checks if the edited contact name is valid for saving. It validates the name input and shows an error message if the name is empty.
@@ -375,26 +362,38 @@ async function essentialFunctionsForSave() {
 }
 
 /**
- * an async function which proves the validation, get edited data and updated contact data in firebase und executed essential function series after that.
+ *  a function which checks if the contact name, email, and phone number inputs in the edit contact form are valid by calling their respective validation functions. It returns true if all inputs are valid, false otherwise.
+ * @returns {Object|null} Returns an object containing contactId and updatedContact if valid, null otherwise
  */
-async function saveEditedContact() {
+function prepareEditedContactData() {
   isDataValidForSave();
   const editedData = getEditedContactData();
   const contactId = findContactIdFromDisplayed();
   if (!contactId) {
     editContactErrorMsg("Contact not found");
-    return;
+    return null;
   }
   const initials = getInitials(editedData.editedName);
   const contactColor = fetchedData[contactId].color;
-  const updatedContact = {
-    name: editedData.editedName,
-    email: editedData.editedEmail,
-    phone: editedData.editedPhone,
-    initials: initials,
-    color: contactColor,
-    checked: false,
+  return {
+    contactId,
+    updatedContact: {
+      name: editedData.editedName,
+      email: editedData.editedEmail,
+      phone: editedData.editedPhone,
+      initials: initials,
+      color: contactColor,
+      checked: false,
+    },
   };
+}
+
+/**
+ * an async function which updated the data in firebase and after that executes the essential functions to refresh the data and show popup message.
+ * @param {string} contactId
+ * @param {Object} updatedContact
+ */
+async function updateAndRefreshContact(contactId, updatedContact) {
   try {
     await updateContactInFirebase(contactId, updatedContact);
     await essentialFunctionsForSave();
@@ -403,52 +402,13 @@ async function saveEditedContact() {
   }
 }
 
-// Dialog function for edit and delete contact on small screens
-
-dialogElement.addEventListener("click", () => {
-  dialogElement.showModal();
-  dialogElement.classList.add("slide-in");
-  dialogElement.innerHTML = renderEditToolsDialog();
-});
-
 /**
- * a function which opens a dialog with edit and delete options for contacts on small screens
- * checks if dialog element exists
- * gets edit tool elements container
- * @returns {void}
+ * an async function which gets the prepared data from the edit contact form, validates it, and updates the contact in Firebase if valid.
+ * @returns {Promise<void>}
  */
-function openEditMenuDialog() {
-  const editMenuDialog = document.getElementById("edit-menu-dialog");
-  if (!editMenuDialog) return;
-  const editToolEls = document.getElementById("contact-edit-tools");
-  if (!editToolEls) return;
-  editMenuDialog.classList.remove("slide-out");
-  editMenuDialog.innerHTML = renderEditToolsDialog();
-  editMenuDialog.classList.add("editToolClicked");
-  editMenuDialog.offsetHeight;
-  editMenuDialog.showModal();
-  editMenuDialog.classList.add("slide-in");
-}
-
-/**
- * a function which closes the edit menu dialog on small screens with animation
- * checks if dialog element exists
- * removes animation classes and adds slide-out class to trigger animation
- * closes dialog and clears innerHTML after animation duration
- * @returns
- */
-function closeEditMenuDialog() {
-  const editMenuDialog = document.getElementById("edit-menu-dialog");
-  if (!editMenuDialog) return;
-  editMenuDialog.classList.remove("editToolClicked");
-  editMenuDialog.classList.remove("slide-in");
-  editMenuDialog.offsetHeight;
-  editMenuDialog.classList.add("slide-out");
-  editMenuDialog.close();
-  setTimeout(() => {
-    if (editMenuDialog) {
-      editMenuDialog.classList.remove("slide-out");
-      editMenuDialog.innerHTML = "";
-    }
-  }, 500);
+async function saveEditedContact() {
+  const contactData = prepareEditedContactData();
+  if (!contactData) return;
+  const { contactId, updatedContact } = contactData;
+  await updateAndRefreshContact(contactId, updatedContact);
 }

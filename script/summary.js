@@ -82,7 +82,6 @@ async function getTasksArray() {
 function buildSummaryItemNumbers1() {
   let toDoCount = 0;
   let doneCount = 0;
-
   Object.values(tasksFetchedData).forEach((task) => {
     if (task.state === "todu") {
       toDoCount++;
@@ -90,7 +89,6 @@ function buildSummaryItemNumbers1() {
       doneCount++;
     }
   });
-
   toDoNumber.textContent = toDoCount;
   doneNumber.textContent = doneCount;
 }
@@ -128,7 +126,6 @@ function urgentNumberCountWithDueDate() {
     }
   });
   urgentNumber.textContent = urgentCount;
-
   if (dueDates.length > 0) {
     dueDates.sort();
     dueDate.textContent = dueDates[0];
@@ -156,7 +153,6 @@ function startWelcomeAnimation() {
   const welcomePage = document.querySelector(".welcome-page");
   const welcomeMsg = document.querySelector(".welcomeMsg");
   const signedUser = document.getElementById("signedUser");
-
   summaryDiv.style.display = "none";
   welcomePage.classList.add("welcome-animation");
   welcomeMsg.textContent = `Good morning!`;
