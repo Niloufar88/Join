@@ -10,7 +10,6 @@ async function registerUser(name, email, password) {
     email: email,
     password: password,
   };
-
   try {
     const response = await fetch(firebaseURL + ".json", {
       method: "POST",
@@ -19,11 +18,9 @@ async function registerUser(name, email, password) {
       },
       body: JSON.stringify(userData),
     });
-
     if (!response.ok) {
       console.error(`HTTP error! status: ${response.status}`);
     }
-
     const result = await response.json();
   } catch (err) {
     console.error(err);
@@ -41,10 +38,8 @@ async function fetchExistingUserName() {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const data = await response.json();
     const existingNames = [];
-
     if (data && typeof data === "object") {
       for (const [id, userData] of Object.entries(data)) {
         if (userData.name) {
@@ -69,10 +64,8 @@ async function fetchExistingUserEmail() {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     const data = await response.json();
     const existingEmails = [];
-
     if (data && typeof data === "object") {
       for (const [id, userData] of Object.entries(data)) {
         if (userData.email) {
@@ -96,7 +89,7 @@ function showSuccessMessage() {
 }
 
 /**
- * function to show an error message if registration fails
+ * function to show different error messages if something fails
  * @param {String} message
  */
 function nameErrorMessage(message) {
@@ -141,14 +134,10 @@ function resetPageDefaults() {
 async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
-
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-
-  // in HEX umwandeln
   const hashHex = hashArray
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
-
   return hashHex;
 }
