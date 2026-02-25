@@ -13,7 +13,6 @@ const contactAlphabet = document.querySelector(
   ".contacts .contact-list .contact-list-items .contact-alphabet",
 );
 const cancelBtn = document.getElementById("cancelBtn");
-
 const nameInput = document.getElementById("name_input");
 const emailInput = document.getElementById("email_input");
 const phoneInput = document.getElementById("phone_input");
@@ -23,6 +22,7 @@ const contactDashboard = document.querySelector(".contact-dashboard");
 const contactSection = document.querySelector(".contacts");
 const contactBox = document.querySelector(".contact-box");
 const dialogElement = document.getElementById("edit-menu-dialog");
+let container = document.querySelector(".floating-contact");
 
 /**
  * Load contacts from Firebase realtime Database,
@@ -104,13 +104,9 @@ async function createContactList() {
       '<div class="no-contacts" style="padding: 20px; text-align: center; color: #888;">No contacts available</div>';
     return;
   }
-  let last,
-    html = "";
+  let html = "";
+  let last = "";
   let needsUpdate = false;
-
-  // array.forEach((contact, index) => {
-  //   contact.color = colors[index % colors.length];
-
   array.forEach((contact) => {
     if (!contact.initials) {
       contact.initials = getInitials(contact.name);
@@ -121,7 +117,6 @@ async function createContactList() {
     if (show) last = first;
     html += buildContactItemHTML(contact, contact.color, show);
   });
-
   contactListEl.innerHTML = html;
   if (needsUpdate) {
     await pushContactsToAPI();
@@ -158,9 +153,6 @@ function getInitials(fullName) {
   return firstInitial + lastInitial;
 }
 
-// rendering contact data in floating container
-let container = document.querySelector(".floating-contact");
-
 // Find or create floating contact container
 function floatingContainer() {
   if (!container) {
@@ -184,10 +176,7 @@ function floatingContainer() {
  */
 function getContactDataFromDOM(event) {
   const clicked = event.target.closest(".contact-container");
-  if (!clicked) {
-    console.warn("No contact-container found");
-    return null;
-  }
+  if (!clicked) return null;
   const badge = clicked.querySelector(".contact-badge");
   const contactColor = badge ? badge.style.backgroundColor : null;
   const nameElement = clicked.querySelector(".contactName");
@@ -235,7 +224,6 @@ function renderFloatingCard(foundContact) {
     foundContact.initials,
   );
   container.classList.remove("d-none");
-
   checkQueriesForEditTools();
 }
 
@@ -247,15 +235,20 @@ function renderFloatingCard(foundContact) {
  * finds contact in fetchedData by name and email
  * renders floating contact card using renderFloatingCard funtion with 2 parameters or error message
  */
-function showFloatingCard(event) {
-  // console.log("showFloatingCard called", event.target);
-  floatingContainer();
+
+function getFromDomAndFindInFirebase(event) {
   const contactData = getContactDataFromDOM(event);
   if (!contactData) return;
   const foundContact = findContactInFirebase(
     contactData.contactName,
     contactData.contactEmail,
   );
+  return { foundContact, contactData };
+}
+
+function showFloatingCard(event) {
+  floatingContainer();
+  const { foundContact, contactData } = getFromDomAndFindInFirebase(event);
   if (foundContact) {
     renderFloatingCard(foundContact, contactData.contactColor);
   } else {
@@ -266,10 +259,6 @@ function showFloatingCard(event) {
     );
     container.innerHTML = "<h2>Contact not found</h2>";
     container.classList.remove("d-none");
-    // Force reflow to ensure animation triggers
-    // container.offsetHeight;
-    // container.classList.remove("slide-out");
-    // container.classList.add("slide-in");
   }
 }
 
@@ -294,13 +283,8 @@ function checkQueriesForContacts() {
 function handleContactClick(event) {
   const contactContainer = event.target.closest(".contact-container");
   if (!contactContainer) return;
-
-  // Prevent multiple calls from event bubbling
   event.stopPropagation();
-
   const checkQueries = window.matchMedia("(max-width: 991px)");
-
-  // Only handle active class toggle on larger screens
   if (!checkQueries.matches) {
     if (contactContainer.classList.contains("active")) {
       contactContainer.classList.remove("active");
@@ -313,22 +297,31 @@ function handleContactClick(event) {
     contactContainer.classList.add("active");
     contactContainer.style.pointerEvents = "none";
   }
-
   if (checkQueries.matches) {
-    contactSection.style.display = "none";
-    contactDashboard.style.display = "block";
-    const blueArrow = document.createElement("a");
-    blueArrow.className = "blue-arrow";
-    contactDashboard.insertBefore(blueArrow, contactDashboard.lastChild);
-    blueArrow.addEventListener("click", () => {
-      contactSection.style.display = "block";
-      contactDashboard.style.display = "none";
-      blueArrow.remove();
-    });
+    showFloatingCardOnSmallScreens();
   }
   showFloatingCard(event);
 }
 
+function showFloatingCardOnSmallScreens() {
+  contactSection.style.display = "none";
+  contactDashboard.style.display = "block";
+  const blueArrow = document.createElement("a");
+  blueArrow.className = "blue-arrow";
+  contactDashboard.insertBefore(blueArrow, contactDashboard.lastChild);
+  blueArrow.addEventListener("click", () => {
+    contactSection.style.display = "block";
+    contactDashboard.style.display = "none";
+    blueArrow.remove();
+  });
+}
+
+/**
+ * a function to set up event listeners for edit tools in floating contact card on small screens
+ * checks if edit tool elements container exists
+ * removes any existing click event listener to avoid duplicates
+ * adds new click event listener to handle edit tool clicks using handleEditToolClick function
+ */
 function checkQueriesForEditTools() {
   const editToolEls = document.getElementById("contact-edit-tools");
   if (!editToolEls) return;
@@ -336,6 +329,13 @@ function checkQueriesForEditTools() {
   editToolEls.addEventListener("click", handleEditToolClick);
 }
 
+/**
+ * a function to handle clicks on edit tools in floating contact card on small screens
+ * checks if event target is within edit tool elements container
+ * prevents event bubbling to avoid triggering other click handlers
+ * calls function to open edit menu dialog on small screens
+ * @param {Event} event
+ */
 function handleEditToolClick(event) {
   event.stopPropagation();
   const editToolEls = document.getElementById("contact-edit-tools");
@@ -344,214 +344,6 @@ function handleEditToolClick(event) {
   if (checkquery.matches) {
     openEditMenuDialog();
   }
-}
-
-// ===============================
-
-// function openEditMenuDialog() {
-//   const editMenuDialog = document.getElementById("edit-menu-dialog");
-//   if (!editMenuDialog) return;
-//   const editToolEls = document.getElementById("contact-edit-tools");
-//   if (!editToolEls) return;
-
-//   editMenuDialog.classList.remove("slide-out");
-//   editMenuDialog.innerHTML = renderEditToolsDialog();
-//   editMenuDialog.classList.add("editToolClicked");
-
-//   editMenuDialog.offsetHeight;
-//   editMenuDialog.showModal();
-//   editMenuDialog.classList.add("slide-in");
-// }
-
-// function closeEditMenuDialog() {
-//   const editMenuDialog = document.getElementById("edit-menu-dialog");
-//   if (!editMenuDialog) return;
-
-//   // Remove outside click listener
-//   document.removeEventListener("click", handleOutsideClick);
-
-//   editMenuDialog.classList.remove("editToolClicked");
-//   editMenuDialog.classList.remove("slide-in");
-//   editMenuDialog.offsetHeight;
-//   editMenuDialog.classList.add("slide-out");
-//   editMenuDialog.close();
-//   setTimeout(() => {
-//     if (editMenuDialog) {
-//       editMenuDialog.classList.remove("slide-out");
-//       editMenuDialog.innerHTML = "";
-//     }
-//   }, 500);
-// }
-
-//===================================
-
-/**
- * get data from input fields in add-contact-popup dynamically
- * validates input fields values
- * makes new contact object with given Data from the user
- * @returns an Object: new contact
- */
-
-async function getDataToMakeNewContact() {
-  const nameInputField = document.getElementById("name_input");
-  const emailInputField = document.getElementById("email_input");
-  const phoneInputField = document.getElementById("phone_input");
-  const initials = getInitials(nameInputField.value.trim());
-  const contactColor = colors[Math.floor(Math.random() * colors.length)];
-
-  if (!nameInputField || !emailInputField || !phoneInputField) {
-    console.error("Input fields not found in DOM");
-    return;
-  }
-  const newContact = {
-    name: nameInputField.value.trim(),
-    email: emailInputField.value.trim(),
-    phone: phoneInputField.value.trim(),
-    initials: initials,
-    color: contactColor,
-    checked: false,
-  };
-
-  return newContact;
-}
-
-// function badgeColor(){
-//   let badgeColor;
-//   for (let i = 0; i < colors.length; i++) {
-//      badgeColor = colors[i];
-
-//   }
-// }
-
-/**
- * add new contacts to the list from add-contact-popup
- * checks if email input value contains '@' symbol
- * validates input fields values
- * saves new contact to Firebase realtime Database
- * reloads data from Firebase to get updated list
- * updates contact list display
- * closes popup and clears input fields
- * shows success message or error alert
- */
-async function addNewContact() {
-  const newContact = await getDataToMakeNewContact();
-  const contactName = document.getElementById("name_input").value.trim();
-  const contactEmail = document.getElementById("email_input").value.trim();
-  const contactPhone = document.getElementById("phone_input").value.trim();
-
-  const errorMsg = document.querySelectorAll(".contactValidationErrorMsg");
-  if (errorMsg) {
-    errorMsg.forEach((msgBox) => {
-      msgBox.style.visibility = "hidden";
-    });
-  }
-
-  // Check if fields are empty
-  if (!contactName || !contactEmail || !contactPhone) {
-    if (errorMsg) {
-      errorMsg.forEach((msgBox) => {
-        msgBox.style.visibility = "visible";
-        msgBox.textContent = "Please fill in all fields.";
-      });
-    }
-    return;
-  }
-
-  // Validate the form
-  const isValid = await validateContactForm();
-  if (!isValid) {
-    if (errorMsg) {
-      errorMsg.forEach((msgBox) => {
-        msgBox.style.visibility = "visible";
-        msgBox.textContent = "Please check your data and try again.";
-      });
-    }
-    return;
-  }
-
-  // Save contact if all validations pass
-  if (newContact.name && newContact.email && newContact.phone) {
-    try {
-      await saveContact(newContact);
-      await loadDataBase();
-      await createContactList();
-      closePopupOverlay();
-      popupMessage("Contact successfully created!");
-    } catch (error) {
-      console.error("Error adding contact:", error);
-      alert("Failed to add contact. Please try again.");
-    }
-  } else {
-    console.error("Contact data incomplete:", newContact);
-    alert("Error: Contact data is incomplete");
-  }
-}
-
-/**
- * sets innerHTML with template
- * removes class list display none to show popup
- * opens add contact popup overlay
- * triggers slide-in animation
- * clears input fields, so it will be empty when opened
- */
-function openPopupOverlay() {
-  addContactPopup.innerHTML = renderAddContactTemplate();
-  const overlay = addContactPopup.querySelector(".add-contact-overlay");
-  addContactPopup.classList.remove("d-none");
-  // Force reflow
-  overlay.offsetHeight;
-  overlay.classList.remove("slide-out");
-  overlay.classList.add("slide-in");
-  clearInputFields();
-}
-
-/**
- * selects overlay element with class name add-contact-overlay
- * triggers slide-out animation
- * closes add contact popup overlay by adding d-none class after animation
- * Wait for animation to finish before hiding popup for 500ms
- * clears input fields
- */
-function closePopupOverlay() {
-  const overlay = addContactPopup.querySelector(".add-contact-overlay");
-  overlay.classList.remove("slide-in");
-  overlay.classList.add("slide-out");
-  setTimeout(() => {
-    addContactPopup.classList.add("d-none");
-  }, 500);
-  clearInputFields();
-}
-
-/**
- * clears input fields in add contact popup
- */
-function clearInputFields() {
-  if (nameInput) nameInput.value = "";
-  if (emailInput) emailInput.value = "";
-  if (phoneInput) phoneInput.value = "";
-}
-
-/**
- * * @param {string} message
- * responsible for showing popup messages
- * changes text content of createMessage element
- * removes d-none class to make it visible
- * triggers slide-in animation from the right of the page and after 2 seconds, triggers slide-out animation
- * forces reflow to ensure transition works
- */
-function popupMessage(message) {
-  createMessage.textContent = `${message}`;
-  createMessage.classList.remove("d-none");
-  createMessage.offsetHeight;
-  createMessage.classList.add("slide-in");
-  setTimeout(() => {
-    createMessage.classList.remove("slide-in");
-    createMessage.classList.add("slide-out");
-    setTimeout(() => {
-      createMessage.classList.add("d-none");
-      createMessage.classList.remove("slide-out");
-    }, 500);
-  }, 2000);
 }
 
 /**
@@ -564,7 +356,6 @@ function getDataFromClickedContactFloating() {
   const emailElement = document.getElementById("span-email");
   if (!nameElement || !emailElement) {
     console.error("Contact name or email is missing");
-    alert("Error: Contact information is missing");
     return null;
   }
   const contactName = nameElement.textContent.trim();
@@ -597,24 +388,18 @@ function saveDataAsFoundContact() {
  * hides floating container and shows success message or error alert
  */
 async function deleteFloatingData(event) {
-  // Close edit menu dialog if open
   if (typeof closeEditMenuDialog === "function") {
     closeEditMenuDialog();
   }
-
   const contactData = saveDataAsFoundContact();
   if (!contactData) return;
   const { foundContact, foundId, contactName, contactEmail } = contactData;
   if (foundContact) {
     try {
       await deleteContact(foundId);
-      await loadDataBase();
-      await createContactList();
-      container.classList.add("d-none");
-      popupMessage("Contact successfully deleted!");
+      await deleteFloatingDataFunctionSeries();
     } catch (error) {
       console.error("Error deleting contact:", error);
-      alert("Error: Failed to delete contact");
     }
   } else {
     console.error(
@@ -623,7 +408,19 @@ async function deleteFloatingData(event) {
       "Email:",
       contactEmail,
     );
-    alert("Error: Contact could not be found");
+  }
+}
+
+async function deleteFloatingDataFunctionSeries() {
+  await loadDataBase();
+  await createContactList();
+  container.classList.add("d-none");
+  if (window.innerWidth > 450) {
+    popupMessage("Contact successfully deleted!");
+  } else {
+    contactSection.style.display = "block";
+    contactDashboard.style.display = "none";
+    // blueArrow.remove();
   }
 }
 
@@ -635,31 +432,35 @@ dialogElement.addEventListener("click", () => {
   dialogElement.innerHTML = renderEditToolsDialog();
 });
 
-// function openEditMenuDialog() {}
-
-//==============================
+/**
+ * a function which opens a dialog with edit and delete options for contacts on small screens
+ * checks if dialog element exists
+ * gets edit tool elements container
+ * @returns {void}
+ */
 function openEditMenuDialog() {
   const editMenuDialog = document.getElementById("edit-menu-dialog");
   if (!editMenuDialog) return;
   const editToolEls = document.getElementById("contact-edit-tools");
   if (!editToolEls) return;
-
   editMenuDialog.classList.remove("slide-out");
   editMenuDialog.innerHTML = renderEditToolsDialog();
   editMenuDialog.classList.add("editToolClicked");
-
   editMenuDialog.offsetHeight;
   editMenuDialog.showModal();
   editMenuDialog.classList.add("slide-in");
 }
 
+/**
+ * a function which closes the edit menu dialog on small screens with animation
+ * checks if dialog element exists
+ * removes animation classes and adds slide-out class to trigger animation
+ * closes dialog and clears innerHTML after animation duration
+ * @returns
+ */
 function closeEditMenuDialog() {
   const editMenuDialog = document.getElementById("edit-menu-dialog");
   if (!editMenuDialog) return;
-
-  // Remove outside click listener
-  // document.removeEventListener("click", handleOutsideClick);
-
   editMenuDialog.classList.remove("editToolClicked");
   editMenuDialog.classList.remove("slide-in");
   editMenuDialog.offsetHeight;
@@ -671,34 +472,4 @@ function closeEditMenuDialog() {
       editMenuDialog.innerHTML = "";
     }
   }, 500);
-}
-
-//===========================
-
-function EditMenuDialog() {
-  const checkQueries = window.matchMedia("(max-width: 991px)");
-  if (checkQueries.matches) {
-    dialogElement.classList.remove("slide-in");
-    closeDialog();
-    dialogElement.classList.remove("slide-out");
-    setTimeout(() => {
-      dialogElement.classList.remove("slide-out");
-      dialogElement.innerHTML = "";
-    }, 500);
-    renderEditContactOverlay();
-  }
-}
-
-function closeDialog() {
-  dialogElement.close();
-}
-
-dialogElement.addEventListener("click", (event) => {
-  if (event.target == dialogElement) {
-    dialogElement.close();
-  }
-});
-
-function preventEventBubbling(event) {
-  event.stopPropagation();
 }

@@ -92,6 +92,7 @@
   justify-content: center;
   border-radius: 0 30px 30px 0;
   padding: 48px 48px 80px 40px;
+  position: relative;
   .close-btn {
     display: flex;
     justify-content: center;
@@ -104,6 +105,7 @@
     right: 48px;
     cursor: pointer;
     transition: all 125ms ease;
+    color: #2a3647;
     &:hover {
       background-color: #eeeeee;
       border-radius: 50%;
@@ -385,8 +387,8 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: clamp(18px, 4vw, 22px);
     width: 24px;
     height: 24px;
-    top: 25px;
-    right: 25px;
+    top: -180px;
+    right: 35px;
     color: white;
   }
   .add-contact-overlay .add-contact-container .close-btn:hover {
@@ -405,7 +407,7 @@ input[type="number"]::-webkit-inner-spin-button {
     position: absolute;
     width: 100px;
     height: 100px;
-    top: calc(40% - 74px);
+    top: calc(40% - 206px);
     margin-bottom: 0;
   }
   .add-contact-overlay .add-contact-container .add-contact-form .contactForm {
@@ -482,23 +484,6 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
     max-height: 55%;
   }
-
-  .add-contact-overlay
-    .add-contact-overview
-    .add-contact-text
-    .add-contact-subtitle {
-    /* font-size: 16px; */
-  }
-  /* .add-contact-overlay
-    .add-contact-container
-    .add-contact-form
-    .add-contact-badge {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    top: calc(40% - 60px);
-    margin-bottom: 0;
-  } */
 }
 
 @media (max-width: 450px) {
@@ -510,6 +495,12 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
     max-height: 55%;
   }
+
+  .add-contact-overlay .add-contact-container .close-btn {
+    top: -235px;
+    right: 25px;
+  }
+
   .add-contact-overlay
     .add-contact-container
     .add-contact-form
@@ -570,7 +561,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100px;
     height: 100px;
     font-size: 32px;
-    top: calc(40% - 50px);
+    top: calc(40% - 206px);
     margin-bottom: 0;
   }
 

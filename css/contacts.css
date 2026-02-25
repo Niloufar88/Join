@@ -857,3 +857,20 @@ main {
 .editMenuDialogContainer.slide-out {
   transform: translate(100%, 100%);
 }
+
+.popup-message.responsive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 270px;
+  height: 60px;
+  background-color: #2a3647;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 19px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: bottom 1s ease-in-out;
+  bottom: 25vh;
+}
