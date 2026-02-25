@@ -25,7 +25,6 @@ if (!userName || typeof userName !== "string") {
   const lastInitial = nameParts[nameParts.length - 1]
     ? nameParts[nameParts.length - 1].charAt(0).toUpperCase() || ""
     : "";
-
   initials = firstInitial + lastInitial;
   getNameInitialsMenuButton();
   showUserNameWelcomeMsg();
@@ -83,6 +82,9 @@ function toggleMenu() {
   dropDownMenu.classList.toggle("hide");
 }
 
+/**
+ * add event listener on menuOverlay to close the dropdown menu when user click outside of the dropdown menu
+ */
 const menuOverlay = document.querySelector(".menuOverlay");
 if (menuOverlay) {
   menuOverlay.addEventListener("click", (event) => {
@@ -92,6 +94,9 @@ if (menuOverlay) {
   });
 }
 
+/**
+ * a function to close the dropdown menu and hide the menu overlay when user click outside of the dropdown menu
+ */
 function closeDropdownMenu() {
   if (dropDownMenu) dropDownMenu.classList.add("hide");
   if (menuOverlay) menuOverlay.classList.add("hidden");
@@ -104,9 +109,7 @@ function closeDropdownMenu() {
 
 function updateMenuPosition() {
   if (!dropDownMenu) return;
-
   const checkQueries = window.matchMedia("(max-width: 992px)");
-
   if (checkQueries.matches) {
     if (switchHelp) switchHelp.classList.remove("hide");
     dropDownMenu.style.top = "280px";
