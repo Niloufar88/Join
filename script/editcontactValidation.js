@@ -246,6 +246,9 @@ function validateEditContactForm() {
   return allValid;
 }
 
+/**
+ * an add event listener to the edit contact popup element which listens for click events. If the user clicks outside the content area of the popup (i.e., on the overlay), it calls the closeEditContactOverlay function to close the popup.
+ */
 editContactPopupEl.addEventListener("click", (e) => {
   if (e.target === editContactPopupEl) {
     closeEditContactOverlay();

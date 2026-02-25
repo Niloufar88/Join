@@ -1,7 +1,5 @@
-const addContactPopupEl = document.querySelector(".add-contact-popup");
-
 /**
- * an async function which checks all validation rules for contact email input in add contact overlay. It first checks if the email is empty, then if it matches a valid email pattern, and finally if the email is already registered in Firebase. If any of the validations fail, it shows an appropriate error message and changes the border color of the input field to red. If all validations pass, it resets the border color and hides any error messages.
+ * an async function which checks all validation rules for contact email input in add contact overlay.
  * @returns {Promise<boolean>} Returns true if all validations pass, false otherwise
  */
 async function contactEmailValidation() {
@@ -69,7 +67,6 @@ function contactOverlayEmailPatternValidation() {
  * an async function which checks if the email is already registered in Firebase by fetching the existing user emails and comparing them with the input email. If the email is already registered, it shows an error message and clears the input field.
  * @returns {Promise<boolean>} Returns true if email is available, false if already exists
  */
-
 function existingEmailValidationVariables() {
   const contactEmail = document
     .getElementById("email_input")
@@ -107,7 +104,7 @@ async function existingEmailValidation() {
 }
 
 /**
- * an async function which checks all validation rules for contact name input in add contact overlay. It first checks if the name is empty, then if the name is already exists in Firebase. If any of the validations fail, it shows an appropriate error message and changes the border color of the input field to red. If all validations pass, it resets the border color and hides any error messages.
+ * an async function which checks all validation rules for contact name input in add contact overlay.
  * @returns {boolean} - Returns true if the name is valid, false otherwise.
  */
 
@@ -150,7 +147,6 @@ function contactNameNullValidation() {
  * an async function which checks if the contact name is already exists in Firebase by fetching the existing contact names and comparing them with the input name. If the contact name is already exists, it shows an error message and clears the input field.
  * @returns {Promise<boolean>} Returns true if name is available, false if already taken
  */
-
 function existingNameValidationVariables() {
   const contactName = document
     .getElementById("name_input")
@@ -189,7 +185,7 @@ async function existingNameValidation() {
 }
 
 /**
- * a function which checks all validation rules for contact phone input in add contact overlay. It first checks if the phone number is empty, then if it matches a valid phone number pattern. If any of the validations fail, it shows an appropriate error message and changes the border color of the input field to red. If all validations pass, it resets the border color and hides any error messages.
+ * a function which checks all validation rules for contact phone input in add contact overlay.
  * @returns {boolean} Returns true if all validations pass, false otherwise
  */
 function contactPhoneValidation() {
@@ -273,15 +269,6 @@ function validateContactFormErrorHandling() {
     });
   }
 }
-
-/**
- * a function which closes the add contact popup overlay by setting its display style to "none". It is called when the user clicks outside the popup content area.
- */
-addContactPopupEl.addEventListener("click", (e) => {
-  if (e.target === addContactPopupEl) {
-    closePopupOverlay();
-  }
-});
 
 /**
  * a function which checks if the edited contact name is valid for saving. It validates the name input and shows an error message if the name is empty.

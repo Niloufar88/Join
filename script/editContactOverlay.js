@@ -1,3 +1,5 @@
+const addContactPopupEl = document.querySelector(".add-contact-popup");
+
 /**
  * get contact data from edit overlay input fields
  * @returns {object|null} contactName and contactEmail or null if missing
@@ -246,3 +248,12 @@ function closeEditMenuDialog() {
     }
   }, 500);
 }
+
+/**
+ * a function which closes the add contact popup overlay by setting its display style to "none". It is called when the user clicks outside the popup content area.
+ */
+addContactPopupEl.addEventListener("click", (e) => {
+  if (e.target === addContactPopupEl) {
+    closePopupOverlay();
+  }
+});
