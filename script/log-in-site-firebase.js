@@ -4,45 +4,72 @@ const guestURL =
   "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/guest";
 
 const form = document.getElementById("login_form");
-// let passwordInput = document.getElementById("password");
-// let emailInput = document.getElementById("email");
 let fetchedData;
 let fetchedDataGuest;
 let emailFound = false;
 const inputs = document.querySelectorAll("input");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
+const passwordErrorMsg = document.getElementById("passwordErrorMsg");
+const emailErrorMsg = document.getElementById("emailErrorMsg");
 
+/**
+ * a function which turns the password into a hashed value using SHA-256 algorithm. It takes the password as input, encodes it, and returns the hashed password as a hexadecimal string.
+ * @param {string} password
+ * @returns {Promise<string>} Returns the hashed password as a hexadecimal string.
+ */
 async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
-
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-
-  // in HEX umwandeln
   const hashHex = hashArray
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
-
   return hashHex;
 }
 
+/**
+ * a function which checks all the login validation functions for the email and password input fields. If any of the validation functions return false, it shows an error message and highlights the respective input field in red. It also fetches the user data from the database and checks if the email exists and if the password is correct. If both email and password are correct, it stores the user ID, user status, and name in session storage and redirects the user to the summary page. If the email is not found or the password is incorrect, it shows an error message.
+ */
 async function loginValidation() {
-  const passwordErrorMsg = document.getElementById("passwordErrorMsg");
-  const emailErrorMsg = document.getElementById("emailErrorMsg");
   passwordErrorMsg.style.visibility = "hidden";
   emailErrorMsg.style.visibility = "hidden";
-
   inputs.forEach((input) => {
     input.style.borderColor = "#29abe2";
   });
   emailFound = false;
   await loginDatafetch();
+  await ifEmailFoundFunction();
+  if (!emailFound) emailErrorMsgShow();
+}
 
+/**
+ * a function which shows an error message and highlights the password input field in red if the password is less than 6 characters long.
+ */
+function passwordErrorMsgShow() {
+  const passwordErrorMsg = document.getElementById("passwordErrorMsg");
+  passwordErrorMsg.style.visibility = "visible";
+  passwordErrorMsg.textContent = "Check your password and try again.";
+  passwordInput.style.borderColor = "#e60026";
+}
+
+/**
+ * a function which shows an error message and highlights the email input field in red if the email is not found in the database.
+ */
+function emailErrorMsgShow() {
+  const emailErrorMsg = document.getElementById("emailErrorMsg");
+  emailErrorMsg.style.visibility = "visible";
+  emailErrorMsg.textContent = "Check your email and try again.";
+  emailInput.style.borderColor = "#e60026";
+}
+
+/**
+ * an async function which checks if the email exists in the database. If it does, it checks if the password is correct. If both email and password are correct, it stores the user ID, user status, and name in session storage and redirects the user to the summary page. If the email is not found or the password is incorrect, it shows an error message.
+ */
+async function ifEmailFoundFunction() {
   for (const id in fetchedData) {
     const user = fetchedData[id];
-
     if (user.email === emailInput.value) {
       emailFound = true;
       let passwor2 = passwordInput.value;
@@ -51,24 +78,14 @@ async function loginValidation() {
         sessionStorage.setItem("userID", user.id);
         sessionStorage.setItem("userStatus", "loggedIn");
         sessionStorage.setItem("name", user.name);
-
         window.location.href = "../html/summary.html";
-      } else {
-        passwordErrorMsg.style.visibility = "visible";
-        passwordErrorMsg.textContent = "Check your password and try again.";
-        passwordInput.style.borderColor = "#e60026";
-      }
+      } else passwordErrorMsgShow();
     }
-  }
-  if (!emailFound) {
-    emailErrorMsg.style.visibility = "visible";
-    emailErrorMsg.textContent = "Check your email and try again.";
-    emailInput.style.borderColor = "#e60026";
   }
 }
 
 /**
- * fetch data from firebase with "GET" Methode for the registered users
+ * fetch data from firebase with "GET" Methode for the registered users to check the email and password for login validation
  */
 async function loginDatafetch() {
   try {
@@ -76,9 +93,7 @@ async function loginDatafetch() {
     if (!response.ok) {
       console.error(`HTTP error! status: ${response.status}`);
     }
-
     const responseToJson = await response.json();
-
     if (responseToJson && typeof responseToJson === "object") {
       fetchedData = {};
       for (const [id, userData] of Object.entries(responseToJson)) {
@@ -94,7 +109,6 @@ async function loginDatafetch() {
     }
   } catch (error) {
     console.error("Fehler beim laden der Daten:", error);
-
     fetchedData = {};
   }
 }
@@ -107,7 +121,6 @@ async function loginDatafetch() {
 
 async function guestLogin() {
   await loginDatafetchGuest();
-
   if (fetchedDataGuest && fetchedDataGuest.name === "Guest") {
     sessionStorage.setItem("name", fetchedDataGuest.name);
     window.location.href = "../html/summary.html";
@@ -127,16 +140,11 @@ async function loginDatafetchGuest() {
       console.error(`HTTP error! status: ${response.status}`);
       return;
     }
-
     const responseToJson = await response.json();
-
     if (responseToJson && typeof responseToJson === "object") {
-      // Check if data is directly the guest object or nested
       if (responseToJson.name) {
-        // Direct structure: { "name": "Guest" }
         fetchedDataGuest = { name: responseToJson.name };
       } else {
-        // Nested structure: { "id": { "name": "Guest" } }
         const firstEntry = Object.values(responseToJson)[0];
         fetchedDataGuest = firstEntry ? { name: firstEntry.name } : {};
       }
@@ -149,6 +157,10 @@ async function loginDatafetchGuest() {
   }
 }
 
+/**
+ * a function which prevents the default form submission behavior when the login form is submitted. This allows us to handle the form submission with our custom login validation logic instead of the default page reload.
+ * @param {*} event
+ */
 function handleForm(event) {
   event.preventDefault();
 }
