@@ -1,3 +1,8 @@
+/**
+ * Loads data, normalizes missing task fields, renders the board and initializes subtasks.
+ * @async
+ * @returns {Promise<void>}
+ */
 async function InitBoard() {
   await getData();
   stateAdd();
@@ -7,6 +12,9 @@ async function InitBoard() {
   initSearch();
 }
 
+/**
+ * Attaches drag-and-drop listeners to all board columns.
+ */
 function initDragAndDrop() {
   document.querySelectorAll(".in-progress[data-status]").forEach((col) => {
     col.addEventListener("dragover", onDragOver);
@@ -19,12 +27,20 @@ function initDragAndDrop() {
   initTouchOnCards();
 }
 
+/**
+ * Attaches touch event listeners to all task cards.
+ */
 function initTouchOnCards() {
   document.querySelectorAll(".cards[data-id]").forEach((card) => {
     card.addEventListener("touchstart", onTouchStart, { passive: false });
   });
 }
 
+/**
+ * Collects tasks matching the provided state.
+ * @param {string} state
+ * @returns {Array<{id: string, task: Task}>}
+ */
 function taskByState(state) {
   if (!fetchData?.tasks) return [];
   const entries = Object.entries(fetchData.tasks);
@@ -35,6 +51,9 @@ function taskByState(state) {
   return result;
 }
 
+/**
+ * Renders the board columns based on task states and initializes drag-and-drop.
+ */
 function renderBoard() {
   const todo = taskByState("todu");
   const inProgress = taskByState("inProgress");
@@ -47,6 +66,9 @@ function renderBoard() {
   initDragAndDrop();
 }
 
+/**
+ * Reads the board search input and filters tasks by title.
+ */
 function searchBar() {
   const input = document.querySelector("#searchInput");
   const inputRes = document.querySelector("#searchInputResponsive");
@@ -67,6 +89,10 @@ function searchBar() {
   updateAllEmptyMessages();
 }
 
+/**
+ * Renders the board using a filtered list of task entries.
+ * @param {Array<[string, any]>} entries
+ */
 function renderBoardFromEntries(entries) {
   const tasks = entries.map(([id, task]) => ({ id, task }));
   const todo = tasks.filter((t) => t.task.state === "todu");
@@ -80,7 +106,7 @@ function renderBoardFromEntries(entries) {
   initDragAndDrop();
 }
 
-// Global Init Execution
+// Initialisierung bei DOM ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initOverlayClickHandlers);
 } else {

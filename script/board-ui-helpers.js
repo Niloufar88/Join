@@ -1,3 +1,8 @@
+/**
+ * Normalizes priority values and returns a CSS state string.
+ * @param {string|string[]} priority
+ * @returns {"urgent"|"medium"|"low"|""}
+ */
 function filterPriority(priority) {
   const prioArray = Array.isArray(priority) ? priority : [priority];
   for (let i = 0; i < prioArray.length; i++) {
@@ -8,6 +13,11 @@ function filterPriority(priority) {
   return "";
 }
 
+/**
+ * Maps category labels to CSS class names.
+ * @param {string|string[]} category
+ * @returns {"technical-task"|"user-story"|""}
+ */
 function filterCategory(category) {
   const categoryArray = Array.isArray(category) ? category : [category];
   for (let i = 0; i < categoryArray.length; i++) {
@@ -17,6 +27,10 @@ function filterCategory(category) {
   return "";
 }
 
+/**
+ * Updates visibility of empty messages per column depending on whether cards exist.
+ * @returns {void}
+ */
 function updateAllEmptyMessages() {
   const columns = document.querySelectorAll(".in-progress[data-status]");
   columns.forEach((column) => {
@@ -31,19 +45,39 @@ function updateAllEmptyMessages() {
   });
 }
 
+/**
+ * Converts a date string from "YYYY-MM-DD" to "DD/MM/YYYY".
+ * @param {string} taskduedate
+ * @returns {string}
+ */
 function dateStringChange(taskduedate) {
   const [y, m, d] = taskduedate.split("-");
   return `${d}/${m}/${y}`;
 }
 
+/**
+ * Capitalizes the first letter of the given string.
+ * @param {string} value
+ * @returns {string}
+ */
 function capitalizeLetters(value) {
   return value ? value[0].toUpperCase() + value.slice(1) : "";
 }
 
+/**
+ * Renders avatars for checked contacts.
+ * @param {Contact[]} contacts
+ * @returns {string}
+ */
 function capitalizeLettersFullName(contacts) {
   return renderTaskContact(contacts);
 }
 
+/**
+ * 
+ * @param {Object} task 
+ * @returns 
+ */
 function getSubtaskStats(task) {
   const subtasks = task.subtasks || [];
   const total = subtasks.length;

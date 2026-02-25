@@ -6,14 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join</title>
 
-  <!-- adding Favicon-->
   <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/Favicon/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/Favicon/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/Favicon/apple-touch-icon.png" />
   <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
-  <!-- adding Main CSS Style-Sheet -->
   <link rel="stylesheet" href="../css/standard.css" />
   <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
   <link rel="stylesheet" href="../css/board.css" />
@@ -25,7 +23,6 @@
 </head>
 
 <body onload="InitBoard()">
-
   <div class="body-div">
     <div class="content-wrapper">
       <aside class="sidebar">
@@ -94,12 +91,11 @@
                     </div>
                   </div>
                 </div>
-
-
                 <button class="button-task" onclick="openAddTaskOverlay()">Add task
                   <img src="../assets/img/search-add.svg" alt="" /> </button>
               </div>
             </div>
+
             <!-- should appears in screen size 1199 -->
 
             <div class="subtask-input-container show-hidden">
@@ -124,7 +120,6 @@
                 <div id="toggleMessage" class="empty emptyDisplay">No tasks To do</div>
                 <section id="toduContainer" class="cardsContainer"></section>
               </section>
-
 
               <section class="in-progress" data-status="inProgress">
                 <div class="header-category">
@@ -159,17 +154,12 @@
       </div>
     </div>
   </div>
-
-  <!-- Add Task Overlay -->
   <div id="addTaskOverlay" class="overlay-container" style="display: none;">
-    <div class="overlay-content">
-      <!-- Übernehmen und Stylen -->
-      <div id="addTaskFormContainer" class="overlay-body-task">
-        <!-- Formular wird hier dynamisch eingefügt -->
+    <div class="overlay-content">     
+      <div id="addTaskFormContainer" class="overlay-body-task">        
       </div>
     </div>
   </div>
-
   <div id="taskDetailsOverlay" class="overlay-container">
     <div id="contentRefTaskCard" class=""></div>
   </div>
@@ -184,9 +174,6 @@
 <script src="../script/add-task-validation.js" defer></script>
 <script src="../script/add-task-event-handler.js" defer></script>
 <script src="../script/add-task-main.js" defer></script>
-
-<!-- <script src="../script/board.js"></script>
-<script src="../script/"></script> -->
 
 <script src="../script/board-state.js" defer></script>
 <script src="../script/board-api.js" defer></script>

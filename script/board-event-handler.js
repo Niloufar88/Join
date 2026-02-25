@@ -1,3 +1,7 @@
+/**
+ * Drag start handler: stores the card id in the dataTransfer and marks the element.
+ * @param {DragEvent} e
+ */
 function onDragStart(e) {
   const card = e.currentTarget;
   const id = card.getAttribute("data-id") || "";
@@ -6,22 +10,36 @@ function onDragStart(e) {
   card.classList.add("dragging");
 }
 
+/**
+ * Drag end handler: removes the dragging marker.
+ * @param {DragEvent} e
+ */
 function onDragEnd(e) {
   const card = e.currentTarget;
   card.classList.remove("dragging");
 }
 
+/**
+ * Drag over handler: enables dropping.
+ * @param {DragEvent} e
+ */
 function onDragOver(e) {
   e.preventDefault();
   updateAllEmptyMessages();
 }
 
+/**
+ * @param {DragEvent} e
+ */
 function onDragEnter(e) {
   e.preventDefault();
   const col = e.currentTarget;
   col.classList.add("drop-target");
 }
 
+/**
+ * @param {DragEvent} e
+ */
 function onDragLeave(e) {
   const col = e.currentTarget;
   if (!col.contains(e.relatedTarget)) {
@@ -29,6 +47,11 @@ function onDragLeave(e) {
   }
 }
 
+/**
+ * Drop handler: updates the task state based on the column and persists changes.
+ * @async
+ * @param {DragEvent} e
+ */
 async function onDrop(e) {
   e.preventDefault();
   const col = e.currentTarget;
@@ -43,6 +66,10 @@ async function onDrop(e) {
   updateAllEmptyMessages();
 }
 
+/**
+ * Touch start handler for mobile drag functionality.
+ * @param {TouchEvent} e
+ */
 function onTouchStart(e) {
   const card = e.currentTarget;
   const touch = e.touches[0];
@@ -53,11 +80,16 @@ function onTouchStart(e) {
   isDragging = false;
 }
 
+/**
+ * Touch move handler: visualizes drop target on mobile.
+ * @param {TouchEvent} e
+ */
 function onTouchMove(e) {
   if (!touchDraggedElement) return;
   const touch = e.touches[0];
   const deltaX = Math.abs(touch.clientX - touchStartX);
   const deltaY = Math.abs(touch.clientY - touchStartY);
+
   if (!isDragging) {
     if (deltaY > DRAG_THRESHOLD && deltaY > deltaX) {
       isDragging = true;
@@ -68,6 +100,7 @@ function onTouchMove(e) {
       return;
     } else return;
   }
+
   if (isDragging) {
     e.preventDefault();
     const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
@@ -77,6 +110,11 @@ function onTouchMove(e) {
   }
 }
 
+/**
+ * Touch end handler: completes the drag operation on mobile.
+ * @async
+ * @param {TouchEvent} e
+ */
 async function onTouchEnd(e) {
   if (!touchDraggedElement || !touchDraggedId) return;
   if (isDragging) {
@@ -100,6 +138,10 @@ async function onTouchEnd(e) {
   isDragging = false;
 }
 
+/**
+ * Binds the search input listener on the board page.
+ * @returns {void}
+ */
 function initSearch() {
   const input = document.getElementById("searchInput");
   if (!input) return;

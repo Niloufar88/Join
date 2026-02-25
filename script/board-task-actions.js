@@ -1,3 +1,10 @@
+/**
+ * Toggles a subtask state and persists the updated data.
+ * @async
+ * @param {string} taskId
+ * @param {number} subtaskIndex
+ * @returns {Promise<void>}
+ */
 async function toggleSubtask(taskId, subtaskIndex) {
   const task = fetchData?.tasks?.[taskId];
   if (!task?.subtasks?.[subtaskIndex]) return;
@@ -6,6 +13,12 @@ async function toggleSubtask(taskId, subtaskIndex) {
   await postState();
 }
 
+/**
+ * Deletes a task, closes the overlay and persists the change.
+ * @async
+ * @param {string} id
+ * @returns {Promise<void>}
+ */
 async function deleteTaskOnBoard(id) {
   if (!fetchData?.tasks?.[id]) return;
   delete fetchData.tasks[id];
@@ -14,6 +27,11 @@ async function deleteTaskOnBoard(id) {
   await postState();
 }
 
+/**
+ * Deletes a subtask in edit mode and re-renders the subtask list.
+ * @param {string} taskId
+ * @param {number} i
+ */
 function editDeleteSubtask(taskId, i) {
   subTaskInput.splice(i, 1);
   renderSubtasksDetailsEdit(taskId);
@@ -21,6 +39,11 @@ function editDeleteSubtask(taskId, i) {
   if (focusinput) focusinput.focus();
 }
 
+/**
+ * Updates a subtask edit view in-place by replacing its HTML with the edit template.
+ * @param {string} taskId
+ * @param {number} i
+ */
 function editChangeSubtask(taskId, i) {
   const subContainer = document.querySelector(`.sub-container[data-index="${i}"]`);
   if (!subContainer || !subTaskInput[i]) return;
@@ -30,6 +53,10 @@ function editChangeSubtask(taskId, i) {
   if (newInputField) newInputField.focus();
 }
 
+/**
+ * Opens the edit mode overlay for one task.
+ * @param {string} id Firebase task id
+ */
 function editTaskOnBoard(id) {
   try {
     const task = fetchData?.tasks?.[id];
@@ -49,6 +76,11 @@ function editTaskOnBoard(id) {
   bindAddTaskListeners(document);
 }
 
+/**
+ * Saves the edited task and updates Firebase.
+ * @param {string} id Firebase task id
+ * @returns {Promise<void>}
+ */
 async function saveEditedTask(id) {
   try {
     const task = fetchData?.tasks?.[id];

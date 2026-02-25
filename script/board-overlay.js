@@ -1,3 +1,8 @@
+/**
+ * Opens the task details overlay for the given card element.
+ * @param {Element} el
+ * @returns {void}
+ */
 function openTaskDetailsOverlay(el) {
   const taskID = (el.getAttribute("data-id") || "").trim();
   const task = fetchData?.tasks?.[taskID];
@@ -15,6 +20,10 @@ function openTaskDetailsOverlay(el) {
   document.body.style.overflow = "hidden";
 }
 
+/**
+ * Closes the task details overlay and re-renders the board.
+ * @returns {void}
+ */
 function closetaskDetailsOverlay() {
   const wrapper = document.getElementById("taskDetailsOverlay");
   if (!wrapper) return;
@@ -24,6 +33,11 @@ function closetaskDetailsOverlay() {
   renderBoard();
 }
 
+/**
+ * Öffnet das Overlay zum Erstellen einer neuen Aufgabe.
+ * @async
+ * @returns {Promise<void>}
+ */
 async function openAddTaskOverlay() {
   try {
     const overlay = document.getElementById("addTaskOverlay");
@@ -41,6 +55,10 @@ async function openAddTaskOverlay() {
   bindAddTaskListeners(document);
 }
 
+/**
+ * Schließt das Add-Task-Overlay und stellt das Body-Scrolling wieder her.
+ * @returns {void}
+ */
 function closeAddTaskOverlay() {
   const overlay = document.getElementById("addTaskOverlay");
   if (!overlay) return;
@@ -51,6 +69,10 @@ function closeAddTaskOverlay() {
   document.getElementById("addTaskFormContainer").innerHTML = "";
 }
 
+/**
+ * Closes the task details overlay and re-renders the board.
+ * @returns {void}
+ */
 function closeTaskDetailsOverlay() {
   const wrapper = document.getElementById("taskDetailsOverlay");
   if (!wrapper) return;
@@ -60,6 +82,10 @@ function closeTaskDetailsOverlay() {
   renderBoard();
 }
 
+/**
+ * Initializes overlay click-outside-to-close handlers after DOM is ready.
+ * @returns {void}
+ */
 function initOverlayClickHandlers() {
   const addTaskOverlayEl = document.getElementById("addTaskOverlay");
   if (addTaskOverlayEl) {
