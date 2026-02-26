@@ -1,3 +1,11 @@
+/**
+ * Reference to the Edit Contact Popup DOM element.
+ * Used to toggle the edit contact popup visibility.
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
+
 const editContactPopupEl = document.querySelector(".edit-contact-popup");
 
 /**

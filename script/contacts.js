@@ -1,7 +1,6 @@
 /**
  * Reference to the floating contact container DOM element.
  * Used to manipulate or append contact items within the floating UI component.
- *
  * @global
  * @type {HTMLElement | null}
  */
@@ -150,7 +149,6 @@ function getInitials(fullName) {
 /**
  * Initializes the floating contact container in the DOM if it does not exist.
  * Creates a div with class "floating-contact" and appends it to ".contact-dashboard" or "main".
- *
  * @function floatingContainer
  * @returns {void}
  * @sideeffects Modifies DOM (creates/appends element) and assigns global 'container' variable

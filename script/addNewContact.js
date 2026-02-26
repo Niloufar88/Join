@@ -1,7 +1,6 @@
 /**
  * Reference to the edit menu dialog DOM element.
  * Used to control visibility and interaction with the edit modal.
- *
  * @global
  * @constant
  * @type {HTMLElement}
@@ -10,10 +9,8 @@
 const dialogElement = document.getElementById("edit-menu-dialog");
 
 /**
- * get data from input fields in add-contact-popup dynamically
- * validates input fields values
- * makes new contact object with given Data from the user
- * @returns an Object: new contact
+ * a function which saves the essential variables for creating a new contact in the contact form and returns them as an object to be used in the function which creates a new contact.
+ * @returns {Object} An object containing references to the input fields and a randomly assigned contact color.
  */
 
 function getDataToMakeNewContactVariables() {
@@ -25,21 +22,16 @@ function getDataToMakeNewContactVariables() {
 }
 
 /**
- * @typedef {Object} ContactData
+ * an async function which collects input field data, make initials from the name, and constructs a new contact object to be saved in the database.
+ * @typedef {Object} newContact
  * @property {string} name - The full name of the contact.
  * @property {string} email - The email address of the contact.
  * @property {string} phone - The phone number of the contact.
  * @property {string} initials - Generated initials from the name.
  * @property {string} color - Assigned color for the contact avatar.
  * @property {boolean} checked - Initial selection status.
- */
-
-/**
- * Collects and validates input field data to create a new contact object.
- * Retrieves DOM elements via helper function and constructs the payload.
- *
  * @async
- * @returns {Promise<ContactData|undefined>} The new contact object if valid, otherwise undefined.
+ * @returns {Promise<newContact|undefined>} The new contact object if valid, otherwise undefined.
  * @requires {function} getDataToMakeNewContactVariables - Helper to retrieve DOM input elements.
  * @requires {function} getInitials - Helper to generate initials from name.
  */
@@ -64,13 +56,8 @@ async function getDataToMakeNewContact() {
 }
 
 /**
- * add new contacts to the list from add-contact-popup
- * validates input fields values
- * saves new contact to Firebase realtime Database
- * reloads data from Firebase to get updated list
- * updates contact list display
- * closes popup and clears input fields
- * shows success message or error alert
+ *a function which saves the essential variables from input fields in the contact form and returns them as an object to be used in the function which creates a new contact.
+ * @returns {{contactName: string, contactEmail: string, contactPhone: string}} An object containing the contact name, email, and phone number.
  */
 
 function addNewContactVariables() {
@@ -83,7 +70,6 @@ function addNewContactVariables() {
 /**
  * Clears all contact validation error messages from the UI.
  * Hides all elements with the class ".contactValidationErrorMsg" by setting visibility to hidden.
- *
  * @function addNewContactErrorHandling
  * @returns {void}
  * @sideeffects Modifies DOM element styles (visibility)
@@ -101,7 +87,6 @@ function addNewContactErrorHandling() {
 /**
  * Validates the contact form and displays error messages if validation fails.
  * Shows error feedback in the DOM and stops execution if data is invalid.
- *
  * @async
  * @function addNewContactIsValid
  * @returns {Promise<void>}
@@ -125,7 +110,6 @@ async function addNewContactIsValid() {
 /**
  * Executes the post-success sequence after creating a contact.
  * Reloads data, updates the list, closes overlays, and shows a success popup.
- *
  * @async
  * @function addNewContactFunctionSeries
  * @returns {Promise<void>}
@@ -145,7 +129,6 @@ async function addNewContactFunctionSeries() {
 /**
  * Displays validation error messages for empty fields during contact creation.
  * Sets visibility to visible and updates text content for error elements.
- *
  * @function makeErrorMsgVisibleByAddNewContact
  * @returns {void}
  * @sideeffects Modifies DOM elements (visibility and text)
@@ -164,7 +147,6 @@ function makeErrorMsgVisibleByAddNewContact() {
  * Main handler for creating a new contact.
  * Validates input, saves to database, and triggers UI updates on success.
  * Handles errors and displays appropriate messages if validation fails.
- *
  * @async
  * @function addNewContact
  * @returns {Promise<void>}
@@ -262,7 +244,6 @@ function popupMessage(message) {
 /**
  * Displays a responsive popup message temporarily.
  * Shows the message, triggers reflow, adds responsive class, and hides it after 1.5 seconds.
- *
  * @function popupMessageResponsive
  * @param {string} message - The text content to display in the popup.
  * @returns {void}

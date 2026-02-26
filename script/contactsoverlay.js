@@ -64,8 +64,8 @@ function contactOverlayEmailPatternValidation() {
 }
 
 /**
- * an async function which checks if the email is already registered in Firebase by fetching the existing user emails and comparing them with the input email. If the email is already registered, it shows an error message and clears the input field.
- * @returns {Promise<boolean>} Returns true if email is available, false if already exists
+ * a function which saves the essential variables for existing email validation in contact form and returns them as an object to be used in the validation function.
+ * @returns {{contactEmail: string, emailInput: HTMLElement}} An object containing the contact email and the email input element.
  */
 function existingEmailValidationVariables() {
   const contactEmail = document
@@ -76,6 +76,10 @@ function existingEmailValidationVariables() {
   return { contactEmail, emailInput };
 }
 
+/**
+ * an async function which checks if the email is already registered in Firebase by fetching the existing user emails and comparing them with the input email. If the email is already registered, it shows an error message and clears the input field.
+ * @returns {Promise<boolean>} Returns true if email is available, false if already exists
+ */
 function existingEmailValidationErrorHandling() {
   const errorMsg = document.getElementById("contactemailErrorMsg");
   if (errorMsg) {
@@ -85,18 +89,18 @@ function existingEmailValidationErrorHandling() {
 }
 
 /**
- * Validiert, ob eine eingegebene E-Mail-Adresse bereits in der Datenbank existiert.
+ * an async function which checks if a given email address already exists in the database.
  * * @async
  * @function existingEmailValidation
- * @description 
- * Holt alle existierenden E-Mails über die API und gleicht sie mit der aktuellen Eingabe ab.
- * Führt bei einer Dublette eine Fehlerbehandlung (UI-Anpassung) durch.
- * * @returns {Promise<boolean>} 
- * Gibt `false` zurück, wenn die E-Mail bereits existiert (Validierung fehlgeschlagen).
- * Gibt `true` zurück, wenn die E-Mail neu ist oder ein Netzwerkfehler auftritt.
- * * @see existingEmailValidationVariables - Holt die benötigten DOM-Elemente und Werte.
- * @see fetchExistingContactEmail - Die API-Abfrage der E-Mail-Liste.
- * @see existingEmailValidationErrorHandling - UI-Feedback bei Fehlern.
+ * @description
+ * Fetches all existing emails via the API and compares them with the current input.
+ * Performs error handling (UI adjustments) in case of a duplicate.
+ * * @returns {Promise<boolean>}
+ * Returns `false` if the email already exists (validation failed).
+ * Returns `true` if the email is new or a network error occurs.
+ * * @see existingEmailValidationVariables - Retrieves the necessary DOM elements and values.
+ * @see fetchExistingContactEmail - The API query for the email list.
+ * @see existingEmailValidationErrorHandling - UI feedback in case of errors.
  */
 async function existingEmailValidation() {
   const { contactEmail, emailInput } = existingEmailValidationVariables();
@@ -187,7 +191,7 @@ function existingNameValidationErrorHandling() {
 }
 
 /**
- * Asynchronously checks if a contact name already exists in the database.
+ * an async function which checks if a contact name already exists in the database.
  *
  * @async
  * @function existingNameValidation
@@ -386,7 +390,7 @@ function isDataValidForSave() {
 }
 
 /**
- * a nasync functin which loads the database, updates the contact list, closes the edit contact overlay, hides the container, and shows a popup message on successful save. It is called after successfully updating the contact in Firebase to refresh the displayed data and provide feedback to the user.
+ * an async function which loads the database, updates the contact list, closes the edit contact overlay, hides the container, and shows a popup message on successful save. It is called after successfully updating the contact in Firebase to refresh the displayed data and provide feedback to the user.
  */
 async function essentialFunctionsForSave() {
   await loadDataBase();

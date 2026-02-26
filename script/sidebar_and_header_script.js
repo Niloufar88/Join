@@ -133,6 +133,9 @@ function showUserNameWelcomeMsg() {
   }
 }
 
+/**
+ * based on initials show the signed user name in dropdown menu and if the user is guest then show empty string in dropdown menu
+ */
 function showSignedUserName() {
   if (signedUser) {
     if (sessionStorage.getItem("name") === "Guest") {
