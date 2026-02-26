@@ -1,16 +1,109 @@
-const BASE_URL =
-  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app";
-const guestURL =
-  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/guest";
+/**
+ * Base Firebase Realtime Database API endpoint URL.
+ * Used as the root path for all backend HTTP requests.
+ *
+ * @global
+ * @constant
+ * @type {string}
+ */
+const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app";
 
+/**
+ * Firebase Realtime Database URL for guest user data storage.
+ * Used to store temporary or non-persistent guest session information.
+ *
+ * @global
+ * @constant
+ * @type {string}
+ */
+const guestURL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/guest";
+
+/**
+ * Reference to the login form DOM element.
+ * Used to handle form submission and validation.
+ *
+ * @global
+ * @constant
+ * @type {HTMLFormElement}
+ */
 const form = document.getElementById("login_form");
+
+/**
+ * Local cache object storing the current state of contact data from the database.
+ * Structure matches the remote database response format.
+ *
+ * @global
+ * @type {Object.<string, any>}
+ */
 let fetchedData;
+
+/**
+ * Local cache object storing the current state of guest user data from the database.
+ * Used for temporary or non-persistent session information.
+ *
+ * @global
+ * @type {Object.<string, any>}
+ */
 let fetchedDataGuest;
+
+/**
+ * Flag indicating whether an email address has already been found in the database.
+ * Prevents duplicate processing during login attempts.
+ *
+ * @global
+ * @type {boolean}
+ * @default false
+ */
 let emailFound = false;
+
+/**
+ * NodeList reference to all input fields within the form.
+ * Used for bulk validation or event listener attachment.
+ *
+ * @global
+ * @constant
+ * @type {NodeList<HTMLInputElement>}
+ */
 const inputs = document.querySelectorAll("input");
+
+/**
+ * Reference to the email input field DOM element.
+ * Used to retrieve user's email address during login.
+ *
+ * @global
+ * @constant
+ * @type {HTMLInputElement}
+ */
 const emailInput = document.getElementById("email");
+
+/**
+ * Reference to the password input field DOM element.
+ * Used to retrieve user's password during login.
+ *
+ * @global
+ * @constant
+ * @type {HTMLInputElement}
+ */
 const passwordInput = document.getElementById("password");
+
+/**
+ * Reference to the error message DOM element for password validation.
+ * Displays validation errors specific to the password field.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const passwordErrorMsg = document.getElementById("passwordErrorMsg");
+
+/**
+ * Reference to the error message DOM element for email validation.
+ * Displays validation errors specific to the email field.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const emailErrorMsg = document.getElementById("emailErrorMsg");
 
 /**

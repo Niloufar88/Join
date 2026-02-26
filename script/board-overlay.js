@@ -34,7 +34,7 @@ function closetaskDetailsOverlay() {
 }
 
 /**
- * Öffnet das Overlay zum Erstellen einer neuen Aufgabe.
+ * Open the Overlay and create a new Task * 
  * @async
  * @returns {Promise<void>}
  */
@@ -56,7 +56,7 @@ async function openAddTaskOverlay() {
 }
 
 /**
- * Schließt das Add-Task-Overlay und stellt das Body-Scrolling wieder her.
+ * Close the Add-Task-Overlay and normalized Body-Scrolling  
  * @returns {void}
  */
 function closeAddTaskOverlay() {

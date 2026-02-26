@@ -72,8 +72,8 @@ function renderFloatingContactTemplate(
 }
 
 /**
- * Generiert das HTML-Template für das "Add Contact" Overlay.
- * * @returns {string} Das HTML-Gerüst als String für das Kontakt-Erstellungs-Formular.
+ * Generates the HTML template for the "Add Contact" overlay.
+ * @returns {string} The HTML structure as a string for the contact creation form.
  */
 function renderAddContactTemplate() {
   return `
@@ -194,9 +194,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                   </div>
                   <div class="edit-contact-text">
                     <h2 class="edit-contact-title">Edit contact</h2>
-
-                    <div class="blue-vector">
-                      
+                    <div class="blue-vector">                      
                     </div>
                   </div>
                 </div>
@@ -208,7 +206,6 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                     <div class="contact-badge" style="background-color: ${contactColor}">
                       ${initials}
                     </div>
-
                     <div class="contactForm">
                       <div class="inputContainer">
                         <input type="text" placeholder="Name" id="nameInput" value="${name}" onblur="editContactNameValidation()" />
@@ -217,9 +214,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                           alt=""
                         />
                       </div>
-
                       <div class="editValidationErrorMsg" id="editnameErrorMsg">Name cannot be empty</div>
-
                       <div class="inputContainer">
                         <input
                           type="email"
@@ -233,9 +228,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                           alt=""
                         />
                       </div>
-
                       <div class="editValidationErrorMsg" id="editemailErrorMsg">Email cannot be empty</div>
-
                       <div class="inputContainer">
                         <input
                           type="tel"
@@ -249,9 +242,7 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
                           alt=""
                         />
                       </div>
-
                       <div class="editValidationErrorMsg" id="editphoneErrorMsg">Phone cannot be empty</div>
-
                       <div class="edit-contact-buttons">
                         <button
                           class="secondary-btn-default-icon"
@@ -280,8 +271,8 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
 }
 
 /**
- * Generiert das HTML-Template für das "Add Contact" Overlay.
- * * @returns {string} Das HTML-Gerüst als String für das Kontakt-Erstellungs-Formular.
+ * Generates the HTML template for the "Add Contact" overlay.
+ * @returns {string} The HTML structure as a string for the contact creation form.
  */
 function renderEditToolsDialog() {
   return `

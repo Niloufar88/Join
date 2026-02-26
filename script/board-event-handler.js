@@ -90,7 +90,7 @@ function onTouchStart(e) {
 }
 
 /**
- * Verarbeitet die Touch-Bewegung.
+ * Process the Touch input 
  * @param {TouchEvent} e
  */
 function onTouchMove(e) {
@@ -105,10 +105,10 @@ function onTouchMove(e) {
 }
 
 /**
- * Erkennt anhand der Schwellenwerte (Threshold), ob der Nutzer scrollen oder draggen möchte.
- * Verhindert das Standard-Scrolling, falls ein Drag aktiv ist.
- * * @param {TouchEvent} e - Das Touch-Event zur Positionsbestimmung.
- * @returns {boolean} True, wenn das Element gerade aktiv gezogen wird.
+ * Detects based on threshold values whether the user wants to scroll or drag.
+ * Prevents default scrolling if a drag is active. 
+ * @param {TouchEvent} e - The touch event for position determination.
+ * @returns {boolean} True if the element is currently being actively dragged.
  */
 function handleDragDetection(e) {
   if (isDragging && e.cancelable) e.preventDefault();
@@ -132,10 +132,10 @@ function handleDragDetection(e) {
 }
 
 /**
- * Findet das Element unter den Koordinaten und setzt die visuelle Markierung
- * für die Ziel-Spalte (Drop-Target).
- * * @param {number} x - Die X-Koordinate (clientX) des Touches.
- * @param {number} y - Die Y-Koordinate (clientY) des Touches.
+ * Finds the element at the coordinates and sets the visual indicator
+ * for the target column (drop target).
+ * * @param {number} x - The X-Koordinate (clientX) Touches.
+ * @param {number} y - The Y-Koordinate (clientY) Touches.
  * @returns {void}
  */
 function updateDropTargetHighlight(x, y) {
@@ -150,7 +150,7 @@ function updateDropTargetHighlight(x, y) {
 }
 
 /**
- * Verarbeitet das Ablegen eines Tasks an einer bestimmten Position.
+ * Processes the dropping of a task at a specific position.
  * @async
  * @param {number} x - X-Koordinate des Touch-Endes
  * @param {number} y - Y-Koordinate des Touch-Endes
@@ -171,7 +171,7 @@ async function handleTaskDrop(x, y) {
 }
 
 /**
- * Touch end handler: schließt die Drag-Operation auf Mobile ab.
+ * Handles the touch end event to finalize the drag operation on mobile devices.
  * @async
  * @param {TouchEvent} e
  */

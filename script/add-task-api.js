@@ -1,5 +1,33 @@
+/**
+ * Base URL for the Firebase Realtime Database API endpoint.
+ * Used for all backend HTTP requests.
+ * 
+ * @global
+ * @constant
+ * @type {string}
+ * @readonly
+ */
 const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
+
+/**
+ * Temporary cache object for storing fetched data from the API.
+ * Structure depends on the endpoint responses.
+ * 
+ * @global
+ * @type {Object.<string, any>}
+ */
 let fetchData = {};
+
+/**
+ * Application state array holding all contact entries.
+ * Each item represents a contact object with properties like id, name, email, etc.
+ * 
+ * @global
+ * @type {Array<Object>}
+ * @property {string} id - Unique identifier for the contact
+ * @property {string} name - Contact's full name
+ * @property {string} [email] - Optional email address
+ */
 let contactsState = [];
 
 /**

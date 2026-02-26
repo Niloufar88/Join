@@ -1,8 +1,8 @@
 /**
- * Überprüft beim Laden der Seite den Authentifizierungsstatus des Benutzers.
- * Leitet den Client zur Startseite weiter, wenn kein gültiger Status 
- * (Gast oder angemeldet) in der sessionStorage gefunden wird.
- * * @function
+ * Checks the user's authentication status when the page loads.
+ * Redirects the client to the homepage if no valid status 
+ * (guest or logged in) is found in sessionStorage.  
+ * @function
  * @global
  */
 window.onload = function () {

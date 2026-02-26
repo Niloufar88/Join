@@ -74,9 +74,9 @@ function capitalizeLettersFullName(contacts) {
 }
 
 /**
- * Berechnet die Statistiken für Subtasks.
+ * Calculates the statistics for subtasks.
  * @param {Object} task
- * @returns {Object|null} Stats-Objekt oder null, wenn keine Subtasks vorhanden sind.
+ * @returns {Object|null} Stats object or null if no subtasks are available.
  */
 function getSubtaskStats(task) {
   const subtasks = task.subtasks || [];

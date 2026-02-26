@@ -99,9 +99,9 @@ function renderSubtasksDetailsEdit(id) {
 }
 
 /**
- * Erstellt den Fortschrittsbalken für Subtasks, falls vorhanden.
+ * Creates the progress bar for subtasks, if available.
  * @param {Object} task
- * @returns {string} HTML-String oder leerer String.
+ * @returns {string} HTML string or empty string.
  */
 function buildCardProgress(task) {
   const stats = getSubtaskStats(task);

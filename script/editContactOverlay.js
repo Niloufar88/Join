@@ -1,3 +1,11 @@
+/**
+ * Reference to the "Add Contact" popup DOM element.
+ * Used to control visibility and interaction with the creation overlay.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const addContactPopupEl = document.querySelector(".add-contact-popup");
 
 /**

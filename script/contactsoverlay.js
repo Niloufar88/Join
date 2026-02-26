@@ -170,6 +170,14 @@ function existingNameValidationVariables() {
   return { contactName, nameInput };
 }
 
+/**
+ * Displays a validation error message when a contact name already exists.
+ * Sets the visibility and text content of the error message element.
+ *
+ * @function existingNameValidationErrorHandling
+ * @returns {void}
+ * @sideeffects Modifies DOM element 'contactnameErrorMsg' (visibility and text)
+ */
 function existingNameValidationErrorHandling() {
   const ErrorMsgBox = document.getElementById("contactnameErrorMsg");
   if (ErrorMsgBox) {
@@ -179,19 +187,22 @@ function existingNameValidationErrorHandling() {
 }
 
 /**
- * Prüft asynchron, ob ein Kontaktname bereits in der Datenbank existiert.
- * * @async
+ * Asynchronously checks if a contact name already exists in the database.
+ *
+ * @async
  * @function existingNameValidation
  * @description
- * Vergleicht den eingegebenen Namen (case-insensitive) mit einer Liste aller 
- * vorhandenen Kontaktnamen aus der API. Markiert das Eingabefeld bei einer 
- * Dublette rot und triggert die Fehlerbehandlung.
- * * @returns {Promise<boolean>} 
- * `false`, wenn der Name bereits existiert (Validierung fehlgeschlagen).
- * `true`, wenn der Name neu ist oder ein Fehler bei der Abfrage auftrat.
- * * @see existingNameValidationVariables - Extrahiert Name und Input-Element.
- * @see fetchExistingContactName - Holt die Namensliste von der API.
- * @see existingNameValidationErrorHandling - Steuert die UI-Fehlermeldung.
+ * Compares the entered name (case-insensitive) with a list of all
+ * existing contact names from the API. Marks the input field red if a
+ * duplicate is found and triggers error handling.
+ *
+ * @returns {Promise<boolean>}
+ * `false` if the name already exists (validation failed).
+ * `true` if the name is new or if an error occurred during the query.
+ *
+ * @see existingNameValidationVariables - Extracts name and input element.
+ * @see fetchExistingContactName - Fetches the name list from the API.
+ * @see existingNameValidationErrorHandling - Controls the UI error message.
  */
 async function existingNameValidation() {
   const { contactName, nameInput } = existingNameValidationVariables();

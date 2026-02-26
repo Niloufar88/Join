@@ -1,3 +1,11 @@
+/**
+ * Reference to the global error message container DOM element.
+ * Used to display general validation errors across the application.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const errorMsg = document.querySelector(".error-msg");
 
 /**
@@ -48,9 +56,23 @@ async function loadImageSequence() {
   }, 1500);
 }
 
+/**
+ * Attaches a listener to trigger when the window has fully loaded.
+ * Initiates the image loading sequence upon DOM readiness.
+ *
+ * @function loadImageSequence
+ * @returns {void}
+ */
 window.addEventListener("load", loadImageSequence);
 
-
+/**
+ * Navigates the user from the current page to the sign-up page.
+ * Redirects to "../html/sign-up.html" using window.location.href.
+ *
+ * @function goToSignUp
+ * @returns {void}
+ * @sideeffects Changes browser location/navigation
+ */
 function goToSignUp() {
   window.location.href = "../html/sign-up.html";
 }

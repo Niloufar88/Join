@@ -1,23 +1,78 @@
 /**
- * global variables
+ * Reference to the DOM element displaying the count of to-do tasks.
+ * Shows the number of pending or uncompleted tasks.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
  */
-
 const toDoNumber = document.getElementById("toDoNumbers");
+
+/**
+ * Reference to the DOM element displaying the count of completed tasks.
+ * Shows the number of finished or done tasks.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const doneNumber = document.getElementById("doneNumbers");
+
+/**
+ * Reference to the DOM element displaying the count of urgent tasks.
+ * Shows the number of high-priority or deadline tasks.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const urgentNumber = document.getElementById("urgentNumbers");
+
+/**
+ * Reference to the due date input field DOM element.
+ * Used to set or filter tasks by their due date.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const dueDate = document.getElementById("dueDate");
+
+/**
+ * Reference to the DOM element displaying the total task count.
+ * Shows the aggregate number of all tasks in the system.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const totalTasksNumber = document.getElementById("totalTasksNumbers");
+
+/**
+ * Reference to the DOM element displaying the count of in-progress tasks.
+ * Shows the number of active or ongoing tasks.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const inProgressNumber = document.getElementById("inProgressNumber");
-const awaitingFeedbackNumber = document.getElementById(
-  "awaitingFeedbackNumber",
-);
+
+/**
+ * Reference to the DOM element displaying the count of awaiting feedback tasks.
+ * Shows the number of tasks waiting for review or response.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
+const awaitingFeedbackNumber = document.getElementById("awaitingFeedbackNumber");
 
 /**
  * functions to load task data from Firebase and provide utility functions for summary page.
  */
 
-const tasks_URL =
-  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/tasks";
+const tasks_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/tasks";
 let tasksFetchedData = {};
 
 /**

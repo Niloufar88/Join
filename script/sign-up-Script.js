@@ -1,16 +1,123 @@
+/**
+ * Reference to the form submit button DOM element.
+ * Used to trigger the user registration process on click.
+ *
+ * @global
+ * @constant
+ * @type {HTMLButtonElement}
+ */
 const submitBtn = document.getElementById("submit_button");
+
+/**
+ * Reference to the privacy policy checkbox DOM element.
+ * Used to validate user acceptance of terms before submission.
+ *
+ * @global
+ * @constant
+ * @type {HTMLInputElement}
+ */
 const policyCheckbox = document.getElementById("privacy");
+
+/**
+ * NodeList reference to all input fields with icon wrappers.
+ * Used for validation or styling across all form inputs.
+ *
+ * @global
+ * @constant
+ * @type {NodeList<HTMLInputElement>}
+ */
 const inputFields = document.querySelectorAll(".input-icon input");
+
+/**
+ * Reference to the signup form DOM element.
+ * Used to handle form submission and access form data.
+ *
+ * @global
+ * @constant
+ * @type {HTMLFormElement}
+ */
 const signupForm = document.getElementById("signupForm");
+
+/**
+ * Reference to the checkbox acceptance confirmation message DOM element.
+ * Displays feedback when the privacy checkbox is checked.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const checkboxAcceptance = document.getElementById("signupCheckedMsg");
+
+/**
+ * Icon HTML string for "eye open" state.
+ * Used to show password visibility toggle when enabled.
+ *
+ * @global
+ * @constant
+ * @type {string}
+ */
 const eyeOpen = `<i class="fa-regular fa-eye"></i>`;
+
+/**
+ * Icon HTML string for "eye closed" state.
+ * Used to hide password visibility toggle by default.
+ *
+ * @global
+ * @constant
+ * @type {string}
+ */
 const eyeClosed = `<i class="fa-regular fa-eye-slash"></i>`;
+
+/**
+ * Icon HTML string for locked/password lock state.
+ * Used to indicate secure password field in UI.
+ *
+ * @global
+ * @constant
+ * @type {string}
+ */
 const lockIcon = `<i class="fa-solid fa-lock"></i>`;
+
+/**
+ * Reference to the main signup password input field DOM element.
+ * Used to capture and validate user's chosen password.
+ *
+ * @global
+ * @constant
+ * @type {HTMLInputElement}
+ */
 const passwordInput = document.getElementById("signup-password");
+
+/**
+ * Reference to the confirm password input field DOM element.
+ * Used to verify password matches during registration.
+ *
+ * @global
+ * @constant
+ * @type {HTMLInputElement}
+ */
 const passwordConfirm = document.getElementById("signup-confirm-password");
+
+/**
+ * Reference to the container DIV for password visibility switch.
+ * Controls the main password toggle button positioning.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const iconPasswordDivMain = document.getElementById(
   "icon_password_switch_main",
 );
+
+/**
+ * Reference to the container DIV for confirm password visibility switch.
+ * Controls the confirm password toggle button positioning.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const iconPasswordDivConfirm = document.getElementById(
   "icon_password_switch_confirm",
 );
@@ -118,11 +225,12 @@ function UpdateIcon(input, iconDiv) {
 }
 
 /**
- * These listeners trigger whenever the user types something
- * in the password or confirm password fields.
- * When text is entered, the lock icon switches to an eye icon.
+ * Sets up event listeners for password input validation and toggle functionality.
+ * Updates visibility icon on input change and removes active state on blur.
+ *
+ * @function - (Event handler for passwordInput)
+ * @sideeffects Modifies DOM element classes (active) and updates password icon
  */
-
 passwordInput.addEventListener("input", () => {
   UpdateIcon(passwordInput, iconPasswordDivMain);
   passwordInput.addEventListener("blur", () => {
@@ -130,6 +238,13 @@ passwordInput.addEventListener("input", () => {
   });
 });
 
+/**
+ * Sets up event listeners for confirm password validation and toggle functionality.
+ * Updates visibility icon on input change and removes active state on blur.
+ *
+ * @function - (Event handler for passwordConfirm)
+ * @sideeffects Modifies DOM element classes (active) and updates password icon
+ */
 passwordConfirm.addEventListener("input", () => {
   UpdateIcon(passwordConfirm, iconPasswordDivConfirm);
   passwordConfirm.addEventListener("blur", () => {
@@ -137,7 +252,14 @@ passwordConfirm.addEventListener("input", () => {
   });
 });
 
-
+/**
+ * Navigates the user from the sign-up page back to the login page.
+ * Redirects to "../html/index.html" using window.location.href.
+ *
+ * @function goBackToLogin
+ * @returns {void}
+ * @sideeffects Changes browser location/navigation
+ */
 function goBackToLogin() {
   window.location.href = "../html/index.html";
 }

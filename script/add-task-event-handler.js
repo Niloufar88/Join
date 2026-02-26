@@ -1,3 +1,12 @@
+/**
+ * Flag indicating whether event listeners for the "Add Task" functionality 
+ * have already been attached to the DOM.
+ * Prevents duplicate listener registration on re-initialization.
+ * 
+ * @global
+ * @type {boolean}
+ * @default false
+ */
 let addTaskListenersBound = false;
 
 /**

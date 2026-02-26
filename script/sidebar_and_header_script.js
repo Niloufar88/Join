@@ -1,18 +1,88 @@
+/**
+ * Reference to the main menu button DOM element.
+ * Used to toggle the navigation menu visibility.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 let menuButton = document.getElementById("menu-button");
+
+/**
+ * Reference to the user icon DOM element.
+ * Represents the user profile/avatar in the navigation bar.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 let userIcon = document.getElementById("user-icon");
+
+/**
+ * Reference to the help toggle/switch DOM element.
+ * Used to show/hide help or support information.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 let switchHelp = document.getElementById("switch_help");
+
+/**
+ * Reference to the dropdown menu DOM element.
+ * Contains user actions and settings options.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const dropDownMenu = document.getElementById("dropDown-menu");
+
+/**
+ * Stored user name retrieved from sessionStorage.
+ * Used for personalized greeting messages.
+ *
+ * @global
+ * @type {string|null}
+ */
 const userName = sessionStorage.getItem("name");
+
+/**
+ * Reference to the DOM element displaying the user's welcome message.
+ * Shows personalized greeting upon login.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const userNameWelcomeMsg = document.getElementById("userName");
+
+/**
+ * Reference to the DOM element showing the signed-in user status.
+ * Displays current authentication state or user info.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ */
 const signedUser = document.getElementById("signedUser");
+
+/**
+ * Variable to store user initials.
+ * Used for avatar placeholder when image is not available.
+ *
+ * @global
+ * @type {string}
+ * @default ""
+ */
 let initials = "";
 
 /**
- * Versteckt das Dropdown-Menü, falls es existiert und momentan sichtbar ist.
- * * @description
- * Prüft auf die Existenz von `dropDownMenu` und das Fehlen der Klasse `.hide`.
- * Fügt die Klasse `.hide` hinzu, um das Menü per CSS auszublenden.
- * * @requires dropDownMenu - Das DOM-Element des Dropdowns.
+ * Hides the dropdown menu if it exists and is currently visible.
+ * @description
+ * Checks for the existence of `dropDownMenu` and the absence of the `.hide` class.
+ * Adds the `.hide` class to hide the menu via CSS.
+ * @requires dropDownMenu - The DOM element of the dropdown.
  */
 if (dropDownMenu && !dropDownMenu.classList.contains("hide")) {
   dropDownMenu.classList.add("hide");

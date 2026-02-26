@@ -1,3 +1,10 @@
+/**
+ * Reference to the floating contact container DOM element.
+ * Used to manipulate or append contact items within the floating UI component.
+ *
+ * @global
+ * @type {HTMLElement | null}
+ */
 let container = document.querySelector(".floating-contact");
 
 /**
@@ -100,16 +107,16 @@ async function createContactList() {
 }
 
 /**
- * Überträgt die aktuellen Kontaktdaten per PUT-Request an die REST-API.
- * * @async
+ * Sends the current fetched data to the API storage endpoint using a PUT request.
+ * Updates the remote database with the latest state of fetchedData.
+ *
+ * @async
  * @function pushContactsToAPI
- * @description 
- * Konvertiert das globale Objekt `fetchedData` in einen JSON-String und 
- * überschreibt die Daten unter der `storageUrl`.
- * * @requires storageUrl - Die Basis-URL der Datenbank/API.
- * @requires fetchedData - Das lokale Datenobjekt, das synchronisiert werden soll.
- * * @returns {Promise<void>} Ein Promise, das aufgelöst wird, wenn der Netzwerk-Request abgeschlossen ist.
- * @throws {Error} Kann einen Fehler werfen, wenn der Netzwerk-Request fehlschlägt.
+ * @returns {Promise<void>} Resolves when the request is completed.
+ * @throws {Error} If the network request fails.
+ * @sideeffects {Network} Performs HTTP PUT request to update remote storage
+ * @requires {string} storageUrl - Base URL for the storage endpoint
+ * @requires {Object} fetchedData - The data object to be serialized and sent
  */
 async function pushContactsToAPI() {
   await fetch(storageUrl + ".json", {
@@ -141,12 +148,13 @@ function getInitials(fullName) {
 }
 
 /**
- * Initialisiert und injiziert den schwebenden Container für Kontakt-Details in das DOM.
- * * @description
- * Prüft, ob die globale Variable `container` bereits existiert. Falls nicht, wird ein 
- * neues `div`-Element erstellt und an `.contact-dashboard` oder alternativ an `main` angehängt.
- * * @requires container - Erwartet eine (global) definierte Variable für die Instanz-Prüfung.
- * @returns {void} Diese Funktion manipuliert das DOM direkt und hat keinen Rückgabewert.
+ * Initializes the floating contact container in the DOM if it does not exist.
+ * Creates a div with class "floating-contact" and appends it to ".contact-dashboard" or "main".
+ *
+ * @function floatingContainer
+ * @returns {void}
+ * @sideeffects Modifies DOM (creates/appends element) and assigns global 'container' variable
+ * @requires {HTMLElement|null} container - Global reference variable
  */
 function floatingContainer() {
   if (!container) {
@@ -298,6 +306,11 @@ function handleContactClick(event) {
   showFloatingCard(event);
 }
 
+/**
+ * resets all contact containers by removing active state and re-enabling pointer events.
+ * iterates through all ".contact-container" elements to clear selection states.
+ *
+ */
 function containerEventHandler() {
   document.querySelectorAll(".contact-container").forEach((container) => {
     container.classList.remove("active");

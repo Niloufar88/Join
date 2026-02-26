@@ -1,4 +1,22 @@
+/**
+ * Validation state object tracking the status of individual form fields.
+ * Keys represent field names, values indicate if the field passes validation checks.
+ * 
+ * @global
+ * @type {Object}
+ * @property {boolean} title - True if the task title is valid.
+ * @property {boolean} duedate - True if the due date is valid.
+ * @property {boolean} category - True if the category is selected/valid.
+ */
 let valid = { title: false, duedate: false, category: false };
+
+/**
+ * Temporary storage object for collecting task input data before submission.
+ * Structure will match the required payload for the API/Database.
+ * 
+ * @global
+ * @type {Object}
+ */
 let taskData = {};
 
 /**

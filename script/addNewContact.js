@@ -1,3 +1,12 @@
+/**
+ * Reference to the edit menu dialog DOM element.
+ * Used to control visibility and interaction with the edit modal.
+ *
+ * @global
+ * @constant
+ * @type {HTMLElement}
+ * @readonly
+ */
 const dialogElement = document.getElementById("edit-menu-dialog");
 
 /**
@@ -15,10 +24,30 @@ function getDataToMakeNewContactVariables() {
   return { nameInputField, emailInputField, phoneInputField, contactColor };
 }
 
+/**
+ * @typedef {Object} ContactData
+ * @property {string} name - The full name of the contact.
+ * @property {string} email - The email address of the contact.
+ * @property {string} phone - The phone number of the contact.
+ * @property {string} initials - Generated initials from the name.
+ * @property {string} color - Assigned color for the contact avatar.
+ * @property {boolean} checked - Initial selection status.
+ */
+
+/**
+ * Collects and validates input field data to create a new contact object.
+ * Retrieves DOM elements via helper function and constructs the payload.
+ *
+ * @async
+ * @returns {Promise<ContactData|undefined>} The new contact object if valid, otherwise undefined.
+ * @requires {function} getDataToMakeNewContactVariables - Helper to retrieve DOM input elements.
+ * @requires {function} getInitials - Helper to generate initials from name.
+ */
 async function getDataToMakeNewContact() {
   const { nameInputField, emailInputField, phoneInputField, contactColor } =
     getDataToMakeNewContactVariables();
   const initials = getInitials(nameInputField.value.trim());
+
   if (!nameInputField || !emailInputField || !phoneInputField) {
     console.error("Input fields not found in DOM");
     return;
@@ -51,6 +80,15 @@ function addNewContactVariables() {
   return { contactName, contactEmail, contactPhone };
 }
 
+/**
+ * Clears all contact validation error messages from the UI.
+ * Hides all elements with the class ".contactValidationErrorMsg" by setting visibility to hidden.
+ *
+ * @function addNewContactErrorHandling
+ * @returns {void}
+ * @sideeffects Modifies DOM element styles (visibility)
+ * @requires {HTMLElement[]} .contactValidationErrorMsg - Error message elements in the DOM
+ */
 function addNewContactErrorHandling() {
   const errorMsg = document.querySelectorAll(".contactValidationErrorMsg");
   if (errorMsg) {
@@ -60,6 +98,16 @@ function addNewContactErrorHandling() {
   }
 }
 
+/**
+ * Validates the contact form and displays error messages if validation fails.
+ * Shows error feedback in the DOM and stops execution if data is invalid.
+ *
+ * @async
+ * @function addNewContactIsValid
+ * @returns {Promise<void>}
+ * @sideeffects Modifies DOM elements (error messages visibility and text)
+ * @requires {function} validateContactForm - Returns validation status
+ */
 async function addNewContactIsValid() {
   const isValid = await validateContactForm();
   if (!isValid) {
@@ -74,6 +122,15 @@ async function addNewContactIsValid() {
   }
 }
 
+/**
+ * Executes the post-success sequence after creating a contact.
+ * Reloads data, updates the list, closes overlays, and shows a success popup.
+ *
+ * @async
+ * @function addNewContactFunctionSeries
+ * @returns {Promise<void>}
+ * @sideeffects Updates DOM, loads database, shows popup messages
+ */
 async function addNewContactFunctionSeries() {
   await loadDataBase();
   await createContactList();
@@ -85,6 +142,14 @@ async function addNewContactFunctionSeries() {
   }
 }
 
+/**
+ * Displays validation error messages for empty fields during contact creation.
+ * Sets visibility to visible and updates text content for error elements.
+ *
+ * @function makeErrorMsgVisibleByAddNewContact
+ * @returns {void}
+ * @sideeffects Modifies DOM elements (visibility and text)
+ */
 function makeErrorMsgVisibleByAddNewContact() {
   const errorMsg = document.querySelectorAll(".contactValidationErrorMsg");
   if (errorMsg) {
@@ -95,6 +160,18 @@ function makeErrorMsgVisibleByAddNewContact() {
   }
 }
 
+/**
+ * Main handler for creating a new contact.
+ * Validates input, saves to database, and triggers UI updates on success.
+ * Handles errors and displays appropriate messages if validation fails.
+ *
+ * @async
+ * @function addNewContact
+ * @returns {Promise<void>}
+ * @sideeffects Saves to DB, modifies DOM, shows popups
+ * @requires {function} getDataToMakeNewContact
+ * @requires {function} saveContact
+ */
 async function addNewContact() {
   const newContact = await getDataToMakeNewContact();
   const { contactName, contactEmail, contactPhone } = addNewContactVariables();
@@ -182,6 +259,16 @@ function popupMessage(message) {
   }, 2000);
 }
 
+/**
+ * Displays a responsive popup message temporarily.
+ * Shows the message, triggers reflow, adds responsive class, and hides it after 1.5 seconds.
+ *
+ * @function popupMessageResponsive
+ * @param {string} message - The text content to display in the popup.
+ * @returns {void}
+ * @sideeffects Modifies DOM element 'createMessage' (classes, text, visibility)
+ * @requires {HTMLElement} createMessage - The DOM element to display the message
+ */
 function popupMessageResponsive(message) {
   createMessage.textContent = `${message}`;
   createMessage.classList.remove("d-none");

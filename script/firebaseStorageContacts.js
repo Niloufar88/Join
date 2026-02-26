@@ -1,7 +1,31 @@
-const storageUrl =
-  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/contacts";
-const BASE_URL =
-  "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
+/**
+ * Firebase Realtime Database URL for the specific "contacts" collection.
+ * Used for creating and saving individual contact data entries.
+ *
+ * @global
+ * @constant
+ * @type {string}
+ */
+const storageUrl = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/contacts";
+
+/**
+ * Base Firebase Realtime Database API endpoint URL.
+ * Used as the root path for all backend HTTP requests.
+ *
+ * @global
+ * @constant
+ * @type {string}
+ * @readonly
+ */
+const BASE_URL = "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/";
+
+/**
+ * Local cache object storing the current state of contact data from the database.
+ * Structure matches the remote database response format.
+ *
+ * @global
+ * @type {Object.<string, any>}
+ */
 let fetchedData = {};
 
 /**

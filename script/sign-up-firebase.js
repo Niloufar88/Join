@@ -5,20 +5,20 @@ const firebaseURL =
   "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/users";
 
 /**
-* Registriert einen neuen Benutzer in der Firebase-Datenbank.
-* * @async
-* @function registerUser
-* @param {string} name - Der vollständige Name des Benutzers.
-* @param {string} email - Die E-Mail-Adresse des Benutzers.
-* @param {string} password - Das gewählte Passwort.
-* * @description
-* Erstellt ein Benutzerobjekt und sendet es per POST-Request an die Firebase-REST-API.
-* Im Fehlerfall (Netzwerk oder Server) wird eine Fehlermeldung im UI angezeigt.
-* * @requires firebaseURL - Die Basis-URL zur Firebase Realtime Database.
-* @returns {Promise<void>} Ein Promise, das nach Abschluss des Registrierungsprozesses aufgelöst wird.
-* * @example
-* await registerUser("Max Mustermann", "max@beispiel.de", "sicheresPasswort123");
-*/
+ * Registers a new user by sending their data to Firebase Realtime Database.
+ * Handles HTTP request and error display if registration fails.
+ *
+ * @async
+ * @function registerUser
+ * @param {string} name - The user's full name.
+ * @param {string} email - The user's email address.
+ * @param {string} password - The user's password (should be hashed in production).
+ * @returns {Promise<void>} Resolves when the request is completed.
+ * @sideeffects {Network} Performs HTTP POST request to Firebase. Shows error message on failure.
+ * @requires {string} firebaseURL - Base URL for Firebase API endpoint.
+ * @requires {function} showErrorMessage - Displays error feedback to the user.
+ * @throws {Error} If the network request fails.
+ */
 async function registerUser(name, email, password) {
   const userData = {
     name: name,
@@ -104,8 +104,21 @@ function showSuccessMessage() {
 }
 
 /**
- * function to show different error messages if something fails
- * @param {String} message
+ * Function to show different error messages if something fails.
+ * 
+ * @description
+ * Displays error feedback in the DOM for form validation issues.
+ * Sets the text content and visibility of specific error message elements.
+ */
+
+/**
+ * Shows an error message for the name input field.
+ * Updates the name error element's text and makes it visible.
+ *
+ * @function nameErrorMessage
+ * @param {string} message - The error message to display.
+ * @returns {void}
+ * @sideeffects Modifies DOM element 'name-error-message' (text and visibility)
  */
 function nameErrorMessage(message) {
   const errorMsg = document.getElementById("name-error-message");
@@ -113,18 +126,45 @@ function nameErrorMessage(message) {
   errorMsg.style.visibility = "visible";
 }
 
+/**
+ * Shows an error message for the email input field.
+ * Updates the email error element's text and makes it visible.
+ *
+ * @function emailErrorMessage
+ * @param {string} message - The error message to display.
+ * @returns {void}
+ * @sideeffects Modifies DOM element 'email-error-message' (text and visibility)
+ */
 function emailErrorMessage(message) {
   const errorMsg = document.getElementById("email-error-message");
   errorMsg.textContent = message;
   errorMsg.style.visibility = "visible";
 }
 
+/**
+ * Shows an error message for the password input field.
+ * Updates the password error element's text and makes it visible.
+ *
+ * @function passwordErrorMessage
+ * @param {string} message - The error message to display.
+ * @returns {void}
+ * @sideeffects Modifies DOM element 'password-error-message' (text and visibility)
+ */
 function passwordErrorMessage(message) {
   const errorMsg = document.getElementById("password-error-message");
   errorMsg.textContent = message;
   errorMsg.style.visibility = "visible";
 }
 
+/**
+ * Shows an error message for the confirm password input field.
+ * Updates the confirm password error element's text and makes it visible.
+ *
+ * @function confirmPasswordErrorMessage
+ * @param {string} message - The error message to display.
+ * @returns {void}
+ * @sideeffects Modifies DOM element 'confirmpassword-error-message' (text and visibility)
+ */
 function confirmPasswordErrorMessage(message) {
   const errorMsg = document.getElementById("confirmpassword-error-message");
   errorMsg.textContent = message;

@@ -1,3 +1,11 @@
+/**
+ * Array storing temporary sub-task input data or form field values.
+ * Used to collect sub-task entries before they are saved or submitted.
+ * 
+ * @global
+ * @type {Array<string|Object>}
+ * @default []
+ */
 let subTaskInput = [];
 
 /**

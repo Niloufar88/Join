@@ -623,7 +623,7 @@ function renderTasksHTML(task, id) {
   `;
 }
 /**
- *
+ * Builds HTML for a progress-scale Zero.
  * @param {Object} stats
  * @returns
  */
@@ -634,7 +634,7 @@ function getProgressSubtaskZero() {
   `;
 }
 /**
- *
+ * Builds HTML for a progress-scale.
  * @param {Object} stats
  * @returns
  */

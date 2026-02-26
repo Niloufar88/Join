@@ -25,6 +25,13 @@ async function createTask() {
   }, 2000);
 }
 
+/**
+ * Initializes the application once the DOM is fully loaded.
+ * Safely checks for the existence of the global `initAddTask` function before invoking it.
+ *
+ * @listens DOMContentLoaded
+ * @requires {function} initAddTask - Optional global initialization function.
+ */
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof initAddTask === "function") {
     initAddTask();
