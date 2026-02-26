@@ -96,15 +96,12 @@ function addNewContactErrorHandling() {
 async function addNewContactIsValid() {
   const isValid = await validateContactForm();
   if (!isValid) {
-    const errorMsg = document.querySelectorAll(".contactValidationErrorMsg");
-    if (errorMsg) {
-      errorMsg.forEach((msgBox) => {
-        msgBox.style.visibility = "visible";
-        msgBox.textContent = "Please check your data and try again.";
-      });
-    }
-    return;
+    contactNameValidation();
+    contactEmailValidation();
+    contactPhoneValidation();
+    return false;
   }
+  return true;
 }
 
 /**
@@ -163,6 +160,9 @@ async function addNewContact() {
     return;
   }
   await addNewContactIsValid();
+  if (!(await addNewContactIsValid())) {
+    return;
+  }
   if (newContact.name && newContact.email && newContact.phone) {
     try {
       await saveContact(newContact);

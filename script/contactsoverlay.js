@@ -327,8 +327,9 @@ function isNameValidForSave() {
       nameError.style.visibility = "visible";
       nameError.textContent = "Name cannot be empty.";
     }
-    return;
+    return false;
   }
+  return true;
 }
 
 /**
@@ -343,8 +344,9 @@ function isEmailValidForSave() {
       emailError.style.visibility = "visible";
       emailError.textContent = "Please check Email input data.";
     }
-    return;
+    return false;
   }
+  return true;
 }
 
 /**
@@ -359,8 +361,9 @@ function isPhoneValidForSave() {
       phoneError.style.visibility = "visible";
       phoneError.textContent = "Please check Phone input data.";
     }
-    return;
+    return false;
   }
+  return true;
 }
 
 /**
@@ -386,8 +389,9 @@ function isDataValidForSave() {
     isNameValidForSave();
     isEmailValidForSave();
     isPhoneValidForSave();
-    return;
+    return false;
   }
+  return true;
 }
 
 /**
@@ -411,7 +415,9 @@ async function essentialFunctionsForSave() {
  * @returns {Object|null} Returns an object containing contactId and updatedContact if valid, null otherwise
  */
 function prepareEditedContactData() {
-  isDataValidForSave();
+  if (!isDataValidForSave()) {
+    return null;
+  }
   const editedData = getEditedContactData();
   const contactId = findContactIdFromDisplayed();
   if (!contactId) {
