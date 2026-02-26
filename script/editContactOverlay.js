@@ -118,9 +118,11 @@ function openEditContactOverlay() {
 }
 
 /**
- * defines function to render edit contact overlay with animation
+ * Initializes and displays the edit contact overlay with slide-in animation.
+ * Removes the edit contact popup from hidden state and triggers CSS animation.
+ * Ensures animation frames are processed before applying animation class.
+ * @returns {void}
  */
-
 function renderEditContactOverlayMoves() {
   const overlay = editContactPopup.querySelector(".edit-contact-overlay");
   editContactPopup.classList.remove("d-none");
@@ -130,13 +132,10 @@ function renderEditContactOverlayMoves() {
 }
 
 /**
- * defines function to render edit contact overlay
- * checks if foundContact is available
- * Add ID to contact object for later use in edit/delete
- * Set innerHTML FIRST, before accessing the overlay and calls openEditContactOverlay to get contact data
- * render edit contact template with found contact data and color
- * triggers slide-in animation to show overlay
- * sets input values with fallback for name, email and phone
+ * Renders the edit contact overlay with pre-filled form fields.
+ * Fetches current contact data, applies styling, and triggers the display animation.
+ * Populates all form fields (name, email, phone) with existing contact information.
+ * @returns {void}
  */
 function renderEditContactOverlay() {
   const contactData = openEditContactOverlay();
@@ -156,11 +155,10 @@ function renderEditContactOverlay() {
 }
 
 /**
- * defines function to close edit contact overlay by pressing cancel button
- * checks if editContactPopup exists
- * selects overlay element within editContactPopup
- * triggers slide-out animation by modifying class list
- * adds d-none class to hide popup after animation completes (500ms)
+ * Closes the edit contact overlay and returns to the contact list.
+ * Triggers slide-out animation and hides the overlay after animation completes (500ms).
+ * Clears the overlay content and removes focus from the page.
+ * @returns {void}
  */
 function closeEditContactOverlay() {
   if (!editContactPopup) return;
