@@ -35,14 +35,10 @@ main {
   padding: 80px 50px 50px 80px;
 }
 
-/* Enthält Sidebar + Hauptbereich */
-
 .content-wrapper {
   display: flex;
   flex-direction: row;
 }
-
-/*Header area*/
 
 .header {
   width: 100%;
@@ -200,8 +196,6 @@ main {
   display: none !important;
 }
 
-/* Sidebar area */
-
 .sidebar {
   width: 230px;
   height: 100vh;
@@ -317,6 +311,7 @@ main {
   .header {
     padding: 20px;
   }
+
   .header .icons {
     position: absolute;
     right: 0;

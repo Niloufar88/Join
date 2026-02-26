@@ -108,19 +108,12 @@ main {
 }
 
 .contacts .contact-list .contact-list-items .contact-container:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(249, 249, 249, 1),
-    rgba(240, 240, 240, 1)
-  );
+  background: linear-gradient(135deg,
+      rgba(249, 249, 249, 1),
+      rgba(240, 240, 240, 1));
 }
 
-.contacts
-  .contact-list
-  .contact-list-items
-  .contact-container.active
-  .contactDetails
-  .contactName {
+.contacts .contact-list .contact-list-items .contact-container.active .contactDetails .contactName {
   color: rgba(255, 255, 255, 1);
 }
 
@@ -129,8 +122,7 @@ main {
   height: 42px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* background-color: rgba(255, 122, 0, 1); */
+  justify-content: center;  
   border: 2px solid rgba(255, 255, 255, 1);
   border-radius: 50%;
   color: rgba(255, 255, 255, 1);
@@ -145,23 +137,13 @@ main {
   align-items: flex-start;
 }
 
-.contacts
-  .contact-list
-  .contact-list-items
-  .contact-container
-  .contactDetails
-  .contactName {
+.contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
   color: rgba(0, 0, 0, 1);
   font-size: 20px;
   font-weight: 400;
 }
 
-.contacts
-  .contact-list
-  .contact-list-items
-  .contact-container
-  .contactDetails
-  .contactEmail {
+.contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
   font-size: 16px;
   font-weight: 400;
   color: rgba(0, 124, 238, 1);
@@ -280,55 +262,26 @@ main {
   height: 24px;
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  .edit-delete-component-default {
+.floating-contact #contact-header #contact-text #contact-edit-tools .edit-delete-component-default {
   transition: all 200ms linear;
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #edit:hover
-  img {
+.floating-contact #contact-header #contact-text #contact-edit-tools #edit:hover img {
   content: url("../assets/img/edit-hover-contact.svg");
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #delete
-  img {
+.floating-contact #contact-header #contact-text #contact-edit-tools #delete img {
   content: url("../assets/img/delete-contact.svg");
   width: 24px;
   height: 24px;
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #delete:hover
-  img {
+.floating-contact #contact-header #contact-text #contact-edit-tools #delete:hover img {
   content: url("../assets/img/delete-hover-contact.svg");
 }
 
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #edit:hover
-  span,
-.floating-contact
-  #contact-header
-  #contact-text
-  #contact-edit-tools
-  #delete:hover
-  span {
+.floating-contact #contact-header #contact-text #contact-edit-tools #edit:hover span,
+.floating-contact #contact-header #contact-text #contact-edit-tools #delete:hover span {
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
 }

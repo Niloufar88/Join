@@ -11,17 +11,20 @@
     z-index: 1;
     position: sticky;
     top: 0;
+
     .text {
         font-size: 20px;
         font-weight: 400;
         color: #000;
     }
+
     .icons {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         gap: 16px;
+
         .help {
             width: 20px;
             height: 20px;
@@ -70,6 +73,7 @@
     justify-content: center;
     align-items: flex-start;
     padding: 8px;
+
     a {
         font-weight: 400;
         font-size: 16px;
@@ -84,7 +88,7 @@
 }
 
 .dropDown-menu.show {
-    right: 0px;    
+    right: 0px;
 }
 
 .dropDown-menu a:hover {

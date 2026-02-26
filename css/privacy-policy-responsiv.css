@@ -1,24 +1,24 @@
 /*for sidebar mobile*/
 @media (max-width: 1000px) {
 
-  .histore-back-arrow{
+  .histore-back-arrow {
     display: flex !important;
   }
 
-  .frame3{
+  .frame3 {
     display: flex;
     width: 230px;
     height: 100%;
-    
+
   }
-  
-  .frame3 .footerMenu{
+
+  .frame3 .footerMenu {
     flex-direction: row;
     width: 100%;
     height: 100%;
   }
 
-  .footerMenu a{
+  .footerMenu a {
     padding: 0 !important;
     height: 100% !important;
     display: flex !important;
@@ -26,11 +26,11 @@
     justify-content: center !important;
   }
 
-  .frame3 .footerMenu a.current{
+  .frame3 .footerMenu a.current {
     border-radius: 13%;
   }
 
-  .footerMenu-mobile{
+  .footerMenu-mobile {
     display: flex;
     height: 100%;
     gap: 6px;
@@ -39,72 +39,70 @@
   .frame2 .footerMenu-mobile a:hover {
     color: #29ABE2;
     font-weight: 500;
-}
+  }
 
-.frame2 .footerMenu-mobile a.current {
+  .frame2 .footerMenu-mobile a.current {
     background-color: #091931;
+  }
+
+  .datenschutz-container h1 {
+    margin-top: 10px;
+  }
 }
 
-.datenschutz-container h1{
-  margin-top: 10px;
-}
-}
-
-
-
-@media (max-width: 813px){
-main{
+@media (max-width: 813px) {
+  main {
     padding: 40px 50px 40px 50px;
+  }
+
+  .header {
+    padding: 20px 50px;
+  }
 }
 
-.header{
-  padding: 20px 50px;
-}
-}
-
-@media (max-width: 769px){
-.dropDown-menu.show{
+@media (max-width: 769px) {
+  .dropDown-menu.show {
     top: 279px;
-}
+  }
 
-.icons{
+  .icons {
     justify-content: center !important;
     right: 12px !important;
-}
+  }
 }
 
 @media (max-width: 510px) {
-  main{
+  main {
     padding: 20px;
   }
 
-  .header{
+  .header {
     padding: 20px 20px;
   }
-  
-  .datenschutz-container h1{
+
+  .datenschutz-container h1 {
     font-size: 1em;
     margin-top: 10px;
     margin-bottom: 0px;
   }
 
-  .datenschutz-container h2{
+  .datenschutz-container h2 {
     font-size: 1em;
   }
 
-  .datenschutz-container p{
+  .datenschutz-container p {
     font-size: 0.8em;
   }
 
-  .datenschutz-container ul{
+  .datenschutz-container ul {
     font-size: 0.9em;
   }
 
-  .datenschutz-container ul{
+  .datenschutz-container ul {
     font-size: 0.9em;
   }
 
-  .datenschutz-container table{
+  .datenschutz-container table {
     word-break: break-word;
   }
 }

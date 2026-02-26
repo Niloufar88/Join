@@ -8,20 +8,25 @@
   #sign-up-header {
     padding: 20px 40px;
   }
+
   #sign-up-header .header-img {
     max-width: 70px;
     margin-left: 0;
     margin-top: 0;
   }
+
   #sign-up-main-page .content {
     padding: 20px;
   }
+
   .signup-container {
     padding: 40px 20px;
   }
+
   .signup-heading h1 {
     font-size: 40px;
   }
+
   form {
     width: 90%;
   }
@@ -36,14 +41,17 @@
   #sign-up-main-page {
     padding: 20px 0 90px 0;
   }
+
   #sign-up-header .header-img {
     max-width: 70px;
     margin-left: 0;
     margin-top: 0;
   }
+
   .signup-heading h1 {
     font-size: 36px;
   }
+
   .signup-heading .seperator {
     width: 70px;
   }
@@ -51,9 +59,11 @@
   .input-icon {
     padding: 4px;
   }
+
   form {
     width: 100%;
   }
+
   .back-arrow {
     top: 65px;
     left: 30px;
@@ -64,6 +74,7 @@
   .signup-container {
     padding: 40px 10px;
   }
+
   .signup-heading h1 {
     font-size: 32px;
   }
@@ -86,6 +97,7 @@
     top: 65px;
     left: 15px;
   }
+
   #privacy-policy {
     font-size: 12px;
   }

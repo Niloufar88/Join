@@ -57,14 +57,11 @@ main {
 
 .main-content {
   display: flex;
-  flex-direction: row;
-  /* gap: clamp(8px, 6vw, 120px); */
+  flex-direction: row; 
   color: var(--color-text);
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 1.25rem;
-
-
 }
 
 h1 {
@@ -643,8 +640,7 @@ textarea:focus {
 @media (max-width: 1340px) {
   .main-content {
     flex-direction: column;
-    justify-content: center;
-    
+    justify-content: center;    
     margin-bottom: 150px;
   }
 

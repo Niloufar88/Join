@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
 
-    <!-- adding Favicon-->
     <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/Favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/Favicon/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/Favicon/apple-touch-icon.png" />
     <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
-    <!-- adding Main CSS Style-Sheet -->
     <link rel="stylesheet" href="../css/standard.css">
     <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
     <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
@@ -22,7 +20,6 @@
 </head>
 
 <body onload="greetingGuest(), initializeTasks();">
-    
     <div class="body-div">
         <div class="content-wrapper">
             <aside class="sidebar">
@@ -32,14 +29,19 @@
                     </div>
                     <div class="frame2">
                         <div class="sideMenu">
-                            <a href="../html/summary.html" class="active"><img src="../assets/img/summary-icon.svg " alt="summary " />Summary</a>
-                            <a href="../html/add-task.html "><img src="../assets/img/addTask-icon.svg " alt="add-task " />Add Task
+                            <a href="../html/summary.html" class="active"><img src="../assets/img/summary-icon.svg "
+                                    alt="summary " />Summary</a>
+                            <a href="../html/add-task.html "><img src="../assets/img/addTask-icon.svg "
+                                    alt="add-task " />Add Task
                             </a>
-                            <a href="../html/board.html "><img src="../assets/img/board-icon.svg " alt="board " />Board</a>
-                            <a href="../html/contacts.html "><img src="../assets/img/contacts-icon.svg " alt="contacts " />Contacts</a>
+                            <a href="../html/board.html "><img src="../assets/img/board-icon.svg "
+                                    alt="board " />Board</a>
+                            <a href="../html/contacts.html "><img src="../assets/img/contacts-icon.svg "
+                                    alt="contacts " />Contacts</a>
                         </div>
                         <div class="sideMenu hide">
-                            <a href="../html/contacts.html "><img src="../assets/img/contacts-icon.svg " alt="contacts " />Login</a>
+                            <a href="../html/contacts.html "><img src="../assets/img/contacts-icon.svg "
+                                    alt="contacts " />Login</a>
                         </div>
                     </div>
                 </div>
@@ -62,9 +64,10 @@
                                 <img src="../assets/img/help.svg" alt="help" id="help" />
                             </a>
                             <div class="user-icon">
-                                <button class="menu-button" id="menu-button" aria-label="Toggle menu" onclick="toggleMenu()" ></button>
+                                <button class="menu-button" id="menu-button" aria-label="Toggle menu"
+                                    onclick="toggleMenu()"></button>
                             </div>
-                            <div class="dropDown-menu" id="dropDown-menu" >
+                            <div class="dropDown-menu" id="dropDown-menu">
                                 <a href="../html/help.html" class="hide" id="switch_help">Help</a>
                                 <a href="../html/legal-notice.html">Legal notice</a>
                                 <a href="../html/privacy-policy.html">Privacy Policy</a>
@@ -84,52 +87,53 @@
                             <div class="summary-overview">
                                 <div class="boxContainer">
                                     <div class="overview-box-items box-1" id="todo-box">
-                                    <img src="../assets/img/summary-edit-default.svg" alt="" />
-                                    <div class="task-number">
-                                        <span id="toDoNumbers"></span>
-                                        <h4 class="tasks-text">To-do</h4>
+                                        <img src="../assets/img/summary-edit-default.svg" alt="" />
+                                        <div class="task-number">
+                                            <span id="toDoNumbers"></span>
+                                            <h4 class="tasks-text">To-do</h4>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="overview-box-items box-2" id="done-box">
-                                    <img src="../assets/img/summary-done-default.svg" alt="" />
-                                    <div class="task-number">
-                                        <span id="doneNumbers"></span>
-                                        <h4 class="tasks-text">Done</h4>
+                                    <div class="overview-box-items box-2" id="done-box">
+                                        <img src="../assets/img/summary-done-default.svg" alt="" />
+                                        <div class="task-number">
+                                            <span id="doneNumbers"></span>
+                                            <h4 class="tasks-text">Done</h4>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 <div class="boxContainer">
                                     <div class="overview-box-items box-3" id="urgency-box">
-                                    <div class="left-box">
-                                        <img class="urgent-badge" src="../assets/img/summary-calender-priority.svg" alt=""></img>
-                                        <div class="urgent-task">
-                                            <span id="urgentNumbers"></span>
-                                            <h5 class="tasks-text">urgent</h5>
+                                        <div class="left-box">
+                                            <img class="urgent-badge" src="../assets/img/summary-calender-priority.svg"
+                                                alt=""></img>
+                                            <div class="urgent-task">
+                                                <span id="urgentNumbers"></span>
+                                                <h5 class="tasks-text">urgent</h5>
+                                            </div>
+                                        </div>
+                                        <div class="box-seprator"></div>
+
+                                        <div class="right-box">
+                                            <h4 class="urgency-date" id="dueDate"></h4>
+                                            <h5 class="deadline">Upcoming Deadline</h5>
                                         </div>
                                     </div>
-                                    <div class="box-seprator"></div>
-                                    
-                                    <div class="right-box">
-                                        <h4 class="urgency-date" id="dueDate"></h4>
-                                        <h5 class="deadline">Upcoming Deadline</h5>
-                                    </div>
-                                </div>
                                 </div>
                                 <div class="boxContainer">
-                                     <div class="overview-box-items box-4" id="tasks-in-board-box">
-                                    <span id="totalTasksNumbers"></span>
-                                    <h5 class="tasks-text">Tasks in <br> Board</h5>
+                                    <div class="overview-box-items box-4" id="tasks-in-board-box">
+                                        <span id="totalTasksNumbers"></span>
+                                        <h5 class="tasks-text">Tasks in <br> Board</h5>
+                                    </div>
+                                    <div class="overview-box-items box-5" id="tasks-in-progress-box">
+                                        <span id="inProgressNumber"></span>
+                                        <h5 class="tasks-text">Tasks In <br> Progress</h5>
+                                    </div>
+                                    <div class="overview-box-items box-6" id="awaiting-feedback-box">
+                                        <span id="awaitingFeedbackNumber"></span>
+                                        <h5 class="tasks-text">Awaiting <br> Feedback</h5>
+                                    </div>
                                 </div>
-                                <div class="overview-box-items box-5" id="tasks-in-progress-box">
-                                    <span id="inProgressNumber"></span>
-                                    <h5 class="tasks-text">Tasks In <br> Progress</h5>
-                                </div>
-                                <div class="overview-box-items box-6" id="awaiting-feedback-box">
-                                    <span id="awaitingFeedbackNumber"></span>
-                                    <h5 class="tasks-text">Awaiting <br> Feedback</h5>
-                                </div>
-                                </div>
-                               
+
                             </div>
                             <div class="welcome-user">
                                 <h4 class="welcoming-message">Good morning,</h4>
@@ -137,9 +141,6 @@
                             </div>
                         </section>
                     </div>
-
-
-                    <!-- Welcome Page with Animation appears when width <= 991px -->
                     <div class="welcome-page">
                         <h4 class="welcomeMsg"></h4>
                         <h2 class="signedUser" id="signedUser"></h2>
@@ -148,9 +149,9 @@
             </div>
         </div>
     </div>
-<div class="menuOverlay hidden"></div>
-<script src="../script/sidebar_and_header_script.js"></script>
-<script src="../script/summary.js"></script>
+    <div class="menuOverlay hidden"></div>
+    <script src="../script/sidebar_and_header_script.js"></script>
+    <script src="../script/summary.js"></script>
 </body>
 
 </html>

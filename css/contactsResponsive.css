@@ -24,11 +24,7 @@
     padding: 16px 24px;
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contact-badge {
+  .contacts .contact-list .contact-list-items .contact-container .contact-badge {
     width: 54px;
     height: 54px;
     font-size: 20px;
@@ -62,21 +58,11 @@
     gap: clamp(20px, 4vw, 35px);
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails
-    .contactName {
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
     font-size: clamp(16px, 4vw, 20px);
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails
-    .contactEmail {
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
     font-size: clamp(13px, 4vw, 16px);
   }
 
@@ -178,6 +164,7 @@
   main {
     padding: 0;
   }
+
   .contacts {
     width: 100%;
     margin-right: 0;
@@ -223,40 +210,22 @@
     gap: 8px;
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contact-badge {
+  .contacts .contact-list .contact-list-items .contact-container .contact-badge {
     width: 42px;
     height: 42px;
     font-size: 16px;
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails {
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails {
     display: flex;
     flex-flow: column wrap;
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails
-    .contactName {
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactName {
     font-size: 16px;
   }
 
-  .contacts
-    .contact-list
-    .contact-list-items
-    .contact-container
-    .contactDetails
-    .contactEmail {
+  .contacts .contact-list .contact-list-items .contact-container .contactDetails .contactEmail {
     font-size: 12px;
   }
 
@@ -395,9 +364,7 @@
 }
 
 .editMenuDialogContainer #editDialog.edit-delete-component-default:hover span,
-.editMenuDialogContainer
-  #deleteDialog.edit-delete-component-default:hover
-  span {
+.editMenuDialogContainer #deleteDialog.edit-delete-component-default:hover span {
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
 }

@@ -128,6 +128,7 @@ a {
   font-size: 50px;
   margin-bottom: 5px;
 }
+
 .seperator {
   margin-top: 10px;
   height: 2px;
@@ -263,8 +264,10 @@ button:disabled {
   transform: translateX(-50%);
   transition: bottom 1s ease-in-out;
 }
+
 .message.show {
-  bottom: 50%; /* Endposition innerhalb des Bildschirms */
+  bottom: 50%;
+  /* Endposition innerhalb des Bildschirms */
 }
 
 /*Checkbox style*/
@@ -318,21 +321,21 @@ button:disabled {
 }
 
 /*CHECKED*/
-.checkbox-group input:checked + label .unchecked,
-.checkbox-group input:checked + label .unchecked-hover {
+.checkbox-group input:checked+label .unchecked,
+.checkbox-group input:checked+label .unchecked-hover {
   display: none;
 }
 
-.checkbox-group input:checked + label .checked {
+.checkbox-group input:checked+label .checked {
   display: block;
 }
 
 /*CHECKED + HOVER*/
-.checkbox-group input:checked + label:hover .checked {
+.checkbox-group input:checked+label:hover .checked {
   display: none;
 }
 
-.checkbox-group input:checked + label:hover .checked-hover {
+.checkbox-group input:checked+label:hover .checked-hover {
   display: block;
 }
 

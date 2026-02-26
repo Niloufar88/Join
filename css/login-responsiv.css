@@ -2,6 +2,7 @@
   #login-main {
     padding: 20px;
   }
+
   #login-header .auth-nav {
     display: none;
   }
@@ -29,6 +30,7 @@
     from {
       opacity: 1;
     }
+
     to {
       opacity: 0;
     }
@@ -91,6 +93,7 @@
     width: 70px;
     height: auto;
   }
+
   #login-main .auth-nav-mobile {
     visibility: visible;
     display: flex;
@@ -114,6 +117,7 @@
     from {
       opacity: 1;
     }
+
     to {
       opacity: 0;
     }
@@ -169,6 +173,7 @@
   #login-main .login-container {
     padding: 48px;
   }
+
   .login-form {
     display: flex;
     flex-direction: column;
@@ -197,6 +202,7 @@
   #login-main .login-container h1 {
     font-size: 46px;
   }
+
   #login-main .login-form .input-group {
     width: 100%;
   }

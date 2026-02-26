@@ -1,177 +1,118 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
 
-    <!-- adding Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="../assets/Favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/Favicon/favicon-16x16.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../assets/Favicon/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
 
-    <!-- adding Main CSS Style-Sheet -->
-    <link rel="stylesheet" href="../css/standard.css" />
-    <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
-    <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
-    <link rel="stylesheet" href="../css/contact-predefinedClasses.css" />
-    <link rel="stylesheet" href="../css/contacts.css" />
-    <link rel="stylesheet" href="../css/contactsResponsive.css" />
-    <link rel="stylesheet" href="../css/contacts-overlay.css" />
-    <link rel="stylesheet" href="../css/contacts-overlay-responsive.css" />
-    <link rel="stylesheet" href="../css/contacts-edit-overlay.css" />
-    <link rel="stylesheet" href="../css/contacts-edit-overlay-responsive.css" />
+  <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/Favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/Favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
-    <!-- adding font awesome-->
-    <script
-      src="https://kit.fontawesome.com/34f17cdf39.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+  <link rel="stylesheet" href="../css/standard.css" />
+  <link rel="stylesheet" href="../css/sidebar_and_header_main.css" />
+  <link rel="stylesheet" href="../css/sidebar-responsiv.css" />
+  <link rel="stylesheet" href="../css/contact-predefinedClasses.css" />
+  <link rel="stylesheet" href="../css/contacts.css" />
+  <link rel="stylesheet" href="../css/contactsResponsive.css" />
+  <link rel="stylesheet" href="../css/contacts-overlay.css" />
+  <link rel="stylesheet" href="../css/contacts-overlay-responsive.css" />
+  <link rel="stylesheet" href="../css/contacts-edit-overlay.css" />
+  <link rel="stylesheet" href="../css/contacts-edit-overlay-responsive.css" />
 
-  <body onload="initContacts()">
-    <div class="body-div">
-      <div class="content-wrapper">
-        <aside class="sidebar">
-          <div class="frame1">
-            <div class="logo">
-              <img src="../assets/img/join-logo.svg " alt="logo " />
+  <script src="https://kit.fontawesome.com/34f17cdf39.js" crossorigin="anonymous"></script>
+</head>
+
+<body onload="initContacts()">
+  <div class="body-div">
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <div class="frame1">
+          <div class="logo">
+            <img src="../assets/img/join-logo.svg " alt="logo " />
+          </div>
+          <div class="frame2">
+            <div class="sideMenu">
+              <a href="../html/summary.html"><img src="../assets/img/summary-icon.svg " alt="summary " />Summary</a>
+              <a href="../html/add-task.html "><img src="../assets/img/addTask-icon.svg " alt="add-task " />Add Task
+              </a>
+              <a href="../html/board.html "><img src="../assets/img/board-icon.svg " alt="board " />Board</a>
+              <a class="active" href="../html/contacts.html "><img src="../assets/img/contacts-icon.svg"
+                  alt="contacts " />Contacts</a>
             </div>
-            <div class="frame2">
-              <div class="sideMenu">
-                <a href="../html/summary.html"
-                  ><img
-                    src="../assets/img/summary-icon.svg "
-                    alt="summary "
-                  />Summary</a
-                >
-                <a href="../html/add-task.html "
-                  ><img
-                    src="../assets/img/addTask-icon.svg "
-                    alt="add-task "
-                  />Add Task
-                </a>
-                <a href="../html/board.html "
-                  ><img
-                    src="../assets/img/board-icon.svg "
-                    alt="board "
-                  />Board</a
-                >
-                <a class="active" href="../html/contacts.html "
-                  ><img
-                    src="../assets/img/contacts-icon.svg"
-                    alt="contacts "
-                  />Contacts</a
-                >
-              </div>
-              <div class="sideMenu hide">
-                <a href="#"
-                  ><img
-                    src="../assets/img/contacts-icon.svg "
-                    alt="contacts "
-                  />Login</a
-                >
-              </div>
+            <div class="sideMenu hide">
+              <a href="#"><img src="../assets/img/contacts-icon.svg " alt="contacts " />Login</a>
             </div>
           </div>
-          <div class="frame3">
-            <div class="footerMenu">
-              <a href="../html/privacy-policy.html">Privacy Policy</a>
-              <a href="../html/legal-notice.html ">Legal notice</a>
-            </div>
-          </div>
-        </aside>
-        <div class="main-area">
-          <header class="header">
-            <div class="header_content">
-              <div class="join-icon">
-                <img
-                  src="../assets/img/Logo_for_Favicon_construction.png"
-                  alt="Join-logo"
-                />
-              </div>
-              <div class="text">Kanban Project Management Tool</div>
-              <div class="icons">
-                <a href="../html/help.html" class="help">
-                  <img src="../assets/img/help.svg" alt="help" id="help" />
-                </a>
-                <div class="user-icon">
-                  <button
-                    class="menu-button"
-                    id="menu-button"
-                    onclick="toggleMenu()"
-                    aria-label="Toggle menu"
-                  ></button>
-                </div>
-                <div class="dropDown-menu" id="dropDown-menu">
-                  <a href="../html/help.html" class="hide" id="switch_help"
-                    >Help</a
-                  >
-                  <a href="../html/legal-notice.html">Legal notice</a>
-                  <a href="../html/privacy-policy.html">Privacy Policy</a>
-                  <a href="../html/index.html" onclick="logOut()">Log Out</a>
-                </div>
-              </div>
-            </div>
-          </header>
-          <main>
-            <section class="contacts">
-              <button
-                id="add-contact"
-                class="primary-btn-default-icon"
-                onclick="openPopupOverlay()"
-              >
-                <h3>Add new contact</h3>
-                <img src="../assets/img/add-person-contact.svg" alt="" />
-              </button>
-              <div class="contact-list"></div>
-            </section>
-            <section class="contact-dashboard">
-              <div class="contact-box">
-                <h1>Contacts</h1>
-                <div id="vector"></div>
-                <h3>Better with a team</h3>
-              </div>
-            </section>
-
-            <!-- add contact popup -->
-            <div class="add-contact-popup d-none"></div>
-            <!-- edit contact popup -->
-            <div class="edit-contact-popup d-none"></div>
-            <!-- popup message -->
-            <div class="popup-message d-none"></div>
-            <!-- Edit Menu Dialog appears in mobile version-->
-            <dialog id="edit-menu-dialog"></dialog>
-          </main>
         </div>
+        <div class="frame3">
+          <div class="footerMenu">
+            <a href="../html/privacy-policy.html">Privacy Policy</a>
+            <a href="../html/legal-notice.html ">Legal notice</a>
+          </div>
+        </div>
+      </aside>
+      <div class="main-area">
+        <header class="header">
+          <div class="header_content">
+            <div class="join-icon">
+              <img src="../assets/img/Logo_for_Favicon_construction.png" alt="Join-logo" />
+            </div>
+            <div class="text">Kanban Project Management Tool</div>
+            <div class="icons">
+              <a href="../html/help.html" class="help">
+                <img src="../assets/img/help.svg" alt="help" id="help" />
+              </a>
+              <div class="user-icon">
+                <button class="menu-button" id="menu-button" onclick="toggleMenu()" aria-label="Toggle menu"></button>
+              </div>
+              <div class="dropDown-menu" id="dropDown-menu">
+                <a href="../html/help.html" class="hide" id="switch_help">Help</a>
+                <a href="../html/legal-notice.html">Legal notice</a>
+                <a href="../html/privacy-policy.html">Privacy Policy</a>
+                <a href="../html/index.html" onclick="logOut()">Log Out</a>
+              </div>
+            </div>
+          </div>
+        </header>
+        <main>
+          <section class="contacts">
+            <button id="add-contact" class="primary-btn-default-icon" onclick="openPopupOverlay()">
+              <h3>Add new contact</h3>
+              <img src="../assets/img/add-person-contact.svg" alt="" />
+            </button>
+            <div class="contact-list"></div>
+          </section>
+          <section class="contact-dashboard">
+            <div class="contact-box">
+              <h1>Contacts</h1>
+              <div id="vector"></div>
+              <h3>Better with a team</h3>
+            </div>
+          </section>
+
+          <div class="add-contact-popup d-none"></div>          
+          <div class="edit-contact-popup d-none"></div>
+          <div class="popup-message d-none"></div>
+          <dialog id="edit-menu-dialog"></dialog>
+        </main>
       </div>
     </div>
-    <div class="menuOverlay hidden"></div>
+  </div>
+  <div class="menuOverlay hidden"></div>
 
-    <script src="../script/sidebar_and_header_script.js"></script>
-    <script src="../script/data-bank.js"></script>
-    <script src="../script/firebaseStorageContacts.js"></script>
-    <script src="../script/contact-Templates.js"></script>
-    <script src="../script/contacts.js"></script>
-    <script src="../script/contactsoverlay.js"></script>
-    <script src="../script/addNewContact.js"></script>
-    <script src="../script/editContactOverlay.js"></script>
-    <script src="../script/editcontactValidation.js"></script>
-  </body>
+  <script src="../script/sidebar_and_header_script.js"></script>
+  <script src="../script/data-bank.js"></script>
+  <script src="../script/firebaseStorageContacts.js"></script>
+  <script src="../script/contact-Templates.js"></script>
+  <script src="../script/contacts.js"></script>
+  <script src="../script/contactsoverlay.js"></script>
+  <script src="../script/addNewContact.js"></script>
+  <script src="../script/editContactOverlay.js"></script>
+  <script src="../script/editcontactValidation.js"></script>
+</body>
+
 </html>

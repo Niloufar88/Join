@@ -1,145 +1,84 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
 
-    <!-- adding Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="../assets/Favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/Favicon/favicon-16x16.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="../assets/Favicon/apple-touch-icon.png"
-    />
-    <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
 
-    <!-- Preload only critical fonts for first paint -->
-    <link
-      rel="preload"
-      href="../assets/fonts/Inter/static/Inter_18pt-Regular.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin
-    />
+  <link rel="icon" type="image/x-icon" href="../assets/Favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/Favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/Favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/Favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="../assets/Favicon/site.webmanifest" />
 
-    <!-- adding Main CSS Style-Sheet -->
-    <link rel="stylesheet" href="../css/standard.css" />
-    <link rel="stylesheet" href="../css/login.css" />
-    <link rel="stylesheet" href="../css/login-responsiv.css" />
-  </head>
+  <link rel="preload" href="../assets/fonts/Inter/static/Inter_18pt-Regular.ttf" as="font" type="font/ttf"
+    crossorigin />
 
-  <body id="login-body">
-    <!-- <div class="bgAnimationMobile d-none"></div> -->
-    <!-- <div class="body-div" id="login-page-div">
-      
-    </div> -->
+  <link rel="stylesheet" href="../css/standard.css" />
+  <link rel="stylesheet" href="../css/login.css" />
+  <link rel="stylesheet" href="../css/login-responsiv.css" />
+</head>
 
-    <header id="login-header">
-      <!-- Logo Animation div -->
-      <div id="image-sequence" class="image-sequence animate-logo">
-        <img
-          src="../assets/img/Capa 2.svg"
-          alt="Logo Intro"
-          id="animate-image"
-        />
-      </div>
-      <div class="logo hidden">
-        <img src="../assets/img/Capa 2.svg" alt="Join-Logo" />
-      </div>
+<body id="login-body">
+  <header id="login-header">
+    <div id="image-sequence" class="image-sequence animate-logo">
+      <img src="../assets/img/Capa 2.svg" alt="Logo Intro" id="animate-image" />
+    </div>
+    <div class="logo hidden">
+      <img src="../assets/img/Capa 2.svg" alt="Join-Logo" />
+    </div>
+    <div class="auth-nav">
+      <span>Not a Join user?</span>
+      <button class="signup-btn" onclick="goToSignUp()">Sign up</button>
+    </div>
+  </header>
+  <main id="login-main">
+    <div class="login-container">
+      <h1>Log in</h1>
+      <div class="underline"></div>
+      <form class="login-form" id="login_form">
+        <div class="input-group">
+          <input id="email" type="email" placeholder="Email" required onblur="validateEmail()" />
+          <span class="input-icon"><img src="../assets/img/mail.svg" alt="" /></span>
+        </div>
+        <div class="error-msg" id="emailErrorMsg">
+          Check your email and try again.
+        </div>
 
-      <div class="auth-nav">
-        <span>Not a Join user?</span>
-        <button class="signup-btn" onclick="goToSignUp()">Sign up</button>
-      </div>
-    </header>
+        <div class="input-group">
+          <input id="password" type="password" placeholder="Password" onblur="valildatePassword()"
+            oninput="(updateIcon(), valildatePassword())" />
+          <span id="togglePasswordIcon" class="input-icon" onclick="togglePassword()"><img src="../assets/img/lock.svg"
+              alt="" /></span>
+        </div>
+        <div class="error-msg" id="passwordErrorMsg">
+          Check your password and try again.
+        </div>
 
-    <main id="login-main">
-      <div class="login-container">
-        <h1>Log in</h1>
-        <div class="underline"></div>
-        <form class="login-form" id="login_form">
-          <div class="input-group">
-            <input
-              id="email"
-              type="email"
-              placeholder="Email"
-              required
-              onblur="validateEmail()"
-            />
-            <span class="input-icon"
-              ><img src="../assets/img/mail.svg" alt=""
-            /></span>
-          </div>
+        <div class="buttons">
+          <button type="submit" class="login-btn" onclick="loginValidation()">
+            Log in
+          </button>
+          <button type="button" class="guest-btn" onclick="guestLogin()">
+            Guest Log in
+          </button>
+        </div>
+      </form>
+    </div>
 
-          <!-- Email Error Message-->
+    <div class="auth-nav-mobile">
+      <span>Not a Join user?</span>
+      <button class="signup-btn" onclick="goToSignUp()">Sign up</button>
+    </div>
+  </main>
 
-          <div class="error-msg" id="emailErrorMsg">
-            Check your email and try again.
-          </div>
+  <footer id="login-footer">
+    <a href="../html/privacy-policy-officially.html" class="footer-link">Privacy Policy</a>
+    <a href="../html/legal-notice-officially.html" class="footer-link">Legal notice</a>
+  </footer>
+</body>
+<script src="../script/login.js"></script>
+<script src="../script/log-in-site-firebase.js"></script>
 
-          <div class="input-group">
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              onblur="valildatePassword()"
-              oninput="(updateIcon(), valildatePassword())"
-            />
-            <span
-              id="togglePasswordIcon"
-              class="input-icon"
-              onclick="togglePassword()"
-              ><img src="../assets/img/lock.svg" alt=""
-            /></span>
-          </div>
-
-          <!-- Password Error Message-->
-
-          <div class="error-msg" id="passwordErrorMsg">
-            Check your password and try again.
-          </div>
-
-          <div class="buttons">
-            <button type="submit" class="login-btn" onclick="loginValidation()">
-              Log in
-            </button>
-            <button type="button" class="guest-btn" onclick="guestLogin()">
-              Guest Log in
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- auth-nav in mobile version -->
-
-      <div class="auth-nav-mobile">
-        <span>Not a Join user?</span>
-        <button class="signup-btn" onclick="goToSignUp()">Sign up</button>
-      </div>
-    </main>
-
-    <footer id="login-footer">
-      <a href="../html/privacy-policy-officially.html" class="footer-link"
-        >Privacy Policy</a
-      >
-      <a href="../html/legal-notice-officially.html" class="footer-link"
-        >Legal notice</a
-      >
-    </footer>
-  </body>
-  <script src="../script/login.js"></script>
-  <script src="../script/log-in-site-firebase.js"></script>
 </html>
