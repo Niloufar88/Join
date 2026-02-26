@@ -259,6 +259,7 @@ input[type="radio"] {
 .checkbox-box {
   display: inline-block;
   height: 24px;
+  width: 24px;
   background-image: url("../assets/img/checkbox.svg");
   background-repeat: no-repeat;
   background-position: center;

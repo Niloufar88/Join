@@ -1,3 +1,5 @@
+let subTaskInput = [];
+
 /**
  * Renders the contacts list inside the contacts dropdown.
  * @param {Contact[]} [list=contactsState]
