@@ -271,7 +271,7 @@ function contactPhonePatternValidation() {
   const contactPhone = document.getElementById("phone_input").value.trim();
   const phoneInput = document.getElementById("phone_input");
   const ErrorMsgBox = document.getElementById("contactphoneErrorMsg");
-  const phoneRegex = /^\+?[0-9\s\-()]{7,}$/;
+  const phoneRegex = /^\+?[0-9]{7,}$/;
   if (!phoneRegex.test(contactPhone)) {
     if (ErrorMsgBox) {
       ErrorMsgBox.style.visibility = "visible";
