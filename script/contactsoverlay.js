@@ -298,8 +298,9 @@ async function validateContactForm() {
     ErrorMsgBox.forEach((msgBox) => {
       msgBox.style.visibility = "hidden";
     });
+    return allValid;
   }
-  return allValid;
+  return false;
 }
 
 /**

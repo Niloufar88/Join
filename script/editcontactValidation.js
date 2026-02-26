@@ -245,8 +245,9 @@ function validateEditContactForm() {
   const allValid = isNameValid && isEmailValid && isPhoneValid;
   if (allValid) {
     validateEditContactFormErrorHandling();
+    return allValid;
   }
-  return allValid;
+  return false;
 }
 
 /**
