@@ -45,15 +45,6 @@ function buildCardDescription(description) {
   return `<p class="card-desc">${description || ""}</p>`;
 }
 
-// /**
-//  * Builds progress bar for subtasks.
-//  * @param {Task} task
-//  * @returns {string}
-//  */
-// function buildCardProgresshtml(task) {
-//   return `<div class="progress"><div style="width:${task}%"></div></div>`;
-// }
-
 /**
  * Builds card footer with priority, avatars and date.
  * @param {Task} task

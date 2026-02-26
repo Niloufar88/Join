@@ -50,7 +50,6 @@ async function loadImageSequence() {
 
 window.addEventListener("load", loadImageSequence);
 
-// sign Up Button Function
 
 function goToSignUp() {
   window.location.href = "../html/sign-up.html";

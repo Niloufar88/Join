@@ -119,7 +119,6 @@ async function pushContactsToAPI() {
   });
 }
 
-//
 /**
  * @param {string} fullName  using input value from contact name
  * checks for valid fullName string

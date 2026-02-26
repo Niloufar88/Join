@@ -228,14 +228,6 @@ dialogElement.addEventListener("click", (event) => {
   }
 });
 
-// Dialog function for edit and delete contact on small screens
-
-// dialogElement.addEventListener("click", () => {
-//   dialogElement.showModal();
-//   dialogElement.classList.add("slide-in");
-//   dialogElement.innerHTML = renderEditToolsDialog();
-// });
-
 /**
  * a function to prevent event bubbling when clicking inside the dialog content
  * @param {Event} event

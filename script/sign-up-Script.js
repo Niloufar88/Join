@@ -137,7 +137,6 @@ passwordConfirm.addEventListener("input", () => {
   });
 });
 
-// go back to login page function, a function applies to the back arrow in the top left corner of the sign-up page, which allows users to navigate back to the login page if they change their mind about signing up or want to log in instead.:
 
 function goBackToLogin() {
   window.location.href = "../html/index.html";
