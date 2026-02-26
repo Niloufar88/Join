@@ -1,3 +1,7 @@
+/**
+ * global Variables
+ */
+
 const contactContainer = document.querySelector(
   ".contacts .contact-list .contact-list-items .contact-container",
 );
@@ -22,6 +26,9 @@ const contactDashboard = document.querySelector(".contact-dashboard");
 const contactSection = document.querySelector(".contacts");
 const contactBox = document.querySelector(".contact-box");
 
+/**
+ * an Array of Colors for Contacts
+ */
 let colors = [
   "rgba(255, 122, 0, 1)",
   "rgba(255, 94, 179, 1)",
