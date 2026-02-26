@@ -1,5 +1,5 @@
 /* Responsive */
-@media (max-width: 1424px) {
+@media (max-width: 1440px) {
   .board-container {
     padding-left: 18px;
     padding-top: 80px;
@@ -8,8 +8,12 @@
 
   .board {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 18px;
+  }
+
+  .header-category h3 {
+    font-size: 18px;
   }
 
   .cardsContainer {
