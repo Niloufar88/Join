@@ -71,6 +71,10 @@ function renderFloatingContactTemplate(
             </div>`;
 }
 
+/**
+ * Generiert das HTML-Template für das "Add Contact" Overlay.
+ * * @returns {string} Das HTML-Gerüst als String für das Kontakt-Erstellungs-Formular.
+ */
 function renderAddContactTemplate() {
   return `
   <div class="add-contact-overlay">
@@ -275,6 +279,10 @@ function renderEditContactTemplate(name, email, phone, contactColor, initials) {
     `;
 }
 
+/**
+ * Generiert das HTML-Template für das "Add Contact" Overlay.
+ * * @returns {string} Das HTML-Gerüst als String für das Kontakt-Erstellungs-Formular.
+ */
 function renderEditToolsDialog() {
   return `
   <div class="editMenuDialogContainer">

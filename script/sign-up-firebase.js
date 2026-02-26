@@ -4,6 +4,21 @@
 const firebaseURL =
   "https://joinproject-51c1f-default-rtdb.europe-west1.firebasedatabase.app/users";
 
+/**
+* Registriert einen neuen Benutzer in der Firebase-Datenbank.
+* * @async
+* @function registerUser
+* @param {string} name - Der vollständige Name des Benutzers.
+* @param {string} email - Die E-Mail-Adresse des Benutzers.
+* @param {string} password - Das gewählte Passwort.
+* * @description
+* Erstellt ein Benutzerobjekt und sendet es per POST-Request an die Firebase-REST-API.
+* Im Fehlerfall (Netzwerk oder Server) wird eine Fehlermeldung im UI angezeigt.
+* * @requires firebaseURL - Die Basis-URL zur Firebase Realtime Database.
+* @returns {Promise<void>} Ein Promise, das nach Abschluss des Registrierungsprozesses aufgelöst wird.
+* * @example
+* await registerUser("Max Mustermann", "max@beispiel.de", "sicheresPasswort123");
+*/
 async function registerUser(name, email, password) {
   const userData = {
     name: name,

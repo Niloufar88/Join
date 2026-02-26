@@ -7,7 +7,13 @@ const userNameWelcomeMsg = document.getElementById("userName");
 const signedUser = document.getElementById("signedUser");
 let initials = "";
 
-// Ensure dropdown starts hidden
+/**
+ * Versteckt das Dropdown-Menü, falls es existiert und momentan sichtbar ist.
+ * * @description
+ * Prüft auf die Existenz von `dropDownMenu` und das Fehlen der Klasse `.hide`.
+ * Fügt die Klasse `.hide` hinzu, um das Menü per CSS auszublenden.
+ * * @requires dropDownMenu - Das DOM-Element des Dropdowns.
+ */
 if (dropDownMenu && !dropDownMenu.classList.contains("hide")) {
   dropDownMenu.classList.add("hide");
 }

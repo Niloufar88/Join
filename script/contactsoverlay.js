@@ -84,6 +84,20 @@ function existingEmailValidationErrorHandling() {
   }
 }
 
+/**
+ * Validiert, ob eine eingegebene E-Mail-Adresse bereits in der Datenbank existiert.
+ * * @async
+ * @function existingEmailValidation
+ * @description 
+ * Holt alle existierenden E-Mails über die API und gleicht sie mit der aktuellen Eingabe ab.
+ * Führt bei einer Dublette eine Fehlerbehandlung (UI-Anpassung) durch.
+ * * @returns {Promise<boolean>} 
+ * Gibt `false` zurück, wenn die E-Mail bereits existiert (Validierung fehlgeschlagen).
+ * Gibt `true` zurück, wenn die E-Mail neu ist oder ein Netzwerkfehler auftritt.
+ * * @see existingEmailValidationVariables - Holt die benötigten DOM-Elemente und Werte.
+ * @see fetchExistingContactEmail - Die API-Abfrage der E-Mail-Liste.
+ * @see existingEmailValidationErrorHandling - UI-Feedback bei Fehlern.
+ */
 async function existingEmailValidation() {
   const { contactEmail, emailInput } = existingEmailValidationVariables();
   try {
@@ -164,6 +178,21 @@ function existingNameValidationErrorHandling() {
   }
 }
 
+/**
+ * Prüft asynchron, ob ein Kontaktname bereits in der Datenbank existiert.
+ * * @async
+ * @function existingNameValidation
+ * @description
+ * Vergleicht den eingegebenen Namen (case-insensitive) mit einer Liste aller 
+ * vorhandenen Kontaktnamen aus der API. Markiert das Eingabefeld bei einer 
+ * Dublette rot und triggert die Fehlerbehandlung.
+ * * @returns {Promise<boolean>} 
+ * `false`, wenn der Name bereits existiert (Validierung fehlgeschlagen).
+ * `true`, wenn der Name neu ist oder ein Fehler bei der Abfrage auftrat.
+ * * @see existingNameValidationVariables - Extrahiert Name und Input-Element.
+ * @see fetchExistingContactName - Holt die Namensliste von der API.
+ * @see existingNameValidationErrorHandling - Steuert die UI-Fehlermeldung.
+ */
 async function existingNameValidation() {
   const { contactName, nameInput } = existingNameValidationVariables();
   try {

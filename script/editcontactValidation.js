@@ -111,11 +111,6 @@ function editContactNameNullValidation() {
 }
 
 /**
- * an async function which checks if the contact name is already exists in Firebase by fetching the existing contact names and comparing them with the input name. If the contact name is already exists, it shows an error message and clears the input field.
- * @returns {Promise<boolean>} Returns true if name is available, false if already taken
- */
-
-/**
  * a function which saves variables for later use.
  * @returns {Object} Returns an object containing the contact name and name input element
  */

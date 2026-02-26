@@ -99,6 +99,18 @@ async function createContactList() {
   }
 }
 
+/**
+ * Überträgt die aktuellen Kontaktdaten per PUT-Request an die REST-API.
+ * * @async
+ * @function pushContactsToAPI
+ * @description 
+ * Konvertiert das globale Objekt `fetchedData` in einen JSON-String und 
+ * überschreibt die Daten unter der `storageUrl`.
+ * * @requires storageUrl - Die Basis-URL der Datenbank/API.
+ * @requires fetchedData - Das lokale Datenobjekt, das synchronisiert werden soll.
+ * * @returns {Promise<void>} Ein Promise, das aufgelöst wird, wenn der Netzwerk-Request abgeschlossen ist.
+ * @throws {Error} Kann einen Fehler werfen, wenn der Netzwerk-Request fehlschlägt.
+ */
 async function pushContactsToAPI() {
   await fetch(storageUrl + ".json", {
     method: "PUT",
@@ -129,7 +141,14 @@ function getInitials(fullName) {
   return firstInitial + lastInitial;
 }
 
-// Find or create floating contact container
+/**
+ * Initialisiert und injiziert den schwebenden Container für Kontakt-Details in das DOM.
+ * * @description
+ * Prüft, ob die globale Variable `container` bereits existiert. Falls nicht, wird ein 
+ * neues `div`-Element erstellt und an `.contact-dashboard` oder alternativ an `main` angehängt.
+ * * @requires container - Erwartet eine (global) definierte Variable für die Instanz-Prüfung.
+ * @returns {void} Diese Funktion manipuliert das DOM direkt und hat keinen Rückgabewert.
+ */
 function floatingContainer() {
   if (!container) {
     const parent =
